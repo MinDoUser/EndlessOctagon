@@ -45,7 +45,7 @@ public final class EOBlocks implements ContentList{
     oxaForge = new SolarCrafter("oxa-forge"){{
             requirements(Category.crafting, with(Items.metaglass, 25, Items.silicon, 45, Items.lead, 120, Items.graphite, 20));
 
-            craftEffect = smeltSmoke;
+            craftEffect = smeltsmoke;
             outputItem = new ItemStack(EOItems.oxa, 2);
             craftTime = 34f;
             itemCapacity = 10;
