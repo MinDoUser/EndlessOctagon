@@ -4,6 +4,8 @@ import arc.util.*;
 
 import mindustry.mod.*;
 
+import endlessOctagon.content.*;
+
 public class EndlessOctagonMod extends Mod{
 
     public EndlessOctagonMod(){
@@ -12,6 +14,7 @@ public class EndlessOctagonMod extends Mod{
   
   @Override
   public void loadContent(){
-    
+        new EOItems().load();
+      new EOBlocks().load();
   }
 }
