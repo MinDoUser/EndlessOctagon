@@ -18,7 +18,7 @@ public class SolarCrafter extends GenericCrafter{
   
   public SolarCrafter(String name){
     super(name);
-    if(this.details != null){
+    if(this.details == null){
       details = "A \"Solar Crafter\". Used the sun to operate. \n\n Keep sure you have enough sun!";
     }
   }
