@@ -38,7 +38,7 @@ public class SolarCrafter extends GenericCrafter{
         }
 
         public float efficiencyScale(){
-            return super.efficiency() + getEfficiency();
+            return getEfficiency();
         }
       
       public final float getEfficiency(){
