@@ -38,13 +38,27 @@ import endlessOctagon.world.blocks.crafter.*;
 
 public final class EOBlocks implements ContentList{
   public static Block 
-    oxaForge;
+    //Crafter
+    oxaForge,
+    //Environment
+    swamp;
    
   @Override
   public final void load(){
+    //Start of environment
+    swamp = new Floor("swamp"){{
+            speedMultiplier = 0.47f;
+            variants = 3;
+            status = StatusEffects.muddy;
+            statusDuration = 30f;
+            attributes.set(Attribute.oil, 0.56f);
+            attributes.set(Attribute.water, 1.95f);
+        }};
+    //End of environment
+    //Start of Crafters
     oxaForge = new SolarCrafter("oxa-forge"){{
             requirements(Category.crafting, with(Items.metaglass, 25, Items.silicon, 45, Items.lead, 120, Items.graphite, 20));
-
+            
             craftEffect = smeltsmoke;
             outputItem = new ItemStack(EOItems.oxa, 2);
             craftTime = 34f;
