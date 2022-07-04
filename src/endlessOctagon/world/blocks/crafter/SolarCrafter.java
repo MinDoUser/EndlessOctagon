@@ -45,7 +45,7 @@ public class SolarCrafter extends GenericCrafter{
                     (state.rules.lighting ?
                         1f - state.rules.ambientLight.a :
                         1f
-                    )) : 0f;
+                    ));
       }
     }
 
