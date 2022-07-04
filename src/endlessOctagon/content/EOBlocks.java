@@ -30,11 +30,29 @@ import mindustry.world.consumers.*;
 import mindustry.world.draw.*;
 import mindustry.world.meta.*;
 
+import endlessOctagon.world.blocks.crafter.*;
+
 public final class EOBlocks implements ContentList{
   public static Block 
     oxaForge;
   
   @Override
   public final void load(){
+    oxaForge = new SolarCrafter("oxa-forge"){{
+            requirements(Category.crafting, with(Items.metaglass, 25, Items.silicon, 45, Items.lead, 120, Items.graphite, 20));
+
+            craftEffect = Fx.smeltSmoke;
+            outputItem = new ItemStack(EOItems.oxa, 2);
+            craftTime = 34f;
+            itemCapacity = 10;
+            size = 2;
+            hasItems = false;
+            hasLiquids = true;
+            hasPower = false;
+            
+            drawer = new DrawSmelter();
+
+            consumes.items(with(Items.silicon, 1, Items.copper, 2));
+        }};
   }
 }
