@@ -30,6 +30,7 @@ import mindustry.world.consumers.*;
 import mindustry.world.draw.*;
 import mindustry.world.meta.*;
 import mindustry.content.*;
+import static mindustry.content.Fx;.*
 
 import static mindustry.type.ItemStack.*;
 
@@ -38,13 +39,13 @@ import endlessOctagon.world.blocks.crafter.*;
 public final class EOBlocks implements ContentList{
   public static Block 
     oxaForge;
-  
+   
   @Override
   public final void load(){
     oxaForge = new SolarCrafter("oxa-forge"){{
             requirements(Category.crafting, with(Items.metaglass, 25, Items.silicon, 45, Items.lead, 120, Items.graphite, 20));
 
-            craftEffect = Fx.smeltSmoke;
+            craftEffect = smeltSmoke;
             outputItem = new ItemStack(EOItems.oxa, 2);
             craftTime = 34f;
             itemCapacity = 10;
