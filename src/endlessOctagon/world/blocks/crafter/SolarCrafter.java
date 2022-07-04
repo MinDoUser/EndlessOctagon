@@ -1,4 +1,4 @@
-package endlessOctagon.world.blocks.carfter;
+package endlessOctagon.world.blocks.crafter;
 
 import mindustry.world.blocks.production.*;
 
