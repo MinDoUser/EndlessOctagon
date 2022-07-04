@@ -41,7 +41,7 @@ public final class EOBlocks implements ContentList{
     //Crafter
     oxaForge,
     //Environment
-    swamp;
+    sump;
    
   @Override
   public final void load(){
