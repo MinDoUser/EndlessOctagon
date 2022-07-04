@@ -31,6 +31,8 @@ import mindustry.world.draw.*;
 import mindustry.world.meta.*;
 import mindustry.content.*;
 
+import static mindustry.type.ItemStack.*;
+
 import endlessOctagon.world.blocks.crafter.*;
 
 public final class EOBlocks implements ContentList{
