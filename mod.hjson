@@ -1,23 +1,23 @@
 #the mod name as displayed in-game
-displayName: "Java Mod Template"
+displayName: "[white]<< Endless Octagon >>"
 
 #the internal name of your mod
-name: "example-java-mod"
+name: "eo-mod"
 
 #your name
-author: "You"
+author: "lol02/MinDoUser"
 
 #the fully qualified main class of the mod
-main: "example.ExampleJavaMod"
+main: "endlessOctagon.EndlessOctagonMod"
 
 #the mod description as seen in the mod dialog
-description: "A Mindustry Java mod template."
+description: "A mod."
 
 #the mod version
-version: 1.0
+version: 1.0.1
 
 #the minimum game build required to run this mod
-minGameVersion: 129
+minGameVersion: 133
 
 #this is a java mod
 java: true
