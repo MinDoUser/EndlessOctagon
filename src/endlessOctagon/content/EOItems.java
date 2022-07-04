@@ -5,8 +5,9 @@ import mindustry.ctype.*;
 import mindustry.type.*;
 
 public class EOItems implements ContentList{
+  /** Items color*/
   public static final Color 
-    OXA_COLOR = Color.valueOf(eab678");
+    OXA_COLOR = Color.valueOf("eab678");
     public static Item oxa;
   public final void load(){
     oxa = new Item("oxa", OXA_COLOR){{
