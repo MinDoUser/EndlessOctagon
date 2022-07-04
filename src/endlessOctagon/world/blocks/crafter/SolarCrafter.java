@@ -3,6 +3,7 @@ package endlessOctagon.world.blocks.carfter;
 import mindustry.world.blocks.production.*;
 
 import arc.*;
+import arc.math.*;
 import mindustry.graphics.*;
 import mindustry.ui.*;
 import mindustry.world.meta.*;
@@ -37,7 +38,7 @@ public class SolarCrafter extends GenericCrafter{
         }
 
         public float efficiencyScale(){
-            return baseEfficiency + getEfficiency();
+            return super.efficiency() + getEfficiency();
         }
       
       public final float getEfficiency(){
