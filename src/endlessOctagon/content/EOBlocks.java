@@ -30,7 +30,7 @@ import mindustry.world.consumers.*;
 import mindustry.world.draw.*;
 import mindustry.world.meta.*;
 
-public final classEOBlocks implements ContentList{
+public final class EOBlocks implements ContentList{
   public static Block 
     oxaForge;
   
