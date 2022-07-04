@@ -46,7 +46,7 @@ public final class EOBlocks implements ContentList{
   @Override
   public final void load(){
     //Start of environment
-    swamp = new Floor("swamp"){{
+    sump = new Floor("sump"){{
             speedMultiplier = 0.47f;
             variants = 3;
             status = StatusEffects.muddy;
