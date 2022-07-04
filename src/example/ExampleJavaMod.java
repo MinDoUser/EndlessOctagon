@@ -13,6 +13,8 @@ public class ExampleJavaMod extends Mod{
 
     public ExampleJavaMod(){
         Log.info("Loaded ExampleJavaMod constructor.");
+        
+        new Stat("Test"); //Test only...
 
         //listen for game load event
         Events.on(ClientLoadEvent.class, e -> {
