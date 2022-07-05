@@ -44,5 +44,6 @@ public class OverdriveBulletType extends BasicBulletType implements Ranged{
         if(super.despawnHit){
             super.hit(b);
         }
-        indexer.eachBlock(this, range()+1, other -> other.block.canOverdrive, other -> other.applyBoost(boost, 100f));
+        indexer.eachBlock(this, range()+1, other -> other.block.canOverdrive, other -> other.applyBoost(boost, 50f));
+}
 }
