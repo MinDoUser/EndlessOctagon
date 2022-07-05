@@ -39,7 +39,7 @@ import endlessOctagon.world.blocks.crafter.*;
 public final class EOBlocks implements ContentList{
   public static Block 
     //Walls
-    oxaWall, oxaWallLarge
+    oxaWall, oxaWallLarge,
     //Crafter
     oxaForge,
     //Environment
