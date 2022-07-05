@@ -22,7 +22,7 @@ import mindustry.world.*;
 import static mindustry.Vars.*;
 
 /** A bullet wich boosts nearby ally blocks when destroyed*/
-public class OverdriveBulletType extends BasicBulletType implements Ranged{
+public class OverdriveBulletType extends BasicBulletType{
   public float boost = 1.5f;
   public float range = 75.0f;
   
@@ -33,8 +33,7 @@ public class OverdriveBulletType extends BasicBulletType implements Ranged{
   public OverdriveBulletType(float speed, float damage, float boost){
         this(speed, damage, "bullet", boost);
   }
-  
-  @Override
+
   public float range(){
     return range;
   }
@@ -44,6 +43,6 @@ public class OverdriveBulletType extends BasicBulletType implements Ranged{
         if(super.despawnHit){
             super.hit(b);
         }
-        indexer.eachBlock(this.team, this.x, this.y, range()+1, other -> other.block.canOverdrive, other -> other.applyBoost(boost, 50f));
+        indexer.eachBlock(b, range()+1, other -> other.block.canOverdrive, other -> other.applyBoost(boost, 50f));
 }
 }
