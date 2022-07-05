@@ -38,6 +38,8 @@ import endlessOctagon.world.blocks.crafter.*;
 
 public final class EOBlocks implements ContentList{
   public static Block 
+    //Walls
+    oxaWall, oxaWallLarge
     //Crafter
     oxaForge,
     //Environment
@@ -45,6 +47,21 @@ public final class EOBlocks implements ContentList{
    
   @Override
   public final void load(){
+    // Start of walls
+    
+    final int wallHealthMultiplier = 4;
+    
+    oxaWall = new Wall("oxa-wall"){{
+            requirements(Category.defense, with(Items.oxa, 8));
+            health = 100 * wallHealthMultiplier;
+        }};
+
+        titaniumWallLarge = new Wall("oxa-wall-large"){{
+            requirements(Category.defense, ItemStack.mult(oxaWall.requirements, 4));
+            health = 100 * wallHealthMultiplier * 4;
+            size = 2;
+        }};
+    //end of walls
     //Start of environment
     sump = new Floor("sump"){{
             speedMultiplier = 0.47f;
