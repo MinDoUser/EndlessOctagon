@@ -20,6 +20,7 @@ public class SolarCrafter extends GenericCrafter{
     super(name);
     if(this.details == null){
       details = "A \"Solar Crafter\". Used the sun to operate. \n\n Keep sure you have enough sun!";
+      this.hideDeatils = false; // Never hide if not null.
     }
   }
   
