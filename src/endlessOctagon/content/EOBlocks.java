@@ -52,11 +52,11 @@ public final class EOBlocks implements ContentList{
     final int wallHealthMultiplier = 4;
     
     oxaWall = new Wall("oxa-wall"){{
-            requirements(Category.defense, with(Items.oxa, 8));
+            requirements(Category.defense, with(EOItems.oxa, 8));
             health = 100 * wallHealthMultiplier;
         }};
 
-        titaniumWallLarge = new Wall("oxa-wall-large"){{
+        oxaWallLarge = new Wall("oxa-wall-large"){{
             requirements(Category.defense, ItemStack.mult(oxaWall.requirements, 4));
             health = 100 * wallHealthMultiplier * 4;
             size = 2;
