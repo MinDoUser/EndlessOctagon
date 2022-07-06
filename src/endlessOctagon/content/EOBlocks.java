@@ -62,7 +62,7 @@ public final class EOBlocks implements ContentList{
             collidesAir = true;
     }};
     crowl = new ItemTurret("crowl"){{
-            requirements(Category.turret, with(Items.copper, 135, Items.lead, 50, EOItems.oxa, 125, Item.titanium, 15));
+            requirements(Category.turret, with(Items.copper, 135, Items.lead, 50, EOItems.oxa, 125, Items.titanium, 15));
             ammo(
                 EOItems.oxa, CROWL_BULLET
             );
