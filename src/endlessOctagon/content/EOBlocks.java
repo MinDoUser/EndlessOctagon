@@ -78,6 +78,7 @@ public final class EOBlocks implements ContentList{
             health = 350;
             inaccuracy = 3f;
             rotateSpeed = 10f;
+            size = 2;
 
             limitRange();
         }};
