@@ -42,9 +42,10 @@ public class OverdriveBulletType extends BasicBulletType{
   
   @Override
   public void despawned(Bullet b){
-        if(super.despawnHit){
+        //if(super.despawnHit){
             super.hit(b);
-        }
+        //}
         indexer.eachBlock(b, range()+1, other -> other.block.canOverdrive && boosts, other -> other.applyBoost(boost, 50f));
+        indexer.eachBlock(b, range()+1, other -> other.block.canOverdrive && boosts, other -> Drawf.selected(other, Color.valueOf("feb380")));
 }
 }
