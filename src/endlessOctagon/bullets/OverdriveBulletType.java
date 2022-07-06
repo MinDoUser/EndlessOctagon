@@ -25,6 +25,8 @@ import static mindustry.Vars.*;
 public class OverdriveBulletType extends BasicBulletType{
   public float boost = 1.5f;
   public float range = 75.0f;
+  /** Whether this is boosting nearby blocks*/
+  public boolean boosts = true;
   
   public OverdriveBulletType(float speed, float damage, String bulletSprite, float boost){
         super(speed, damage, bulletSprite);
@@ -43,6 +45,6 @@ public class OverdriveBulletType extends BasicBulletType{
         if(super.despawnHit){
             super.hit(b);
         }
-        indexer.eachBlock(b, range()+1, other -> other.block.canOverdrive, other -> other.applyBoost(boost, 50f));
+        indexer.eachBlock(b, range()+1, other -> other.block.canOverdrive && boosts, other -> other.applyBoost(boost, 50f));
 }
 }
