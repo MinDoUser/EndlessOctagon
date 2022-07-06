@@ -35,9 +35,12 @@ import static mindustry.content.Fx.*;
 import static mindustry.type.ItemStack.*;
 
 import endlessOctagon.world.blocks.crafter.*;
+import endlessOctagon.bullets.*;
 
 public final class EOBlocks implements ContentList{
   public static Block 
+    //Turrets
+    crowl,
     //Walls
     oxaWall, oxaWallLarge,
     //Crafter
@@ -47,6 +50,38 @@ public final class EOBlocks implements ContentList{
    
   @Override
   public final void load(){
+    //Start of turrets
+    final OverdriveBulletType CROWL_BULLET = new OverdriveBulletType(2.5f, 16, 2.0f){{
+            width = 10f;
+            height = 10f;
+            shrinkY = 2f;
+            lifetime = 42f;
+            backColor = Pal.accent;
+            frontColor = Pal.accent;
+            despawnEffect = Fx.absorb;
+            collidesAir = true;
+    }}
+    crowl = new ItemTurret("crowl"){{
+            requirements(Category.turret, with(Items.copper, 135, Items.lead, 50, EOItems.oxa, 125, Item.titanium, 15));
+            ammo(
+                EOItems.oxa, CROWL_BULLET;
+            );
+
+            spread = 2f;
+            shots = 1;
+            alternate = true;
+            reloadTime = 45f;
+            restitution = 0.03f;
+            range = CROWL_BULLET.lifetime * CROWL_BULLET.speed;
+            shootCone = 15f;
+            ammoUseEffect = Fx.smeltsmoke;
+            health = 350;
+            inaccuracy = 3f;
+            rotateSpeed = 10f;
+
+            limitRange();
+        }};
+    //End of turrets
     // Start of walls
     
     final int wallHealthMultiplier = 4;
