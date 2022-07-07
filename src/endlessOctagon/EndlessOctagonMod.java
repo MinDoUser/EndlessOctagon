@@ -6,6 +6,7 @@ import arc.scene.ui.layout.Table;
 
 import mindustry.mod.*;
 import mindustry.ui.dialogs.*;
+import mindustry.game.EventType.*;
 
 import endlessOctagon.content.*;
 import endlessOctagon.util.ui.*;
