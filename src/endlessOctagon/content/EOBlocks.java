@@ -51,11 +51,11 @@ public final class EOBlocks implements ContentList{
   @Override
   public final void load(){
     //Start of turrets
-    final OverdriveBulletType CROWL_BULLET = new OverdriveBulletType(2.5f, 16, 2.0f){{
-            width = 10f;
+    final OverdriveBulletType CROWL_BULLET = new OverdriveBulletType(2.7f, 16, 2.0f){{
+            width = 8f;
             height = 10f;
-            shrinkY = 2f;
-            lifetime = 42f;
+            shrinkY = 0f;
+            lifetime = 62f;
             backColor = Pal.accent;
             frontColor = Pal.accent;
             despawnEffect = Fx.absorb;
