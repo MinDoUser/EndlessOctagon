@@ -1,6 +1,7 @@
 package endlessOctagon;
 
 import arc.util.*;
+import arc.*;
 import arc.scene.ui.layout.Table;
 
 import mindustry.mod.*;
