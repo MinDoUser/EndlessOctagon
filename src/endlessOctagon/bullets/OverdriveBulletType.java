@@ -24,7 +24,7 @@ import static mindustry.Vars.*;
 /** A bullet wich boosts nearby ally blocks when destroyed*/
 public class OverdriveBulletType extends BasicBulletType{
   public float boost = 1.5f;
-  public float range = 75.0f;
+  public float range = 50.0f;
   /** Whether this is boosting nearby blocks*/
   public boolean boosts = true;
   
@@ -46,7 +46,7 @@ public class OverdriveBulletType extends BasicBulletType{
             super.hit(b);
         //}
         indexer.eachBlock(b, range()+1, other -> other.block.canOverdrive && boosts, other -> {
-            other.applyBoost(boost, 50f));
+            other.applyBoost(boost, 50f);
             Fx.healBlockFull.at(other.x, other.y, other.block.size, Color.valueOf("feb380")); // Yep, it should be called Overdrive
         });
 }
