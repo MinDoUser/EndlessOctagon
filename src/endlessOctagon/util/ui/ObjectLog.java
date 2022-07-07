@@ -9,9 +9,9 @@ import mindustry.ui.*;
 
 /** A Log containing a Object, it's name and it's image*/
 public class ObjectLog{
-  private UnlockableContent object;
-  private TextureRegion icon;
-  private String name, description, type;
+  public UnlockableContent object;
+  public TextureRegion icon;
+  public String name, description, type;
   
   public static final String
     NOTHING = "",
@@ -20,15 +20,11 @@ public class ObjectLog{
     REMOVED = "Removed: ";
   /**
   @param uo The object
-  @param description The description
-  @param type The type of change. You can use: NOTHING, CHANGED, FIXED, REMOVED or anything else (not recommended)
   */
-  public ObjectLog(UnlockableContent uc, String description, String type){
+  public ObjectLog(UnlockableContent uc){
     object = uc;
     icon = uc.fullIcon;
     name = uc.localizedName;
-    description = description;
-    type = type;
   }
   
   public Table buildTable(){
