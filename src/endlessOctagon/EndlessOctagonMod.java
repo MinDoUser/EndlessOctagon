@@ -28,7 +28,10 @@ public class EndlessOctagonMod extends Mod{
   
     public void startScreen(){
         CURRENT_LOGS = new ObjectLog[]{
-                         new ObjectLog(EOItems.oxa, "A new item", "New:")
+                         new ObjectLog(EOItems.oxa){{
+                              description = "A new Item";
+                              type = "New:";
+                         }}
                 };// Update here?
         BaseDialog dialog = new BaseDialog("");
         Table cont = dialog.cont;
