@@ -21,15 +21,15 @@ public class EndlessOctagonMod extends Mod{
         Events.on(ClientLoadEvent.class, e -> {
             //show dialog upon startup
             Time.runTask(10f, () -> {
-                CURRENT_LOGS = new ObjectLog[]{
-                         new ObjectLog(EOItems.oxa, "A new item", "New:")
-                };
                 startScreen();
             });
         });
     }
   
     public void startScreen(){
+        CURRENT_LOGS = new ObjectLog[]{
+                         new ObjectLog(EOItems.oxa, "A new item", "New:")
+                };// Update here?
         BaseDialog dialog = new BaseDialog("");
         Table cont = dialog.cont;
         for(ObjectLog log : CURRENT_LOGS){
@@ -37,7 +37,8 @@ public class EndlessOctagonMod extends Mod{
             cont.row();
             cont.row();
         }
-        cont.button("I know", dialog::hide).size(100f, 50f);
+        cont.row();
+        dialog.buttons.button("Ok!", dialog::hide).size(100f, 50f);
         dialog.show();
     }
     
