@@ -23,10 +23,10 @@ public class ObjectLog{
   @param description The description
   @param type The type of change. You can use: NOTHING, CHANGED, FIXED, REMOVED or anything else (not recommended)
   */
-  public ObjectLog(UnlockableContent uo, String description, String type){
-    object = uo;
-    icon = uo.fullIcon;
-    name = uo.localizedName;
+  public ObjectLog(UnlockableContent uc, String description, String type){
+    object = uc;
+    icon = uc.fullIcon;
+    name = uc.localizedName;
     description = description;
     type = type;
   }
