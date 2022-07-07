@@ -14,15 +14,16 @@ import endlessOctagon.content.*;
 
 public class EndlessOctagonMod extends Mod{
     
-    public static final ObjectLog[] CURRENT_LOGS = {
-        new ObjectLog(EOItems.oxa, "A new item", "New:")
-    };
+    public ObjectLog[] CURRENT_LOGS;
 
     public EndlessOctagonMod(){
       Log.info("Mod constructor loaded...");
         Events.on(ClientLoadEvent.class, e -> {
             //show dialog upon startup
             Time.runTask(10f, () -> {
+                CURRENT_LOGS = {
+                         new ObjectLog(EOItems.oxa, "A new item", "New:")
+                };
                 startScreen();
             });
         });
