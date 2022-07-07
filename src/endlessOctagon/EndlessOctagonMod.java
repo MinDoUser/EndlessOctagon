@@ -37,6 +37,7 @@ public class EndlessOctagonMod extends Mod{
             cont.row();
         }
         cont.button("I know", dialog::hide).size(100f, 50f);
+        dialog.show();
     }
     
   @Override
