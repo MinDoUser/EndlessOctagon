@@ -45,7 +45,9 @@ public class OverdriveBulletType extends BasicBulletType{
         //if(super.despawnHit){
             super.hit(b);
         //}
-        indexer.eachBlock(b, range()+1, other -> other.block.canOverdrive && boosts, other -> other.applyBoost(boost, 50f));
-        indexer.eachBlock(b, range()+1, other -> other.block.canOverdrive && boosts, other -> Drawf.selected(other, Color.valueOf("feb380")));
+        indexer.eachBlock(b, range()+1, other -> other.block.canOverdrive && boosts, other -> {
+            other.applyBoost(boost, 50f));
+            Fx.healBlockFull.at(other.x, other.y, other.block.size, Color.valueOf("feb380")); // Yep, it should be called Overdrive
+        });
 }
 }
