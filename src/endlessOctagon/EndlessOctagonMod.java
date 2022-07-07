@@ -21,7 +21,7 @@ public class EndlessOctagonMod extends Mod{
         Events.on(ClientLoadEvent.class, e -> {
             //show dialog upon startup
             Time.runTask(10f, () -> {
-                CURRENT_LOGS = {
+                CURRENT_LOGS = new ObjectLog[]{
                          new ObjectLog(EOItems.oxa, "A new item", "New:")
                 };
                 startScreen();
