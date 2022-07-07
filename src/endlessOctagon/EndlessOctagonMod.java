@@ -13,7 +13,7 @@ import endlessOctagon.content.*;
 public class EndlessOctagonMod extends Mod{
     
     public static final ObjectLog[] CURRENT_LOGS = {
-        new ObjectLog(EOBlocks.oxa, "A new item", "New:");
+        new ObjectLog(EOItems.oxa, "A new item", "New:")
     };
 
     public EndlessOctagonMod(){
