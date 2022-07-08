@@ -6,9 +6,11 @@ import arc.scene.ui.layout.Table;
 
 import mindustry.mod.*;
 import mindustry.ui.dialogs.*;
+import mindustry.ui.*;
 import mindustry.game.EventType.*;
 import mindustry.Vars;
 import mindustry.ui.dialogs.SettingsMenuDialog;
+import mindustry.gen.*; // Whethe is this package? Can't find it...
 
 import endlessOctagon.content.*;
 import endlessOctagon.util.ui.*;
