@@ -2,6 +2,7 @@ package endlessOctagon;
 
 import arc.util.*;
 import arc.*;
+import arc.graphics.g2d.*;
 import arc.scene.ui.layout.Table;
 
 import mindustry.mod.*;
@@ -52,10 +53,21 @@ public class EndlessOctagonMod extends Mod{
 	    changes.image().growX();
             changes.row();
         }
+	addLog(changes, "Added Change Log", Icon.add);
+	addLog(changes, "Added new button to open change log. \n You can find it here: Settings -> Game -> Change Log", Icon.wrench);
 	cont.pane(changes);
         cont.row();
         changeDialog.buttons.button("Ok!", changeDialog::hide).size(100f, 50f);
         changeDialog.show();
+    }
+	/**
+	* adds a new log to the existing table.
+	*/
+    public void addLog(Table table, String log, @Nullable TextureRegion icon){
+	    table.row();
+	    table.image(icon);
+	    table.add(log);
+	    table.image().growX();
     }
     
     public void loadSettings(){
@@ -64,7 +76,7 @@ public class EndlessOctagonMod extends Mod{
 		settingTable.game.row();
         settingTable.game.button("Change Log", Icon.info, ()->{
             changeDialog.show();
-        }).size(100f, 75f);
+        }).size(300f, 100f);
     }
     
   @Override
