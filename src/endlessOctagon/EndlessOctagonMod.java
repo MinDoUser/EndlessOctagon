@@ -4,6 +4,7 @@ import arc.util.*;
 import arc.*;
 import arc.graphics.g2d.*;
 import arc.scene.ui.layout.Table;
+import arc.scene.style.*;
 
 import mindustry.mod.*;
 import mindustry.ui.dialogs.*;
@@ -63,7 +64,7 @@ public class EndlessOctagonMod extends Mod{
 	/**
 	* adds a new log to the existing table.
 	*/
-    public void addLog(Table table, String log, @Nullable TextureRegion icon){
+    public void addLog(Table table, String log, @Nullable TextureRegionDrawable icon){
 	    table.row();
 	    table.image(icon);
 	    table.add(log);
