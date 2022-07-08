@@ -44,13 +44,15 @@ public class EndlessOctagonMod extends Mod{
         Table cont = changeDialog.cont;
         Table changes = new Table();
         changes.add("1.0.1", Styles.techLabel);
+	changes.image().growX();
 	changes.row();
         for(ObjectLog log : CURRENT_LOGS){
             changes.add(log.buildTable());
             changes.row();
+	    changes.image().growX();
             changes.row();
         }
-	cont.add(changes); // Scroll bar later
+	cont.pane(changes);
         cont.row();
         changeDialog.buttons.button("Ok!", changeDialog::hide).size(100f, 50f);
         changeDialog.show();
@@ -62,7 +64,7 @@ public class EndlessOctagonMod extends Mod{
 		settingTable.game.row();
         settingTable.game.button("Change Log", Icon.info, ()->{
             changeDialog.show();
-        });
+        }).size(100f, 75f);
     }
     
   @Override
