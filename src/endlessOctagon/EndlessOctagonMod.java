@@ -7,12 +7,16 @@ import arc.scene.ui.layout.Table;
 import mindustry.mod.*;
 import mindustry.ui.dialogs.*;
 import mindustry.game.EventType.*;
+import mindustry.Vars;
+import mindustry.ui.dialogs.SettingsMenuDialog;
 
 import endlessOctagon.content.*;
 import endlessOctagon.util.ui.*;
 import endlessOctagon.content.*;
 
 public class EndlessOctagonMod extends Mod{
+    
+    public BaseDialog changeDialog;
     
     public ObjectLog[] CURRENT_LOGS;
 
@@ -21,28 +25,40 @@ public class EndlessOctagonMod extends Mod{
         Events.on(ClientLoadEvent.class, e -> {
             //show dialog upon startup
             Time.runTask(10f, () -> {
-                startScreen();
+                changeScreen();
+                loadSettings();
             });
         });
     }
   
-    public void startScreen(){
+    public void changeScreen(){
         CURRENT_LOGS = new ObjectLog[]{
                          new ObjectLog(EOItems.oxa){{
                               description = "A new Item";
-                              type = "New:";
+                              type = ObjectLog.NEW;
                          }}
                 };// Update here?
-        BaseDialog dialog = new BaseDialog("");
-        Table cont = dialog.cont;
+        changeDialog = new BaseDialog("");
+        Table cont = changeDialog.cont;
+        Table changes = new Table();
+        changes.add("1.0.1", Styles.techLabel);
         for(ObjectLog log : CURRENT_LOGS){
-            cont.add(log.buildTable());
-            cont.row();
-            cont.row();
+            changes.add(log.buildTable());
+            changes.row();
+            changes.row();
         }
         cont.row();
-        dialog.buttons.button("Ok!", dialog::hide).size(100f, 50f);
-        dialog.show();
+        changeDialog.buttons.button("Ok!", changeDialog::hide).size(100f, 50f);
+        changeDialog.show();
+    }
+    
+    public void loadSettings(){
+        SettingsMenuDialog settingTable = Vars.ui.settings;
+		
+		settingTable.game.row();
+        settingTable.game.button("Change Log", Icon.info, ()->{
+            changeDialog.show();
+        });
     }
     
   @Override
