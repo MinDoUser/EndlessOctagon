@@ -64,11 +64,13 @@ public class EndlessOctagonMod extends Mod{
 	/**
 	* adds a new log to the existing table.
 	*/
-    public void addLog(Table table, String log, @Nullable TextureRegionDrawable icon){
+    public void addLog(Table t, String log, @Nullable TextureRegionDrawable icon){
+	    Table table = new Table();
 	    table.row();
 	    table.image(icon);
 	    table.add(log);
 	    table.image().growX();
+	    t.add(table);
     }
     
     public void loadSettings(){
