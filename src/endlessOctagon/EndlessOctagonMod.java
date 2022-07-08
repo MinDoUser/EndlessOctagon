@@ -50,6 +50,7 @@ public class EndlessOctagonMod extends Mod{
             changes.row();
             changes.row();
         }
+	cont.add(changes); // Scroll bar later
         cont.row();
         changeDialog.buttons.button("Ok!", changeDialog::hide).size(100f, 50f);
         changeDialog.show();
