@@ -17,7 +17,8 @@ public class ObjectLog{
     NOTHING = "",
     CHANGED = "Changed: ",
     FIXED = "Fixed: ",
-    REMOVED = "Removed: ";
+    REMOVED = "Removed: ",
+    NEW = "New: ";
   /**
   @param uo The object
   */
@@ -34,8 +35,9 @@ public class ObjectLog{
     topT.image(icon);
     topT.add("[stat]"+name);
     topT.row();
-    topT.image().growX();
+    t.image().growX();
     t.add(topT).align(Align.center);
+    t.row();
     t.add("[white]"+description);
     return t;
   }
