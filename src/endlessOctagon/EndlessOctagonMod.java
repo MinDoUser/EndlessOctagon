@@ -42,6 +42,7 @@ public class EndlessOctagonMod extends Mod{
         Table cont = changeDialog.cont;
         Table changes = new Table();
         changes.add("1.0.1", Styles.techLabel);
+	changes.row();
         for(ObjectLog log : CURRENT_LOGS){
             changes.add(log.buildTable());
             changes.row();
