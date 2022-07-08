@@ -35,7 +35,6 @@ public class ObjectLog{
     topT.image(icon);
     topT.add("[stat]"+name);
     topT.row();
-    t.image().growX();
     t.add(topT).align(Align.center);
     t.row();
     t.add("[white]"+description);
