@@ -8,6 +8,7 @@ import arc.*;
 import mindustry.ui.dialogs.*;
 import mindustry.ui.*;
 import mindustry.Vars;
+import mindustry.gen.*; //Where is this ... package?
 
 import static mindustry.ui.dialogs.SettingsMenuDialog.SettingsTable;
 
@@ -24,8 +25,10 @@ public final class EOSettings implements Loadable{
      SettingsMenuDialog settings = Vars.ui.settings;
 		
     settings.game.row();
-    settings.game.button("@settings.mod", Styles.cleart, ()->modSettingDialog.show());
-    modSettings.add("$eo-settings", Styles.techLabel);
+    settings.game.button("@settings.mod", Icon.info, ()->{
+	    modSettingDialog.show()
+	    }).size(250f, 100f);
+    modSettings.add("Settings", Styles.techLabel);
 		modSettings.checkPref("hidestartlog", false);//.description = Core.bundle.get("hidestartlog.description");
   }
   
