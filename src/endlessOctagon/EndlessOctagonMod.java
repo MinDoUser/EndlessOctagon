@@ -16,6 +16,7 @@ import mindustry.gen.*; // Whethe is this package? Can't find it...
 
 import endlessOctagon.content.*;
 import endlessOctagon.util.ui.*;
+import endlessOctagon.util.*;
 import endlessOctagon.content.*;
 
 public class EndlessOctagonMod extends Mod{
@@ -36,6 +37,7 @@ public class EndlessOctagonMod extends Mod{
     }
   
     public void changeScreen(){
+	    if(Core.settings.getBool("hidestartlog", false))return; //no.
         CURRENT_LOGS = new ObjectLog[]{
                          new ObjectLog(EOItems.oxa){{
                               description = "A new Item";
@@ -74,6 +76,8 @@ public class EndlessOctagonMod extends Mod{
     }
     
     public void loadSettings(){
+	    new EOSettings().loadObject();
+	    //=== === === === === === === === ===
         SettingsMenuDialog settingTable = Vars.ui.settings;
 		
 		settingTable.game.row();
