@@ -26,7 +26,7 @@ public final class EOSettings implements Loadable{
 		
     settings.game.row();
     settings.game.button("@settings.mod", Icon.info, ()->{
-	    modSettingDialog.show()
+	    modSettingDialog.show();
 	    }).size(250f, 100f);
     modSettings.add("Settings", Styles.techLabel);
 		modSettings.checkPref("hidestartlog", false);//.description = Core.bundle.get("hidestartlog.description");
