@@ -15,6 +15,10 @@ import static mindustry.ui.dialogs.SettingsMenuDialog.SettingsTable;
 public final class EOSettings implements Loadable{
   
   //public final Seq<Setting> settings = new Seq<>();
+	
+	public EOSettings(){
+		this.buttons.button("@back", Icon.left, this::close).size(450f, 80f); //I mean, why not gigantic?
+	}
   
   
   @Override
