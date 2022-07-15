@@ -35,8 +35,8 @@ public class EndlessOctagonMod extends Mod{
             });
         });
     }
-  
-    public void changeScreen(){
+  	/** ONLY ON STARTUP! ?*/
+    public final void changeScreen(){
 	    if(Core.settings.getBool("hidestartlog", false))return; //no.
         CURRENT_LOGS = new ObjectLog[]{
                          new ObjectLog(EOItems.oxa){{
@@ -72,7 +72,7 @@ public class EndlessOctagonMod extends Mod{
 	    table.image(icon);
 	    table.add(log);
 	    table.image().growX();
-	    t.add(table);
+	    t.add(table).row();
     }
     
     public void loadSettings(){
