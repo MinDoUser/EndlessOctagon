@@ -2,7 +2,7 @@ package endlessOctagon.util;
 
 import arc.struct.*;
 import arc.func.*;
-import arc util.*;
+import arc.util.*;
 import arc.*;
 
 import mindustry.ui.dialogs.*;
