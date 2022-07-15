@@ -13,7 +13,7 @@ import static mindustry.ui.dialogs.SettingsMenuDialog.SettingsTable;
 
 public final class EOSettings implements Loadable{
   
-  public final Seq<Setting> settings = new Seq<>();
+  //public final Seq<Setting> settings = new Seq<>();
   
   
   @Override
@@ -26,7 +26,7 @@ public final class EOSettings implements Loadable{
     settings.game.row();
     settings.game.button("@settings.mod", Styles.cleart, ()->modSettingDialog.show());
     modSettings.add("$eo-settings", Styles.techLabel);
-		modSettings.checkPref("hidestartlog", false).description = Core.bundle.get("hidestartlog.description");
+		modSettings.checkPref("hidestartlog", false);//.description = Core.bundle.get("hidestartlog.description");
   }
   
   /*public void addCheckBox(SettingsTable table, String name, boolean def,@Nullable Boolc changed, @Nullable String d){
