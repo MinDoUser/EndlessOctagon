@@ -24,9 +24,11 @@ public final class EOSettings implements Loadable{
   @Override
   public void loadObject(){
     BaseDialog modSettingDialog  = new BaseDialog("@settings.mod");
-	modSettingsDialog.buttons.button("@back", Icon.left, modSettingDialog::close).size(450f, 80f); //I mean, why not gigantic?
+	modSettingDialog.buttons.button("@back", Icon.left, ()->{
+		modSettingDialog.hide();
+	}).size(450f, 80f); //I mean, why not gigantic?
     SettingsTable modSettings = new SettingsTable();
-	modSettingDialog.cont.add("Settings", Styles.techLabel);
+	modSettingDialog.cont.add("Settings", Styles.techLabel).row();
     modSettingDialog.cont.pane(modSettings);
      SettingsMenuDialog settings = Vars.ui.settings;
 		
