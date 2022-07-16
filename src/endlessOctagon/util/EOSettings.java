@@ -17,14 +17,16 @@ public final class EOSettings implements Loadable{
   //public final Seq<Setting> settings = new Seq<>();
 	
 	public EOSettings(){
-		this.buttons.button("@back", Icon.left, this::close).size(450f, 80f); //I mean, why not gigantic?
+		// Does nothing, just code :P
 	}
   
   
   @Override
   public void loadObject(){
     BaseDialog modSettingDialog  = new BaseDialog("@settings.mod");
+	modSettingsDialog.buttons.button("@back", Icon.left, modSettingDialog::close).size(450f, 80f); //I mean, why not gigantic?
     SettingsTable modSettings = new SettingsTable();
+	modSettingDialog.cont.add("Settings", Styles.techLabel);
     modSettingDialog.cont.pane(modSettings);
      SettingsMenuDialog settings = Vars.ui.settings;
 		
@@ -32,7 +34,6 @@ public final class EOSettings implements Loadable{
     settings.game.button("@settings.mod", Icon.info, ()->{
 	    modSettingDialog.show();
 	    }).size(250f, 100f);
-    modSettings.add("Settings", Styles.techLabel);
 		modSettings.checkPref("hidestartlog", false);//.description = Core.bundle.get("hidestartlog.description");
   }
   
