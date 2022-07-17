@@ -77,8 +77,9 @@ public final class EndlessOctagonMod extends Mod{
     public void addLog(Table t, String log, @Nullable TextureRegionDrawable icon){
 	    Table table = new Table();
 	    table.row();
-	    table.image(icon);
+	    if(icon != null)table.image(icon);
 	    table.add("  "+log);
+	    table.row();
 	    table.image().growX();
 	    t.add(table).row();
     }
