@@ -19,7 +19,7 @@ public class SolarCrafter extends GenericCrafter{
   public SolarCrafter(String name){
     super(name);
     if(this.details == null){
-      details = "A \"Solar Crafter\". Used the sun to operate. \n\n Keep sure you have enough sun!";
+      details = "A \"Solar Crafter\". Uses the sun to operate. \n\n Keep sure you have enough sun!";
       this.hideDetails = false; // Never hide if not null.
     }
   }
@@ -28,7 +28,7 @@ public class SolarCrafter extends GenericCrafter{
     public void setBars(){
         super.setBars();
 
-        bars.add("efficiency", (SolarCrafterBuild entity) ->
+        addBar("efficiency", (SolarCrafterBuild entity) ->
             new Bar(() ->
             Core.bundle.format("bar.efficiency", (int)(entity.efficiencyScale() * 100)),
             () -> Pal.lightOrange,
