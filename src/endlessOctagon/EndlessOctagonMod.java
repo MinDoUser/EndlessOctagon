@@ -96,7 +96,7 @@ public final class EndlessOctagonMod extends Mod{
     
   @Override
   public void loadContent(){
-        new EOItems().load();
-      new EOBlocks().load();
+        new EOItems().loadObject();
+      new EOBlocks().loadObject();
   }
 }
