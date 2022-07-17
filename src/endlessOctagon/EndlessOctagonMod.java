@@ -94,10 +94,14 @@ public final class EndlessOctagonMod extends Mod{
             changeDialog.show();
         }).size(250f, 100f);
     }
+	public static final endlessOctagon.util.Loadable[] loadables = {
+		new EOItems(), new EOBlocks(), new EOPlanets()
+	};
     
   @Override
   public void loadContent(){
-        new EOItems().loadObject();
-      new EOBlocks().loadObject();
+	  for(var load : loadables){
+        	load.loadObject();
+	  }
   }
 }
