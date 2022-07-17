@@ -19,11 +19,11 @@ import mindustry.world.meta.*;
 import mindustry.content.*;
 
 public final class EOPlanets implements endlessOctagon.util.Loadable{
-  public static final Planet 
+  public static Planet 
     //litho, ;
   esag;
   @Override
-  public static void loadObject(){
+  public void loadObject(){
   esag  = new Planet("esag", Planets.serpulo, 0.5f, 3){{
             accessible = false;
 
