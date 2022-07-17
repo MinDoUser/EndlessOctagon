@@ -125,7 +125,7 @@ public final class EOBlocks implements endlessOctagon.util.Loadable{
             hasLiquids = true;
             hasPower = false;
             
-            drawer = new DrawFlame();
+            drawer = new DrawMulti(new DrawDefault(), new DrawFlame(Color.valueOf("ffef99")));
 
             consumeItems(with(Items.coal, 1, Items.sand, 2));
         }};
