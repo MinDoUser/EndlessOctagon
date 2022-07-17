@@ -37,7 +37,7 @@ import static mindustry.type.ItemStack.*;
 import endlessOctagon.world.blocks.crafter.*;
 import endlessOctagon.bullets.*;
 
-public final class EOBlocks implements ContentList{
+public final class EOBlocks implements endlessOctagon.util.Loadable{
   public static Block 
     //Turrets
     crowl,
@@ -49,7 +49,7 @@ public final class EOBlocks implements ContentList{
     sump;
    
   @Override
-  public final void load(){
+  public final void loadObject(){
     //Start of turrets
     final OverdriveBulletType CROWL_BULLET = new OverdriveBulletType(2.7f, 16, 2.0f){{
             width = 8f;
