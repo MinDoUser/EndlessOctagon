@@ -47,6 +47,10 @@ public final class EOBlocks implements endlessOctagon.util.Loadable{
     oxaForge,
     //Environment
     sump;
+  
+  private float calculateTurretRange(mindustry.entities.bullet.BulletType b){
+    return (b.lifetime * b.speed)+2f;
+  }
    
   @Override
   public final void loadObject(){
@@ -67,12 +71,12 @@ public final class EOBlocks implements endlessOctagon.util.Loadable{
                 EOItems.oxa, CROWL_BULLET
             );
 
-            spread = 2f;
-            shots = 1;
-            alternate = true;
-            reloadTime = 45f;
-            restitution = 0.03f;
-            range = CROWL_BULLET.lifetime * CROWL_BULLET.speed;
+            //spread = 2f;
+            //shots = 1;
+            //alternate = true;
+            reload = 45f;
+            //restitution = 0.03f;
+            range = calculateTurretRange(CROWL_BULLET);//(CROWL_BULLET.lifetime * CROWL_BULLET.speed) + 2f;
             shootCone = 15f;
             ammoUseEffect = Fx.smeltsmoke;
             health = 350;
@@ -121,7 +125,7 @@ public final class EOBlocks implements endlessOctagon.util.Loadable{
             hasLiquids = true;
             hasPower = false;
             
-            drawer = new DrawSmelter();
+            drawer = new DrawFlame();
 
             consumes.items(with(Items.silicon, 1, Items.copper, 2));
         }};
