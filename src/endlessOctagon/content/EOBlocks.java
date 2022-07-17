@@ -127,7 +127,7 @@ public final class EOBlocks implements endlessOctagon.util.Loadable{
             
             drawer = new DrawFlame();
 
-            consumes.items(with(Items.silicon, 1, Items.copper, 2));
+            consumeItems(with(Items.coal, 1, Items.sand, 2));
         }};
   }
 }
