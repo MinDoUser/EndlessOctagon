@@ -24,8 +24,10 @@ public final class EOPlanets implements endlessOctagon.util.Loadable{
   esag;
   @Override
   public void loadObject(){
-  esag  = new Planet("esag", Planets.serpulo, 0.2f, 4){{
+  esag  = new Planet("esag", Planets.serpulo, 1.25f, 4){{
             accessible = false;
+    
+            //orbitRadius = 4;
 
             meshLoader = () -> new SunMesh(
                 this, 4,
