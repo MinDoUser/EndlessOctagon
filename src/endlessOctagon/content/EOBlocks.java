@@ -83,6 +83,8 @@ public final class EOBlocks implements endlessOctagon.util.Loadable{
             inaccuracy = 3f;
             rotateSpeed = 10f;
             size = 2;
+      
+            coolant = consumeCoolant(0.25f);
 
             limitRange();
         }};
