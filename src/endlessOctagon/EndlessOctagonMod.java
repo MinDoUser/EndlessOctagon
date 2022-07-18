@@ -3,6 +3,7 @@ package endlessOctagon;
 import arc.util.*;
 import arc.*;
 import arc.graphics.g2d.*;
+import arc.graphics.*;
 import arc.scene.ui.layout.Table;
 import arc.scene.style.*;
 
@@ -12,7 +13,7 @@ import mindustry.ui.*;
 import mindustry.game.EventType.*;
 import mindustry.Vars;
 import mindustry.ui.dialogs.SettingsMenuDialog;
-import mindustry.gen.*; // Whethe is this package? Can't find it...
+import mindustry.gen.*; // Where is this package? Can't find it...
 
 import endlessOctagon.content.*;
 import endlessOctagon.util.ui.*;
@@ -43,12 +44,20 @@ public final class EndlessOctagonMod extends Mod{
                          new ObjectLog(EOItems.oxa){{
                               description = "A new Item";
                               type = ObjectLog.NEW;
+                         }},
+		    	new ObjectLog(EOBlocks.crowl){{
+                              description = EOBlocks.crowl.description;
+                              type = ObjectLog.NEW;
+                         }},
+		    	new ObjectLog(EOBlocks.sump){{
+                              description = "A new ground tile";
+                              type = ObjectLog.NEW;
                          }}
                 };// Update here?
         changeDialog = new BaseDialog("");
         Table cont = changeDialog.cont;
         Table changes = new Table();
-        changes.add("1.0.1", Styles.techLabel);
+        changes.add("1.0.1", Styles.techLabel).row();
 	changes.image().growX();
 	changes.row();
         for(ObjectLog log : CURRENT_LOGS_V_1_0_1){
@@ -60,6 +69,10 @@ public final class EndlessOctagonMod extends Mod{
 	addLog(changes, "Added Change Log", Icon.add);
 	addLog(changes, "Added new button to open change log. \n You can find it here: Settings -> Game -> Change Log", Icon.wrench);
 	addLog(changes, "Added a option to hide startup dialog. \n You can find it here: Settings -> Game -> Mod Settings", Icon.wrench);
+	changes.add(new WarningBar()).growX().height(30f).color(Color.white);
+	addLog(changes, "[white]MINDUSTRY BUILD 136 || V7", null);
+	changes.add(new WarningBar()).growX().height(30f).color(Color.white);
+	addLog(changes, "Updated all stuff to make it work on V7", Icon.wrench);
 	cont.pane(changes);
         cont.row();
         changeDialog.buttons.button("Ok!", changeDialog::hide).size(100f, 50f);
@@ -74,7 +87,7 @@ public final class EndlessOctagonMod extends Mod{
 	/**
 	* adds a new log to the existing table.
 	*/
-    public void addLog(Table t, String log, @Nullable TextureRegionDrawable icon){
+    public static void addLog(Table t, String log, @Nullable TextureRegionDrawable icon){
 	    Table table = new Table();
 	    table.row();
 	    if(icon != null)table.image(icon);
