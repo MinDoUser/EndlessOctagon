@@ -68,12 +68,13 @@ public final class EndlessOctagonMod extends Mod{
             changes.row();
         }
 	addLog(changes, "Added Change Log", Icon.add);
-	addLog(changes, "Added new button to open change log. \n You can find it here: Settings -> Game -> Change Log", Icon.wrench);
-	addLog(changes, "Added a option to hide startup dialog. \n You can find it here: Settings -> Game -> Mod Settings", Icon.wrench);
+	addLog(changes, "Added new button to open change log. \n You can find it here: Settings -> Game -> Change Log", Icon.wrench, false);
+	addLog(changes, "Added a option to hide startup dialog. \n You can find it here: Settings -> Game -> Mod Settings", Icon.wrench, false);
 	changes.add(new WarningBar()).growX().height(30f).color(Color.white);
-	addLog(changes, "[white]MINDUSTRY BUILD 136 || V7", null);
+	    changes.row();
+	addLog(changes, "[white]MINDUSTRY BUILD 136 || V7", null, true).row();
 	changes.add(new WarningBar()).growX().height(30f).color(Color.white);
-	addLog(changes, "Updated all stuff to make it work on V7", Icon.wrench);
+	addLog(changes, "Updated all stuff to make it work on V7", Icon.wrench, false);
 	cont.pane(changes);
         cont.row();
         changeDialog.buttons.button("Ok!", changeDialog::hide).size(100f, 50f);
@@ -88,11 +89,12 @@ public final class EndlessOctagonMod extends Mod{
 	/**
 	* adds a new log to the existing table.
 	*/
-    public static void addLog(Table t, String log, @Nullable TextureRegionDrawable icon){
+    public static void addLog(Table t, String log, @Nullable TextureRegionDrawable icon, boolean tech){
 	    Table table = new Table();
 	    table.row();
 	    if(icon != null)table.image(icon);
-	    table.add("  "+log);
+	    if(tech)table.add("  "+log, Styles.techLabel);
+	    else table.add("  "+log);
 	    table.row();
 	    t.image().growX();
 	    t.add(table).row();
