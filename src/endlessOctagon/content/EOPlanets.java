@@ -20,7 +20,7 @@ import mindustry.content.*;
 
 public final class EOPlanets implements endlessOctagon.util.Loadable{
   public static Planet 
-    //litho, ;
+    //eravir, ;
   esag;
   @Override
   public void loadObject(){
