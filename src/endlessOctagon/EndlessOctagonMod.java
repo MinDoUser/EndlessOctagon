@@ -72,7 +72,7 @@ public final class EndlessOctagonMod extends Mod{
 	addLog(changes, "Added a option to hide startup dialog. \n You can find it here: Settings -> Game -> Mod Settings", Icon.wrench, false);
 	changes.add(new WarningBar()).growX().height(30f).color(Color.white);
 	    changes.row();
-	addLog(changes, "[white]MINDUSTRY BUILD 136 || V7", null, true).row();
+	addLog(changes, "[white]MINDUSTRY BUILD 136 || V7", null, true);//.row();
 	changes.add(new WarningBar()).growX().height(30f).color(Color.white);
 	addLog(changes, "Updated all stuff to make it work on V7", Icon.wrench, false);
 	cont.pane(changes);
