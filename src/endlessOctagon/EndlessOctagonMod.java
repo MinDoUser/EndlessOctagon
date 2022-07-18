@@ -58,13 +58,14 @@ public final class EndlessOctagonMod extends Mod{
         Table cont = changeDialog.cont;
         Table changes = new Table();
         changes.add("1.0.1", Styles.techLabel).row();
+	    changes.row();
 	changes.image().growX();
 	changes.row();
         for(ObjectLog log : CURRENT_LOGS_V_1_0_1){
             changes.add(log.buildTable());
             changes.row();
-	    //changes.image().growX();
-            //changes.row();
+	    changes.image().growX();
+            changes.row();
         }
 	addLog(changes, "Added Change Log", Icon.add);
 	addLog(changes, "Added new button to open change log. \n You can find it here: Settings -> Game -> Change Log", Icon.wrench);
@@ -93,7 +94,7 @@ public final class EndlessOctagonMod extends Mod{
 	    if(icon != null)table.image(icon);
 	    table.add("  "+log);
 	    table.row();
-	    table.image().growX();
+	    t.image().growX();
 	    t.add(table).row();
     }
     
