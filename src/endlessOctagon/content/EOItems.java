@@ -29,6 +29,6 @@ public class EOItems implements endlessOctagon.util.Loadable{
         }};
     
     
-    eravirItems.addAll(oxa, genium, Item.metaglass, Item.graphite, Item.thorium, Item.silicon, Item.titanium);
+    eravirItems.addAll(oxa, genium, Items.metaglass, Items.graphite, Items.thorium, Items.silicon, Items.titanium);
   }
 }
