@@ -24,7 +24,7 @@ public final class EOPlanets implements endlessOctagon.util.Loadable{
   esag;
   @Override
   public void loadObject(){
-  esag  = new Planet("esag", Planets.serpulo, 0.5f, 3){{
+  esag  = new Planet("esag", Planets.serpulo, 0.2f, 4){{
             accessible = false;
 
             meshLoader = () -> new SunMesh(
