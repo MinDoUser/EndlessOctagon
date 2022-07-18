@@ -67,7 +67,7 @@ public final class EndlessOctagonMod extends Mod{
 	    changes.image().growX();
             changes.row();
         }
-	addLog(changes, "Added Change Log", Icon.add);
+	addLog(changes, "Added Change Log", Icon.add, false);
 	addLog(changes, "Added new button to open change log. \n You can find it here: Settings -> Game -> Change Log", Icon.wrench, false);
 	addLog(changes, "Added a option to hide startup dialog. \n You can find it here: Settings -> Game -> Mod Settings", Icon.wrench, false);
 	changes.add(new WarningBar()).growX().height(30f).color(Color.white);
