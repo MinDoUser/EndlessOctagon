@@ -3,6 +3,7 @@ package endlessOctagon.content;
 import arc.graphics.*;
 import arc.math.*;
 import arc.struct.*;
+import arc.util.*;
 import mindustry.*;
 import mindustry.ctype.*;
 import mindustry.entities.*;
@@ -38,6 +39,8 @@ import endlessOctagon.world.blocks.crafter.*;
 import endlessOctagon.bullets.*;
 
 public final class EOBlocks implements endlessOctagon.util.Loadable{
+  public static final Seq<Block> eravirBlocks = new Seq<>();
+  
   public static Block 
     //Turrets
     crowl,
@@ -50,6 +53,32 @@ public final class EOBlocks implements endlessOctagon.util.Loadable{
   
   private float calculateTurretRange(mindustry.entities.bullet.BulletType b){
     return (b.lifetime * b.speed)+2f;
+  }
+  
+  public boolean addAndCheck(Block b){
+    boolean is = isEravirBlock(b);
+    if(is){
+      eravirBlocks.add(b);
+      Log.info("Block "+b.name+" was added");
+    }else{
+      Log.info("Block "+b.name+" was sadly not added.");
+    }
+    return is;
+  } 
+  
+  public boolean isEravirBlock(Block b){
+    boolean[] bools = new boolean[b.requirements.length];
+    int i = 0;
+    for(var stack : b.requirements){
+      i++;
+      Item item = b.item;
+      if(EOItems.eravirItems.contains(item))bools[i] = true;
+         else bools[i] = false;
+    }
+    for(boolean b : bools){
+      if(!b)return false;
+    }
+    return true;
   }
    
   @Override
