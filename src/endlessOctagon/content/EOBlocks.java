@@ -55,7 +55,7 @@ public final class EOBlocks implements endlessOctagon.util.Loadable{
     return (b.lifetime * b.speed)+2f;
   }
   
-  public boolean addAndCheck(Block b){
+  public static boolean addAndCheck(Block b){
     boolean is = isEravirBlock(b);
     if(is){
       eravirBlocks.add(b);
@@ -66,7 +66,7 @@ public final class EOBlocks implements endlessOctagon.util.Loadable{
     return is;
   } 
   
-  public boolean isEravirBlock(Block b){
+  public static boolean isEravirBlock(Block b){
     boolean[] bools = new boolean[b.requirements.length];
     int i = 0;
     for(var stack : b.requirements){
