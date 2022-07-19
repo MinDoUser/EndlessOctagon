@@ -5,6 +5,7 @@ import arc.graphics.g2d.TextureRegion;
 import arc.util.*;
 
 import mindustry.ctype.*;
+import mindustry.gen*;
 import mindustry.ui.*;
 import mindustry.Vars;
 
@@ -33,7 +34,7 @@ public class ObjectLog{
     Table t = new Table();
     Table topT = new Table();
     topT.add("[lightgrey]"+type);
-    topT.button(icon, ()->{
+    topT.button(object.icon(Cicon.full), ()->{
       Vars.ui.content.show(object);
     });
     topT.add("[stat]"+name);
