@@ -17,6 +17,10 @@ public class ExtendedPlanet extends Planet{
       super(name, parent, radius);
     }
   
+  public ExtendedPlanet(String name, Planet parent, float radius, int sectorSize){
+      super(name, parent, radius, sectorSize);
+    }
+  
   //TODO: Constructor with @param Planet to copy theese normal planets into a planet with stats.
   
   
