@@ -9,7 +9,7 @@ import arc.struct.*;
 public class ExtendedPlanet extends Planet{
   public static final Stat
     isAccessible = new Stat("accessible"), dayNightCycle = new Stat("daynightcycle"),atmosphere = new Stat("atmosphere"),
-    spawnsWavesInBackground = new Stat("spawnswaves"), hasInvations = new Stat("hasinvations"), clearSectors = new Stat("clearsectors),
+    spawnsWavesInBackground = new Stat("spawnswaves"), hasInvations = new Stat("hasinvations"), clearSectors = new Stat("clearsectors"),
     planetParent = new Stat("planetparent"), hasOwnTechTree = new Stat("hastechtree"), planetHiddenItems = new Stat("hiddenitems");
                                                                                                                          
     public ExtendedPlanet(String name, Planet parent, float radius){
