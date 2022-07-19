@@ -17,6 +17,7 @@ import mindustry.type.*;
 import mindustry.ui.*;
 import mindustry.world.*;
 import mindustry.ui.dialogs.*;
+import mindustry.content.*;
 
 import static arc.Core.*;
 import static mindustry.Vars.*;
@@ -36,14 +37,14 @@ public class CustomDatabase extends DatabaseDialog {
 
     cont.table(s -> {
         s.image(Icon.zoom).padRight(8);
-        search = s.field(null, text -> rebuildDialog()).growX().get();
+        search = s.field(null, text -> rebuild()).growX().get();
         search.setMessageText("@players.search");
     }).fillX().padBottom(4).row();
 
         cont.pane(allTable).scrollX(false);
   }
   @Override
-  void rebuild(){
+  public void rebuild(){
         allTable.clear();
         var text = searchField.getText();
 
@@ -116,7 +117,7 @@ public class CustomDatabase extends DatabaseDialog {
   }
                         
   @Override                      
-   boolean unlocked(UnlockableContent content){
+  public boolean unlocked(UnlockableContent content){
         return (!Vars.state.isCampaign() && !Vars.state.isMenu()) || content.unlocked() || Core.settings.getBool("showbannedblocks");
     }
 }
