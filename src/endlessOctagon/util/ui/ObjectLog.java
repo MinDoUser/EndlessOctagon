@@ -3,6 +3,7 @@ package endlessOctagon.util.ui;
 import arc.scene.ui.layout.*;
 import arc.graphics.g2d.TextureRegion;
 import arc.util.*;
+import arc.scene.event.*;
 
 import mindustry.ctype.*;
 import mindustry.gen.*;
@@ -34,7 +35,10 @@ public class ObjectLog{
     Table t = new Table();
     Table topT = new Table();
     topT.add("[lightgrey]"+type);
-    topT.button(object.icon(Cicon.full), ()->{
+    Image image = new Image(object.uiIcon).setScaling(Scaling.fit);
+    image.addListener(new HandCursorListener());
+    topT.image(image);
+    image.clicked(()->{
       Vars.ui.content.show(object);
     });
     topT.add("[stat]"+name);
