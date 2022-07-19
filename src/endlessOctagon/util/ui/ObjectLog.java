@@ -4,6 +4,7 @@ import arc.scene.ui.layout.*;
 import arc.graphics.g2d.TextureRegion;
 import arc.util.*;
 import arc.scene.event.*;
+import arc.scene.ui.*;
 
 import mindustry.ctype.*;
 import mindustry.gen.*;
