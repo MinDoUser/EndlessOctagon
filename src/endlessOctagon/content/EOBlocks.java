@@ -49,7 +49,8 @@ public final class EOBlocks implements endlessOctagon.util.Loadable{
     //Crafter
     oxaForge,
     //Environment
-    sump;
+    sump,
+    wallOreGenium;
   
   private float calculateTurretRange(mindustry.entities.bullet.BulletType b){
     return (b.lifetime * b.speed)+2f;
@@ -141,6 +142,9 @@ public final class EOBlocks implements endlessOctagon.util.Loadable{
             statusDuration = 30f;
             attributes.set(Attribute.oil, 0.56f);
             attributes.set(Attribute.water, 1.95f);
+        }};
+    wallOreGenium = new OreBlock("ore-wall-genium", EOItems.genium){{
+            wallOre = true;
         }};
     //End of environment
     //Start of Crafters
