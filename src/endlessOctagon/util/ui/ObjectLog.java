@@ -6,6 +6,7 @@ import arc.util.*;
 
 import mindustry.ctype.*;
 import mindustry.ui.*;
+import mindustry.Vars;
 
 /** A Log containing a Object, it's name and it's image*/
 public class ObjectLog{
@@ -32,7 +33,9 @@ public class ObjectLog{
     Table t = new Table();
     Table topT = new Table();
     topT.add("[lightgrey]"+type);
-    topT.image(icon);
+    topT.button(icon, ()->{
+      Vars.ui.content.show(object);
+    });
     topT.add("[stat]"+name);
     topT.row();
     t.add(topT).align(Align.center);
