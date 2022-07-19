@@ -18,7 +18,7 @@ public class ExtendedPlanet extends Planet{
   //:O Stats?!, ye, keep cool.
   @Override
   public void setStats(){
-    final int MAX_PER_ROW = 5;
+    final int MAX_PER_ROW = 7;
     stats.add(isAccessible, super.accessible);
     stats.add(dayNightCycle, super.updateLighting);
     stats.add(atmosphere, super.hasAtmosphere);
@@ -29,8 +29,10 @@ public class ExtendedPlanet extends Planet{
     stats.add(hasOwnTechTree, super.techTree != null);
     stats.add(planetHiddenItems, (table)->{
       Seq<Item> hidden = super.hiddenItems;
-      int i = 0;
-      hidden.each(item->{
+      hidden.each(new Cons<>(){ //Pain
+        private int i = 0; // ...
+        @Override
+        public void get(Item item){
         i++;
         table.image(item.uiIcon);
         table.add(item.localizedName);
@@ -38,7 +40,7 @@ public class ExtendedPlanet extends Planet{
         if(i%MAX_PER_ROW==0){
           table.row();
         }
-      });
+      }
     });
   }
 }
