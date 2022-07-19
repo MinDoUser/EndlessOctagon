@@ -100,6 +100,7 @@ public final class EndlessOctagonMod extends Mod{
 	    else table.add("  "+log);
 	    table.row();
 	    t.image().growX();
+	    t.row();
 	    t.add(table).row();
     }
     
