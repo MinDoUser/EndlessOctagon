@@ -26,8 +26,8 @@ public class CustomDatabase extends DatabaseDialog {
   private TextField searchField;
   private Table allTable = new Table();
   
-  public CustomDatabase(String name){
-    super(name);
+  public CustomDatabase(){
+    super();
     
     cont.clear();
     //shown(this::rebuildDialog);
