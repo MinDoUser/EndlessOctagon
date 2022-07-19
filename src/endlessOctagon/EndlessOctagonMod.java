@@ -29,6 +29,9 @@ public final class EndlessOctagonMod extends Mod{
     public EndlessOctagonMod(){
       Log.info("Mod constructor loaded...");
         Events.on(ClientLoadEvent.class, e -> {
+		Vars.content.blocks().each(e->{
+			EOBlocks.addAndCheck(e); // For testing purposes yet.
+		});
             //show dialog upon startup
             Time.runTask(10f, () -> {
 		    loadChangeDialog();
