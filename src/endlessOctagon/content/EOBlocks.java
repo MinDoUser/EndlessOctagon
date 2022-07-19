@@ -71,10 +71,10 @@ public final class EOBlocks implements endlessOctagon.util.Loadable{
     boolean[] bools = new boolean[b.requirements.length];
     int i = 0;
     for(var stack : b.requirements){
-      i++;
       Item item = stack.item;
       if(EOItems.eravirItems.contains(item))bools[i] = true;
          else bools[i] = false;
+      i++;
     }
     for(boolean bool : bools){
       if(!bool)return false;
