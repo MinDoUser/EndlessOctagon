@@ -35,7 +35,7 @@ public class ExtendedPlanet extends Planet{
     createPlanetStats(this);
   }
   @Override
-  public boolean isHidden(){return false};
+  public boolean isHidden(){return false;}
   
   public static void createPlanetStats(Planet planet){
     Stats s = planet.stats;
