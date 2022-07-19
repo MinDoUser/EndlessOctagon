@@ -2,7 +2,7 @@ package endlessOctagon.type;
 
 import mindustry.type.*;
 import mindustry.world.meta.*;
-mport mindustry.Vars;
+import mindustry.Vars;
 
 import arc.scene.ui.layout.*;
 import arc.scene.ui.*;
