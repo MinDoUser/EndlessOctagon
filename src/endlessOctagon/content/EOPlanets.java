@@ -15,8 +15,11 @@ import mindustry.maps.planet.*;
 import mindustry.type.*;
 import mindustry.world.*;
 import mindustry.world.meta.*;
+import mindustry.Vars;
 
 import mindustry.content.*;
+
+import endlessOctagon.type.*;
 
 public final class EOPlanets implements endlessOctagon.util.Loadable{
   public static Planet 
@@ -24,8 +27,10 @@ public final class EOPlanets implements endlessOctagon.util.Loadable{
   esag;
   @Override
   public void loadObject(){
-  esag  = new Planet("esag", Planets.serpulo, 1.25f, 4){{
+  esag  = new ExtendedPlanet("esag", Planets.serpulo, 1.25f, 4){{
             accessible = false;
+    
+            hiddenItems.addAll(Vars.content.items());
     
             //orbitRadius = 4;
 
