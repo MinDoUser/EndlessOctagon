@@ -37,13 +37,13 @@ public class CustomDatabase extends DatabaseDialog {
 
     cont.table(s -> {
         s.image(Icon.zoom).padRight(8);
-        search = s.field(null, text -> rebuild()).growX().get();
-        search.setMessageText("@players.search");
+        searchField = s.field(null, text -> rebuild()).growX().get();
+        searchField.setMessageText("@players.search");
     }).fillX().padBottom(4).row();
 
         cont.pane(allTable).scrollX(false);
   }
-  @Override
+  //@Override
   public void rebuild(){
         allTable.clear();
         var text = searchField.getText();
@@ -116,7 +116,7 @@ public class CustomDatabase extends DatabaseDialog {
         }
   }
                         
-  @Override                      
+  //@Override                      
   public boolean unlocked(UnlockableContent content){
         return (!Vars.state.isCampaign() && !Vars.state.isMenu()) || content.unlocked() || Core.settings.getBool("showbannedblocks");
     }
