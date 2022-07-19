@@ -19,7 +19,7 @@ public class ExtendedPlanet extends Planet{
   @Override
   public void setStats(){
     final int MAX_PER_ROW = 5;
-    stats.add(isAccessible, super.accesible);
+    stats.add(isAccessible, super.accessible);
     stats.add(dayNightCycle, super.updateLighting);
     stats.add(atmosphere, super.hasAtmosphere);
     stats.add(spawnsWavesInBackground, super.allowWaveSimulation);
