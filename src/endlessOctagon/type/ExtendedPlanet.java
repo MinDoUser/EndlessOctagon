@@ -5,6 +5,7 @@ import mindustry.world.meta.*;
 
 import arc.scene.ui.layout.*;
 import arc.struct.*;
+mport arc.func.*;
 /** A planet with stats, yeah!*/
 public class ExtendedPlanet extends Planet{
   public static final Stat
@@ -15,6 +16,10 @@ public class ExtendedPlanet extends Planet{
     public ExtendedPlanet(String name, Planet parent, float radius){
       super(name, parent, radius);
     }
+  
+  //TODO: Constructor with @param Planet to copy theese normal planets into a planet with stats.
+  
+  
   //:O Stats?!, ye, keep cool.
   @Override
   public void setStats(){
