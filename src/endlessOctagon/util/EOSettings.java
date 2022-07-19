@@ -37,7 +37,7 @@ public final class EOSettings implements Loadable{
 	    modSettingDialog.show();
 	    }).size(250f, 100f);
 		modSettings.checkPref("hidestartlog", false);//.description = Core.bundle.get("hidestartlog.description");
-	  modSettings.checkPref("showlockedblocks", true);
+	  modSettings.checkPref("showlockedblocks", true, bool -> Vars.ui.database.rebuild());
   }
   
   /*public void addCheckBox(SettingsTable table, String name, boolean def,@Nullable Boolc changed, @Nullable String d){
