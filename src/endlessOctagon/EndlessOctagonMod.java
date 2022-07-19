@@ -30,7 +30,7 @@ public final class EndlessOctagonMod extends Mod{
       Log.info("Mod constructor loaded...");
         Events.on(ClientLoadEvent.class, event -> {
 		Overrides.overridePlanets();
-		Vars.ui.database = new CustomBasedialog();
+		Vars.ui.database = new CustomBaseDialog();
 		Vars.content.blocks().each(e->{
 			EOBlocks.addAndCheck(e); // For testing purposes yet.
 			Log.info("End");
