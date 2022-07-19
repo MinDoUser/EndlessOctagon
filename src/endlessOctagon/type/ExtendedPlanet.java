@@ -5,7 +5,7 @@ import mindustry.world.meta.*;
 
 import arc.scene.ui.layout.*;
 import arc.struct.*;
-mport arc.func.*;
+import arc.func.*;
 /** A planet with stats, yeah!*/
 public class ExtendedPlanet extends Planet{
   public static final Stat
