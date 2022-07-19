@@ -26,16 +26,16 @@ public class ExtendedPlanet extends Planet{
     stats.add(hasInvations, super.allowSectorInvasion);
     stats.add(clearSectors, super.clearSectorOnLose);
     stats.add(planetParent, (super.parent == null)? "[lightgrey]<none>[]":super.parent.localizedName);
-    stats.add(hasOwnTechTree, super.techtree != null);
+    stats.add(hasOwnTechTree, super.techTree != null);
     stats.add(planetHiddenItems, (table)->{
       Seq<Item> hidden = super.hiddenItems;
       int i = 0;
-      hidden.each(i->{
+      hidden.each(item->{
         i++;
-        table.image(i.uiIcon);
-        table.add(i.localizedName);
+        table.image(item.uiIcon);
+        table.add(item.localizedName);
         table.add("  ");
-        if(i%MAX_PER_ROW){
+        if(i%MAX_PER_ROW==0){
           table.row();
         }
       });
