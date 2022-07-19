@@ -38,7 +38,7 @@ public class ObjectLog{
     topT.add("[lightgrey]"+type);
     Image image = new Image(object.uiIcon).setScaling(Scaling.fit);
     image.addListener(new HandCursorListener());
-    topT.image(image);
+    topT.add(image);
     image.clicked(()->{
       Vars.ui.content.show(object);
     });
