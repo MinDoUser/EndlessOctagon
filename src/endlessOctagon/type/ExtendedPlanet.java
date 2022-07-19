@@ -2,12 +2,17 @@ package endlessOctagon.type;
 
 import mindustry.type.*;
 import mindustry.world.meta.*;
+mport mindustry.Vars;
 
 import arc.scene.ui.layout.*;
+import arc.scene.ui.*;
 import arc.struct.*;
 import arc.func.*;
+import arc.scene.event.*;
 /** A planet with stats, yeah!*/
 public class ExtendedPlanet extends Planet{
+  public static final int MAX_PER_ROW = 5;
+  
   public static final Stat
     isAccessible = new Stat("accessible"), dayNightCycle = new Stat("daynightcycle"),atmosphere = new Stat("atmosphere"),
     spawnsWavesInBackground = new Stat("spawnswaves"), hasInvations = new Stat("hasinvations"), clearSectors = new Stat("clearsectors"),
@@ -27,23 +32,32 @@ public class ExtendedPlanet extends Planet{
   //:O Stats?!, ye, keep cool.
   @Override
   public void setStats(){
-    final int MAX_PER_ROW = 7;
-    stats.add(isAccessible, super.accessible);
-    stats.add(dayNightCycle, super.updateLighting);
-    stats.add(atmosphere, super.hasAtmosphere);
-    stats.add(spawnsWavesInBackground, super.allowWaveSimulation);
-    stats.add(hasInvations, super.allowSectorInvasion);
-    stats.add(clearSectors, super.clearSectorOnLose);
-    stats.add(planetParent, (super.parent == null)? "[lightgrey]<none>[]":super.parent.localizedName);
-    stats.add(hasOwnTechTree, super.techTree != null);
-    stats.add(planetHiddenItems, (table)->{
-      Seq<Item> hidden = super.hiddenItems;
+    createPlanetStats(this);
+  }
+  
+  public static void createPlanetStats(Planet planet){
+    Stats s = planet.stats;
+    s.add(isAccessible, planet.accessible);
+    s.add(dayNightCycle, planet.updateLighting);
+    s.add(atmosphere, planet.hasAtmosphere);
+    s.add(spawnsWavesInBackground, planet.allowWaveSimulation);
+    s.add(hasInvations, planet.allowSectorInvasion);
+    s.add(clearSectors, planet.clearSectorOnLose);
+    s.add(planetParent, (planet.parent == null)? "[lightgrey]<none>[]":planet.parent.localizedName);
+    s.add(hasOwnTechTree, planet.techTree != null);
+    s.add(planetHiddenItems, (table)->{
+      Seq<Item> hidden = planet.hiddenItems;
       hidden.each(new Cons<>(){ //Pain
         private int i = 0; // ...
         @Override
         public void get(Item item){
         i++;
-        table.image(item.uiIcon);
+          Image img = new Image(item.uiIcon);
+          img.addListener(new HandCursorListener());
+          img.clicked(()->{
+            Vars.ui.content.show(item);
+          });
+        table.add(img);
         table.add(item.localizedName);
         table.add("  ");
         if(i%MAX_PER_ROW==0){
