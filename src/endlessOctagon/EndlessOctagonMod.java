@@ -29,8 +29,11 @@ public final class EndlessOctagonMod extends Mod{
     public EndlessOctagonMod(){
       Log.info("Mod constructor loaded...");
         Events.on(ClientLoadEvent.class, event -> {
+		Override.overridePlanets();
 		Vars.content.blocks().each(e->{
 			EOBlocks.addAndCheck(e); // For testing purposes yet.
+			Log.info("End");
+			Log.info(EOBlocks.eravirBlocks);
 		});
             //show dialog upon startup
             Time.runTask(10f, () -> {
