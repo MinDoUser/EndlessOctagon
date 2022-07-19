@@ -5,7 +5,7 @@ import arc.graphics.g2d.TextureRegion;
 import arc.util.*;
 
 import mindustry.ctype.*;
-import mindustry.gen*;
+import mindustry.gen.*;
 import mindustry.ui.*;
 import mindustry.Vars;
 
