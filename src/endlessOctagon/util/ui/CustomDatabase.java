@@ -44,7 +44,7 @@ public class CustomDatabase extends DatabaseDialog {
         cont.pane(allTable).scrollX(false);
   }
   //@Override
-  public void rebuild(){
+  public void rebuildDialog(){
         allTable.clear();
         var text = searchField.getText();
 
