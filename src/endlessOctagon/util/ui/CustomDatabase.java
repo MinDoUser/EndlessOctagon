@@ -58,6 +58,10 @@ public class CustomDatabase extends DatabaseDialog {
                     (!u.isHidden() || u.techNode != null || (u instanceof Planet p && p != Planets.sun)) &&
                     (text.isEmpty() || u.localizedName.toLowerCase().contains(text.toLowerCase())));
             if(array.size == 0) continue;
+          
+          /*array.sort((p1,p2)->{
+            
+          });*/
 
             allTable.add("@content." + type.name() + ".name").growX().left().color(Color.white);
             allTable.row();
