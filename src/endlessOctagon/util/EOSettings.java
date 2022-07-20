@@ -41,7 +41,7 @@ public final class EOSettings implements Loadable{
 	    }).size(250f, 100f);
 		modSettings.checkPref("hidestartlog", false);//.description = Core.bundle.get("hidestartlog.description");
 	  modSettings.checkPref("showlockedblocks", true, bool -> {
-		  CustomDatabse cdb = EndlessOctagonMod.cDatabase;
+		  CustomDatabase cdb = EndlessOctagonMod.cDatabase;
 		  if(cdb == null){
 			  if(Vars.ui.database instanceof CustomDatabase data){
 				  cdb = data;
