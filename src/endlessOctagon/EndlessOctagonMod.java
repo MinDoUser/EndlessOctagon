@@ -26,7 +26,7 @@ public final class EndlessOctagonMod extends Mod{
     
     public ObjectLog[] CURRENT_LOGS_V_1_0_1;
 	
-    public static CostumDatabase cDatabase;
+    public static CustomDatabase cDatabase;
 
     public EndlessOctagonMod(){
       Log.info("Mod constructor loaded...");
