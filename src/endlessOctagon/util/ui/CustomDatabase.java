@@ -99,7 +99,7 @@ public class CustomDatabase extends DatabaseDialog {
                             }else{
                                 ui.content.show(unlock);
                             }
-                        });
+                        }); 
                         image.addListener(new Tooltip(t -> t.background(Tex.button).add(unlock.localizedName + (settings.getBool("console") ? "\n[gray]" + unlock.name : ""))));
                     }
 
