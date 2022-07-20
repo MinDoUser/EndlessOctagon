@@ -37,7 +37,7 @@ public class CustomDatabase extends DatabaseDialog {
 
     cont.table(s -> {
         s.image(Icon.zoom).padRight(8);
-        searchField = s.field(null, text -> rebuild()).growX().get();
+        searchField = s.field(null, text -> rebuildDialog()).growX().get();
         searchField.setMessageText("@players.search");
     }).fillX().padBottom(4).row();
 
@@ -86,12 +86,12 @@ public class CustomDatabase extends DatabaseDialog {
 
                     ClickListener listener = new ClickListener();
                     image.addListener(listener);
-                    if(!mobile && unlocked(unlock)){
+                    if(!mobile && (unlocked(unlock) || Vars.state.isMenu())){
                         image.addListener(new HandCursorListener());
                         image.update(() -> image.color.lerp(!listener.isOver() ? Color.lightGray : Color.white, Mathf.clamp(0.4f * Time.delta)));
                     }
 
-                    if(unlocked(unlock)){
+                    if(unlocked(unlock) || Vars.state.isMenu()){
                         image.clicked(() -> {
                             if(Core.input.keyDown(KeyCode.shiftLeft) && Fonts.getUnicode(unlock.name) != 0){
                                 Core.app.setClipboardText((char)Fonts.getUnicode(unlock.name) + "");
