@@ -25,18 +25,20 @@ public final class EndlessOctagonMod extends Mod{
     public BaseDialog changeDialog;
     
     public ObjectLog[] CURRENT_LOGS_V_1_0_1;
+	
+    public static CostumDatabase cDatabase;
 
     public EndlessOctagonMod(){
       Log.info("Mod constructor loaded...");
         Events.on(ClientLoadEvent.class, event -> {
 		Overrides.overridePlanets();
-		//Vars.ui.database = new CustomDatabase();
+		Vars.ui.database = cDatabase = new CustomDatabase();
 		/*Vars.content.blocks().each(e->{
 			EOBlocks.addAndCheck(e); // For testing purposes yet.
 			Log.info("End");
 			Log.info(EOBlocks.eravirBlocks);
 		});*/
-		Log.info(Vars.content.planets()); //Testing
+		//Log.info(Vars.content.planets()); //Testing
             //show dialog upon startup
             Time.runTask(10f, () -> {
 		    loadChangeDialog();
