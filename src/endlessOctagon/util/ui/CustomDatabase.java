@@ -30,8 +30,8 @@ public class CustomDatabase extends DatabaseDialog {
     super();
     
     cont.clear();
-    //shown(this::rebuildDialog);
-    //onResize(this::rebuildDialog);
+    shown(this::rebuildDialog);
+    onResize(this::rebuildDialog);
 
     allTable.margin(20).marginTop(0f);
 
@@ -55,7 +55,7 @@ public class CustomDatabase extends DatabaseDialog {
 
             Seq<Content> array = allContent[j]
                 .select(c -> c instanceof UnlockableContent u &&
-                    (!u.isHidden() || u.techNode != null || (u instanceof Planet p && p == Planets.sun)) &&
+                    (!u.isHidden() || u.techNode != null || (u instanceof Planet p && p != Planets.sun)) &&
                     (text.isEmpty() || u.localizedName.toLowerCase().contains(text.toLowerCase())));
             if(array.size == 0) continue;
 
