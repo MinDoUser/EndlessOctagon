@@ -6,6 +6,8 @@ import mindustry.Vars;
 
 import arc.struct.*;
 
+import endlessOctagon.type.ExtendedPlanet;
+
 import static endlessOctagon.type.ExtendedPlanet.createPlanetStats;
 
 public final class Overrides {
