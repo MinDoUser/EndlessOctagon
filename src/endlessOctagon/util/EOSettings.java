@@ -12,6 +12,9 @@ import mindustry.gen.*; //Where is this ... package?
 
 import static mindustry.ui.dialogs.SettingsMenuDialog.SettingsTable;
 
+import endlessOctagon.EndlessOctagonMod;
+import endlessOctagon.util.ui.*;
+
 public final class EOSettings implements Loadable{
   
   //public final Seq<Setting> settings = new Seq<>();
@@ -37,7 +40,15 @@ public final class EOSettings implements Loadable{
 	    modSettingDialog.show();
 	    }).size(250f, 100f);
 		modSettings.checkPref("hidestartlog", false);//.description = Core.bundle.get("hidestartlog.description");
-	  modSettings.checkPref("showlockedblocks", true);
+	  modSettings.checkPref("showlockedblocks", true, bool -> {
+		  CustomDatabse cdb = EndlessOctagonMod.cDatabase;
+		  if(cdb == null){
+			  if(Vars.ui.database instanceof CustomDatabase data){
+				  cdb = data;
+			  }else return;
+		  }
+		  cdb.rebuildDialog();
+	  });
   }
   
   /*public void addCheckBox(SettingsTable table, String name, boolean def,@Nullable Boolc changed, @Nullable String d){
