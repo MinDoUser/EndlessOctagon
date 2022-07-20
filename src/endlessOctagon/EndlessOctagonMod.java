@@ -30,12 +30,13 @@ public final class EndlessOctagonMod extends Mod{
       Log.info("Mod constructor loaded...");
         Events.on(ClientLoadEvent.class, event -> {
 		Overrides.overridePlanets();
-		Vars.ui.database = new CustomDatabase();
-		Vars.content.blocks().each(e->{
+		//Vars.ui.database = new CustomDatabase();
+		/*Vars.content.blocks().each(e->{
 			EOBlocks.addAndCheck(e); // For testing purposes yet.
 			Log.info("End");
 			Log.info(EOBlocks.eravirBlocks);
-		});
+		});*/
+		Log.info(Vars.content.planets()); //Testing
             //show dialog upon startup
             Time.runTask(10f, () -> {
 		    loadChangeDialog();
@@ -79,7 +80,10 @@ public final class EndlessOctagonMod extends Mod{
 	addLog(changes, "Added a option to hide startup dialog. \n You can find it here: Settings -> Game -> Mod Settings", Icon.wrench, false);
 	changes.add(new WarningBar()).growX().height(30f).color(Color.white);
 	    changes.row();
+	    changes.row();
+	    
 	addLog(changes, "[white]MINDUSTRY BUILD 136 || V7", null, true);//.row();
+	    changes.row();
 	changes.add(new WarningBar()).growX().height(30f).color(Color.white);
 	addLog(changes, "Updated all stuff to make it work on V7", Icon.wrench, false);
 	cont.pane(changes);
