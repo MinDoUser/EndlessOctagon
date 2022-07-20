@@ -12,6 +12,7 @@ public final class Overrides {
   public static final void overridePlanets(){
     Seq<Planet> planets = Vars.content.planets();//{Planets.serpulo, Planets.eriker, Planets.tantros};
     planets.each(planet->{
+      if(planet instanceof ExtendedPlanet)return; //Not create them doubled
       createPlanetStats(planet);
     });
   }
