@@ -70,6 +70,7 @@ public final class EOBlocks implements endlessOctagon.util.Loadable{
   public static boolean isEravirBlock(Block b){
     boolean[] bools = new boolean[b.requirements.length];
     int i = 0;
+    if(b.requirements.length >= 0)return false; //Not add this crap without requirements.
     for(var stack : b.requirements){
       Item item = stack.item;
       if(EOItems.eravirItems.contains(item))bools[i] = true;
