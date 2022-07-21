@@ -121,9 +121,9 @@ public final class EOBlocks implements endlessOctagon.util.Loadable{
 
             limitRange();
         }};
-    Effect sfe = new MultiEffect(EOFx.blueWave, Fx.steam);
+    Effect sfe = new MultiEffect(EOFx.blueWaveSmall, Fx.steam);
     //TODO move them all into a own class...
-    final BulletType SHOCK_BULLET = new BasicBulletType(7.5f, 65){{
+    final BulletType SHOCK_BULLET = new BasicBulletType(4.5f, 65){{
                 width = 12f;
                 hitSize = 7f;
                 height = 20f;
