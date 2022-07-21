@@ -150,7 +150,7 @@ public final class EOBlocks implements endlessOctagon.util.Loadable{
             recoil = 2f;
             reload = 80f;
             shake = 2f;
-            shootEffect = EOFx.blueWave;
+            shootEffect = EOFx.blueWaveSmall;
             smokeEffect = Fx.none;
             //heatColor = Color.red;
             size = 2;
