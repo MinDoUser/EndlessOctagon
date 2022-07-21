@@ -22,7 +22,7 @@ import static arc.math.Angles.*;
 import static mindustry.Vars.*;
 
 public final class EOFx implements endlessOctagon.util.Loadable {
-   public static final Effect blueWave;
+   public static Effect blueWave;
   @Override
   public void loadObject(){
     blueWave = new WaveEffect(){{
