@@ -22,17 +22,26 @@ import static arc.math.Angles.*;
 import static mindustry.Vars.*;
 
 public final class EOFx implements endlessOctagon.util.Loadable {
-   public static Effect blueWave;
+   public static Effect blueWaveSmall, blueWaveBig;
   @Override
   public void loadObject(){
-    blueWave = new WaveEffect(){{
+    blueWaveBig = new WaveEffect(){{
       colorFrom = EOPal.lightBlue;
       colorTo = EOPal.darkBlue;
       lightColor = colorTo;
-      sides = 10;
+      sides = 25; //Not completely round,lol
       interp = Interp.pow2Out;
       lightInterp = Interp.pow2In;
       sizeTo = 120;
+    }};
+     blueWaveSmall = new WaveEffect(){{
+      colorFrom = EOPal.lightBlue;
+      colorTo = EOPal.darkBlue;
+      lightColor = colorTo;
+      sides = 40;
+      interp = Interp.pow2Out;
+      lightInterp = Interp.pow2In;
+      sizeTo = 15;
     }};
   }
 }
