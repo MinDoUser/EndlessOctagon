@@ -1,7 +1,5 @@
 package endlessOctagon.content;
 
-package mindustry.content;
-
 import arc.*;
 import arc.graphics.*;
 import arc.graphics.g2d.*;
