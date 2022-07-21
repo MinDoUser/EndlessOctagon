@@ -43,7 +43,7 @@ public final class EOBlocks implements endlessOctagon.util.Loadable{
   
   public static Block 
     //Turrets
-    crowl,
+    crowl, shock,
     //Walls
     oxaWall, oxaWallLarge,
     //Crafter
@@ -118,6 +118,61 @@ public final class EOBlocks implements endlessOctagon.util.Loadable{
             coolant = consumeCoolant(0.25f);
 
             limitRange();
+        }};
+    Effect sfe = new MultiEffect(EOFx.blueWave, Fx.steam);
+    //TODO move them all into a own class...
+    final BulletType SHOCK_BULLET = new BasicBulletType(7.5f, 65){{
+                width = 12f;
+                hitSize = 7f;
+                height = 20f;
+                shootEffect = sfe;
+                smokeEffect = Fx.shootSmallSmoke;
+                ammoMultiplier = 2;
+                pierceCap = 2;
+                pierce = false;
+                pierceBuilding = false;
+                hitColor = backColor = trailColor = EOPal.darkBlue;
+                frontColor = Color.white;
+                trailWidth = 2.1f;
+                trailLength = 10;
+                hitEffect = despawnEffect = Fx.hitBulletColor;
+                buildingDamageMultiplier = 0.85f;
+            }};
+    
+            shock = new PowerTurret("shock"){{
+            requirements(Category.turret, with(Items.titanium, 60, Items.silicon, 170, Items.metaglass, 25));
+            range = calculateTurretRange(SHOCK_BULLET);
+
+            shoot.firstShotDelay = 40f;
+
+            recoil = 2f;
+            reload = 80f;
+            shake = 2f;
+            shootEffect = EOFx.blueWave;
+            smokeEffect = Fx.none;
+            //heatColor = Color.red;
+            size = 2;
+            scaledHealth = 280;
+            targetAir = true;
+            moveWhileCharging = false;
+            accurateDelay = false;
+            shootSound = Sounds.laser;
+            coolant = consumeCoolant(0.22f);
+
+            consumePower(2.5f);
+
+            shootType = SHOCK_BULLET;
+              
+             drawer = new DrawTurret("reinforced-"){{
+                parts.add(new RegionPart("-barrel"){{
+                    progress = PartProgress.recoil;
+                    mirror = false;
+                    under = true;
+                    moveX = 0f;
+                    moveY = -3f;
+                    moveRot = 0f;
+                }});
+             }};
         }};
     //End of turrets
     // Start of walls
