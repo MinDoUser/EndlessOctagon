@@ -27,8 +27,8 @@ public final class EOFx implements endlessOctagon.util.Loadable {
   @Override
   public void loadObject(){
     blueWave = new WaveEffect(){{
-      colorFrom = new Color(0x8aa3f4ff);
-      colorTo = new Color(0x6974c4ff);
+      colorFrom = EOPal.lightBlue;
+      colorTo = EOPal.darkBlue;
       lightColor = colorTo;
       sides = 10;
       interp = Interp.pow2Out;
