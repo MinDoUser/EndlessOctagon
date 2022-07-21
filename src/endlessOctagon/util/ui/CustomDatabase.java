@@ -18,6 +18,7 @@ import mindustry.ui.*;
 import mindustry.world.*;
 import mindustry.ui.dialogs.*;
 import mindustry.content.*;
+import mindustry.maps.planet.*;
 
 import static arc.Core.*;
 import static mindustry.Vars.*;
@@ -55,7 +56,7 @@ public class CustomDatabase extends DatabaseDialog {
 
             Seq<Content> array = allContent[j]
                 .select(c -> c instanceof UnlockableContent u &&
-                    (!u.isHidden() || u.techNode != null || (u instanceof Planet p && p != Planets.sun)) &&
+                    (!u.isHidden() || u.techNode != null || (u instanceof Planet p && p != Planets.sun && !(p.generator instanceof AsteroidGenerator))) &&
                     (text.isEmpty() || u.localizedName.toLowerCase().contains(text.toLowerCase())));
             if(array.size == 0) continue;
           
