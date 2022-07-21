@@ -122,6 +122,6 @@ public class CustomDatabase extends DatabaseDialog {
                         
   //@Override                      
   public boolean unlocked(UnlockableContent content){
-        return (!Vars.state.isCampaign() && !Vars.state.isMenu()) || content.unlocked() || Core.settings.getBool("showbannedblocks");
+        return (!Vars.state.isCampaign() && !Vars.state.isMenu()) || content.unlocked() || Core.settings.getBool("showlockedblocks");
     }
 }
