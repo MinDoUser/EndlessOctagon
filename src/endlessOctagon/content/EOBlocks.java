@@ -38,6 +38,7 @@ import static mindustry.content.Fx.*;
 import static mindustry.type.ItemStack.*;
 
 import endlessOctagon.world.blocks.crafter.*;
+import endlessOctagon.world.blocks.defense.*;
 import endlessOctagon.bullets.*;
 
 public final class EOBlocks implements endlessOctagon.util.Loadable{
@@ -50,6 +51,8 @@ public final class EOBlocks implements endlessOctagon.util.Loadable{
     oxaWall, oxaWallLarge,
     //Crafter
     oxaForge,
+  //Effect
+    connectProjector,
     //Environment
     sump,
     wallOreGenium;
@@ -177,6 +180,16 @@ public final class EOBlocks implements endlessOctagon.util.Loadable{
              }};
         }};
     //End of turrets
+    //Start of defense
+    connectProjector =
+      new ConnectOverdriveProjector("connectProjector){{
+          requirements(Category.effect, with(Items.titanium, 170, Items.metaglass, 275, Items.silicon, 50, EOItems.oxa, 130));
+            consumePower(4.75f);
+            size = 3;
+            range = 180;
+            consumeItem(EOItems.oxa).boost();                                           
+    }};
+    //End of defense
     // Start of walls
     
     final int wallHealthMultiplier = 4;
