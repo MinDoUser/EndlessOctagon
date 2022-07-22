@@ -6,7 +6,6 @@ import mindustry.world.*;
 import mindustry.world.meta.*;
 import mindustry.gen.*; //?
 import mindustry.Vars;
-import mindustry.
 
 import arc.struct.*;
 import arc.func.Boolf;
@@ -65,7 +64,7 @@ public class ConnectOverdriveProjector extends OverdriveProjector {
   }
   
   public void checkLink(Building build){
-    if(!isInRange(this.x, this.y, build, range());
+    if(!isInRange(this.x, this.y, build, range()));
         if(linked.contains(build))removeLink(block); // Call this first so eventually already linked blocks will be removed before testing the size.
     if(linked() >= ConnectOverdriveProjector.this.maxConnections || ConnectOverdriveProjector.CHECKER.get(build))return;
     else addLink(build);
