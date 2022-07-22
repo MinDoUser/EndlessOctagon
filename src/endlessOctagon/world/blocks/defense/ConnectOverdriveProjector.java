@@ -30,7 +30,10 @@ public class ConnectOverdriveProjector extends OverdriveProjector {
     super(name);
     this.configurable = true;
     
-    this.config(Building.class, (ConnectOverdriveBuild entity, Building build)->entity.checkLink(build));
+    this.config(Point2.class, (ConnectOverdriveBuild entity, Point2 point)->{
+      entity.checkLink(Vars.world.build(point.x, point.y));
+      Log.info(point);
+      });
   }
   
   public static boolean isInRange(float srcx, float srcy, Tile other, float range){
@@ -82,6 +85,7 @@ public class ConnectOverdriveProjector extends OverdriveProjector {
      @Override
         public void drawSelect(){
             Lines.stroke(1f);
+          Drawf.dashCircle(x, y, realRange = range + phaseHeat * phaseRangeBoost, baseColor);
           
           for(var other : linked){
             Drawf.square(other.x, other.y, other.block.size * Vars.tilesize / 2 + 1, Pal.accent);
@@ -117,7 +121,9 @@ public class ConnectOverdriveProjector extends OverdriveProjector {
       if(build == this){
         deselect();
       }else
-      configure(build);
+      configure(Point2.unpack(build.pos()));
+      
+      Log.info(build);
       
       return build != this;
     }
