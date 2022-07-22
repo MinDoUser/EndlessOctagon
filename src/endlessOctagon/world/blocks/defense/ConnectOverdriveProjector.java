@@ -6,12 +6,15 @@ import mindustry.world.*;
 import mindustry.world.meta.*;
 import mindustry.gen.*; //?
 import mindustry.Vars;
+import mindustry.ui.*;
 
 import arc.struct.*;
 import arc.func.Boolf;
 import arc.math.geom.*;
 import arc.math.*;
 import arc.util.*;
+import arc.graphics.g2d.*;
+import arc.*;
 
 import static mindustry.Vars.*;
 
@@ -21,20 +24,20 @@ public class ConnectOverdriveProjector extends OverdriveProjector {
   
   public int maxConnections = 5;
   
-  public static final Boolf<Block> CHECKER = block -> block.canOverdrive;
+  public static final Boolf<Building> CHECKER = build -> build.canOverdrive;
   
   public ConnectOverdriveProjector(String name) {
     super(name);
-    this.cofigureable = true;
+    this.configurable = true;
     
-    this.config(Block.class, (ConnectOverdriveBuild entity, Block block)->entity.checkLink(block));
+    this.config(Building.class, (ConnectOverdriveBuild entity, Building build)->entity.checkLink(build));
   }
   
-  public static boolean isInRange(float scrx, float scry, Tile other, float range){
+  public static boolean isInRange(float srcx, float srcy, Tile other, float range){
       return Intersector.overlaps(Tmp.cr1.set(srcx, srcy, range), other.getHitbox(Tmp.r1));
   }
-  public static boolean isInRange(float scrx, float scry, Block otherBlock, float range){
-    return isInRange(scrx, scry, otherBlock.tile(), range);
+  public static boolean isInRange(float srcx, float srcy, Building otherBuild, float range){
+    return isInRange(scrx, scry, otherBuild.tile(), range);
   }
   
   @Override
@@ -45,7 +48,7 @@ public class ConnectOverdriveProjector extends OverdriveProjector {
     @Override
     public void setBars(){
         super.setBars();
-        addBar("boost", (ConnectOverdriveBuild entity) -> new Bar(() -> Core.bundle.format("bar.connected", linked.size(), maxConnections), () -> Pal.accent, () -> entity.linked()));
+        addBar("boost", (ConnectOverdriveBuild entity) -> new Bar(() -> Core.bundle.format("bar.connected", entity.linked(), maxConnections), () -> Pal.accent, () -> entity.linked()));
     }
   
 
@@ -65,13 +68,13 @@ public class ConnectOverdriveProjector extends OverdriveProjector {
   
   public void checkLink(Building build){
     if(!isInRange(this.x, this.y, build, range()));
-        if(linked.contains(build))removeLink(block); // Call this first so eventually already linked blocks will be removed before testing the size.
+        if(linked.contains(build))removeLink(build); // Call this first so eventually already linked blocks will be removed before testing the size.
     if(linked() >= ConnectOverdriveProjector.this.maxConnections || ConnectOverdriveProjector.CHECKER.get(build))return;
     else addLink(build);
   }
     
     public int linked(){
-      java.util.ArrayList<Building> list = linked.asList().trimToSize();
+      java.util.ArrayList<Building> list = linked.list().trimToSize();
       return list.size();
     }
     
@@ -86,21 +89,21 @@ public class ConnectOverdriveProjector extends OverdriveProjector {
        
        @Override
         public void updateTile(){
-            super.smoothEfficiency = Mathf.lerpDelta(super.moothEfficiency, super.efficiency, 0.08f);
+            super.smoothEfficiency = Mathf.lerpDelta(super.smoothEfficiency, super.efficiency, 0.08f);
             super.heat = Mathf.lerpDelta(super.heat, super.efficiency > 0 ? 1f : 0f, 0.08f);
             super.charge += super.heat * Time.delta;
 
-            if(super.hasBoost){
+            if(hasBoost){
                 super.phaseHeat = Mathf.lerpDelta(super.phaseHeat, super.optionalEfficiency, 0.1f);
             }
 
-            if(super.charge >= super.reload){
-                float realRange = super.range + super.phaseHeat * super.phaseRangeBoost;
+            if(super.charge >= reload){
+                float realRange = range + super.phaseHeat * phaseRangeBoost;
 
                 super.charge = 0f;
                 indexer.eachBlock(this, realRange, 
                                   other -> ConnectOverdriveProjector.CHECKER.get(other) && linked.contains(other),
-                                  other -> other.applyBoost(super.realBoost(), super.reload + 1f));
+                                  other -> other.applyBoost(super.realBoost(), reload + 1f));
             }
 
             if(timer(timerUse, useTime) && super.efficiency > 0){
@@ -109,9 +112,9 @@ public class ConnectOverdriveProjector extends OverdriveProjector {
         }
     
     @Override
-    public void onConfigureTileTapped(Building build){
+    public void onConfigureBuildingTapped(Building build){
       configure(build);
-      return build != self();
+      return build != this;
     }
   }
 }
