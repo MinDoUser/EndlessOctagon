@@ -181,7 +181,9 @@ public final class EOBlocks implements endlessOctagon.util.Loadable{
         }};
     //End of turrets
     //Start of defense
-    connectProjector =
+    //=== === === === === === === === === ===
+    //TODO Fix this type and check it later.
+    if(false)connectProjector =
       new ConnectOverdriveProjector("connectProjector"){{
           requirements(Category.effect, with(Items.titanium, 170, Items.metaglass, 275, Items.silicon, 50, EOItems.oxa, 130));
             consumePower(4.75f);
@@ -189,6 +191,7 @@ public final class EOBlocks implements endlessOctagon.util.Loadable{
             range = 180;
             consumeItem(EOItems.oxa).boost();                                           
     }};
+    //=== === === === === === === === === ===
     //End of defense
     // Start of walls
     
