@@ -37,7 +37,7 @@ public class ConnectOverdriveProjector extends OverdriveProjector {
       return Intersector.overlaps(Tmp.cr1.set(srcx, srcy, range), other.getHitbox(Tmp.r1));
   }
   public static boolean isInRange(float srcx, float srcy, Building otherBuild, float range){
-    return isInRange(scrx, scry, otherBuild.tile(), range);
+    return isInRange(srcx, srcy, otherBuild.tile(), range);
   }
   
   @Override
@@ -74,7 +74,8 @@ public class ConnectOverdriveProjector extends OverdriveProjector {
   }
     
     public int linked(){
-      java.util.ArrayList<Building> list = linked.list().trimToSize();
+      java.util.ArrayList<Building> list = linked.list();
+      list.trimToSize();
       return list.size();
     }
     
@@ -112,12 +113,13 @@ public class ConnectOverdriveProjector extends OverdriveProjector {
         }
     
     @Override
-    public void onConfigureBuildTapped(Building build){
+    public boolean onConfigureBuildTapped(Building build){
       if(build == this){
         deselect();
-        return; //No if this.
-      }
+      }else
       configure(build);
+      
+      return build != this;
     }
   }
 }
