@@ -182,7 +182,7 @@ public final class EOBlocks implements endlessOctagon.util.Loadable{
     //End of turrets
     //Start of defense
     connectProjector =
-      new ConnectOverdriveProjector("connectProjector){{
+      new ConnectOverdriveProjector("connectProjector"){{
           requirements(Category.effect, with(Items.titanium, 170, Items.metaglass, 275, Items.silicon, 50, EOItems.oxa, 130));
             consumePower(4.75f);
             size = 3;
