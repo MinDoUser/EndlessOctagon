@@ -17,14 +17,14 @@ import arc.graphics.g2d.*;
 import arc.*;
 
 import static mindustry.Vars.*;
-
+//TODO: Move all this linked stuff into a own class/ interface?
 public class ConnectOverdriveProjector extends OverdriveProjector {
   
   public static final Stat connections = new Stat("connections");
   
   public int maxConnections = 5;
   
-  public static final Boolf<Building> CHECKER = build -> build.canOverdrive;
+  public static final Boolf<Building> CHECKER = build -> build.block.canOverdrive;
   
   public ConnectOverdriveProjector(String name) {
     super(name);
@@ -112,9 +112,12 @@ public class ConnectOverdriveProjector extends OverdriveProjector {
         }
     
     @Override
-    public void onConfigureBuildingTapped(Building build){
+    public void onConfigureBuildTapped(Building build){
+      if(build == this){
+        deselect();
+        return; //No if this.
+      }
       configure(build);
-      return build != this;
     }
   }
 }
