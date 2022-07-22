@@ -45,7 +45,8 @@ public final class EOFx implements endlessOctagon.util.Loadable {
       sizeTo = 15;
     }};
      implode = new ParticleEffect(){{
-      colorFrom = Pal.darkMetal; fx.colorTo =Color.white;
+      colorFrom = Pal.darkMetal; 
+        colorTo =Color.white;
       length = 75;
       particles = 50;
       interp = Interp.reverse;
