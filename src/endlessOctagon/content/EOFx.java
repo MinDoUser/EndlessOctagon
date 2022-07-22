@@ -22,7 +22,8 @@ import static arc.math.Angles.*;
 import static mindustry.Vars.*;
 
 public final class EOFx implements endlessOctagon.util.Loadable {
-   public static Effect blueWaveSmall, blueWaveBig;
+   public static Effect blueWaveSmall, blueWaveBig,
+   implode;
   @Override
   public void loadObject(){
     blueWaveBig = new WaveEffect(){{
@@ -43,5 +44,11 @@ public final class EOFx implements endlessOctagon.util.Loadable {
       lightInterp = Interp.pow2In;
       sizeTo = 15;
     }};
+     implode = new ParticleEffect(){{
+      colorFrom = Pal.darkMetal; fx.colorTo =Color.white;
+      length = 75;
+      particles = 50;
+      interp = Interp.reverse;
+     }};
   }
 }
