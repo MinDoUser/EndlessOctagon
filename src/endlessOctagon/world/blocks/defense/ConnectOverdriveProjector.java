@@ -45,6 +45,7 @@ public class ConnectOverdriveProjector extends OverdriveProjector {
   
   @Override
   public void setStats(){
+    super.setStats();
     stats.add(connections, maxConnections);
   }
   
@@ -85,7 +86,7 @@ public class ConnectOverdriveProjector extends OverdriveProjector {
      @Override
         public void drawSelect(){
             Lines.stroke(1f);
-          Drawf.dashCircle(x, y, realRange = range + phaseHeat * phaseRangeBoost, baseColor);
+          Drawf.dashCircle(x, y, range + phaseHeat * phaseRangeBoost, baseColor);
           
           for(var other : linked){
             Drawf.square(other.x, other.y, other.block.size * Vars.tilesize / 2 + 1, Pal.accent);
