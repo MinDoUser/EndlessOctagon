@@ -11,7 +11,7 @@ public class ObjectStack<T> {
     this.amount = amount;
   }
   
-  public ObjectStack(ObjectStack<E super T> other){
+  public ObjectStack(ObjectStack<? extends T> other){
     this.object = other.object;
     this.amount = other.amount;
   }
@@ -25,12 +25,12 @@ public class ObjectStack<T> {
   @Override
   public boolean equals(Object other){
     if(other instanceof ObjectStack o){
-      if((o.amount == this.amount) && (o.object.equals(this.object))return true;
+      if((o.amount == this.amount) && (o.object.equals(this.object)))return true;
     }else return false;
   }
   
   @Override
   public void toString(){
-    return "ObjectStack:" object +' '+amount;
+    return "ObjectStack:"+ object +' '+amount;
   }
 }
