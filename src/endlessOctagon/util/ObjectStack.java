@@ -6,6 +6,8 @@ public class ObjectStack<T> {
   /** The amount*/
   public int amount = 0;
   
+  public ObjectStack(){}
+  
   public ObjectStack(T object, int amount){
     this.object = object;
     this.amount = amount;
