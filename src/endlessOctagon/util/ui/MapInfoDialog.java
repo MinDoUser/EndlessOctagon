@@ -1,19 +1,22 @@
 package endlessOctagon.util.ui;
 
 import mindustry.ui.dialogs.BaseDialog;
-import mindustry.game.EventType.*;
+import mindustry.game.EventType;
 //import mindustry.world.blocks.storage.CoreBlock;
 import mindustry.world.blocks.storage.CoreBlock.*;
 import mindustry.gen.*;
 import mindustry.graphics.*;
 import mindustry.content.*;
 import mindustry.ui.*;
+import mindustry.Vars;
+import mindustry.world.Block;
+import mindustry.type.*;
 //import mindustry.ui.dialogs.SettingsMenuDialog.*;
 
 import arc.scene.ui.layout.*;
 import arc.struct.*;
 import arc.*;
-import arc.struct.*;
+import arc.func.*;
 import arc.scene.style.*;
 import arc.scene.ui.*;
 
@@ -90,12 +93,12 @@ public class MapInfoDialog extends BaseDialog{
     
     public boolean validBuild(){
       ItemStack[] req = target.requirements;
-      return core.block.items.has(req);
+      return core.items.has(req);
     }
     
     public Table build(){
       Table rTable = new Table();
-      rtable.setBackground(Tex.whiteui);
+      rTable.setBackground(Tex.whiteui);
       rTable.setColor(Pal.darkestGray);
       rTable.table(tl->{
         tl.image(target.uiIcon);
@@ -103,7 +106,7 @@ public class MapInfoDialog extends BaseDialog{
         tl.add(target.localizedName);
       }).left();
       rTable.table(tr->{
-        tr.add(Core.bundle.get("stat.canbuild")+":"+validBuild()?Core.bundle.get("yes"):Core.bundle.get("no")).padRight(50f);
+        tr.add(Core.bundle.get("stat.canbuild")+":"+(validBuild())?Core.bundle.get("yes"):Core.bundle.get("no")).padRight(50f);
         if(amount > 1){
           tr.row();
           tr.add("x"+amount).padRight(75f);
@@ -127,6 +130,7 @@ public class MapInfoDialog extends BaseDialog{
     
     private Boolf<Block> use;
     public BlockChooserDialog(Boolf<Block> use){
+      super("");
       this.use = use;
       
       this.buttons.button("Ok!", Icon.left, ()->{
@@ -153,7 +157,7 @@ public class MapInfoDialog extends BaseDialog{
        chooseListeners.each(cons -> cons.get(get()));
      }
     /** Returns the current block stack or {@link #defaultBlock} as Stack if it is null.*/
-    public ObjectStatck<Block> get(){
+    public ObjectStack<Block> get(){
       if(currentBlock.object == null) return new ObjectStack<Block>(defaultBlock, 1);
       return currentBlock;
     }
@@ -184,7 +188,7 @@ public class MapInfoDialog extends BaseDialog{
       ButtonGroup<ImageButton> group = new ButtonGroup<>();
       Seq<Block> cBlocks = Vars.content.blocks().select(use);
       Table blocks = new Table();
-      int current = 1;
+      int i = 1;
       for(var block : cBlocks){
         var icon = new TextureRegionDrawable(block.uiIcon);
         blocks.button(icon, Styles.clearTogglei, ()->{
