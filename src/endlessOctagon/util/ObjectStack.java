@@ -32,7 +32,7 @@ public class ObjectStack<T> {
   }
   
   @Override
-  public void toString(){
+  public String toString(){
     return "ObjectStack:"+ object +' '+amount;
   }
 }
