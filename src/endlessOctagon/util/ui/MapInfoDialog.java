@@ -6,11 +6,14 @@ import mindustry.game.EventType.*;
 import mindustry.world.blocks.storage.CoreBlock.*;
 import mindustry.gen.*;
 import mindustry.graphics.*;
+import mindustry.content.*;
 
 import arc.scene.ui.layout.*;
 import arc.struct.*;
 import arc.*;
 import arc.struct.*;
+
+import endlessOctagon.util.ObjectStack;
 
 /**Displays some intresting and nice features for maps like: <br>
 * <b>I.</b> Info when a block can be build.
@@ -68,14 +71,14 @@ public class MapInfoDialog extends BaseDialog{
     public Block target;
     public int amount;
     public BlockCheckElement(Block target, int amount){
-      this.(Vars.player.core(),target, amount);
+      this(Vars.player.core(),target, amount);
     }
     
-    public BlockCheckElement(CoreBuild core, Block target){
+    public CheckElement(CoreBuild core, Block target){
       this(core, target, 1);
     }
     
-    public BlockCheckElement(CoreBuild core, Block target, int amount){
+    public CheckElement(CoreBuild core, Block target, int amount){
       this.core = core;
       this.target = target;
       this.amount = amount;
@@ -106,24 +109,58 @@ public class MapInfoDialog extends BaseDialog{
       return rTable;
     }
   }
-  /** A basic BlockChooser. Conatins a field for the blocks to be choosed and a slider to choose amount*/
+  /** A basic BlockChooser. Contains a field for the blocks to be choosed and a slider to choose amount*/
   public static class BlockChooserDialog extends BaseDialog {
     public static final int MAX_PER_ROW = 7;
+    
+    private final Seq<Cons<ObjectStack<Block>>> chooseListeners = new Seq<>(1);
+    /** The current block and the previous block, can both be null...*/
+    private ObjectStack<Block> currentBlock, pevBlock = null;
+    /** The amount.*/
+    private int currentAmount = 1, lastAmount = 1;
+    /** The default return value if {@link #currentBlock} is {@code null}*/
+    public Block defaultBlock = Blocks.duo;
     
     private Boolf<Block> use;
     public BlockChooserDialog(Boolf<Block> use){
       this.use = use;
       
-      //this.buttons.button();
+      this.buttons.button("Ok!", Icon.left, ()->{
+        this.hide();
+        afterChoose();
+      });
+      this.buttons.button("@cancel", Icon.cancel, ()->{
+        this.currentBlock.object = null; //Reset.
+        this.currentBlock.amount = 1;
+        this.hide();
+      });
+    }
+    public BlockChooserDialog(Boolf<Block> use, Block defaultBlock){
+      this(use);
+      if(defaultBlock = defaultBlock;
+    }
+    
+     public void onChoose(Cons<ObjectStack<Block>> cons){
+       if(cons == null)return;
+       chooseListeners.add(cons);
+     }    
+         
+     protected void afterChoose(){
+       chooseListeners.each(cons -> cons.get(get());
+     }
+    /** Returns the current block stack or {@link #defaultBlock} as Stack if it is null.*/
+    public ObjectStatck<Block> get(){
+      if(currentBlock.object == null) return new ObjectStack<Block>(defaultBlock, 1);
+      return currentBlock;
     }
     
     public void rebuild(){
       cont.table(top -> {
-      rebuildBlockChooser(top);
+      buildBlockChooser(top);
       }).top();
     }
     
-    public void rebuildBlockChooser(Table t){
+    public void buildBlockChooser(Table t){
       Seq<Block> cBlocks = Vars.content.blocks().select(use);
       Table blocks = new Table();
       int current = 1;
