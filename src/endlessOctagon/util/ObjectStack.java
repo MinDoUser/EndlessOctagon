@@ -2,7 +2,7 @@ package endlessOctagon.util;
 // Easy.
 /**A stack of any object.*/
 public class ObjectStack<T> {
-  public final T object;
+  public T object;
   /** The amount*/
   public int amount = 0;
   
@@ -17,8 +17,15 @@ public class ObjectStack<T> {
     this.object = other.object;
     this.amount = other.amount;
   }
+  
+  public ObjectStack<T> set(T object, int amount){
+    this.object = object;
+    this.amount = amount;
+    return this;
+  }
+  
   /** Multiplies the amount of this stack by param {@code mult}*/
-  public ObjectStack mulBy(float mult){
+  public ObjectStack<T> mulBy(float mult){
     float aMult = (float)Math.abs(mult);
     this.amount = (int)Math.round(this.amount * aMult);
     return this; //Chain, ye
