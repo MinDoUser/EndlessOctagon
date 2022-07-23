@@ -141,7 +141,7 @@ public class MapInfoDialog extends BaseDialog{
     }
     public BlockChooserDialog(Boolf<Block> use, Block defaultBlock){
       this(use);
-      if(defaultBlock != null) = defaultBlock;
+      if(defaultBlock != null)this.defaultBlock = defaultBlock;
     }
     
      public void onChoose(Cons<ObjectStack<Block>> cons){
