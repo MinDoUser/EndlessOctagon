@@ -7,11 +7,15 @@ import mindustry.world.blocks.storage.CoreBlock.*;
 import mindustry.gen.*;
 import mindustry.graphics.*;
 import mindustry.content.*;
+import mindustry.ui.*;
+//import mindustry.ui.dialogs.SettingsMenuDialog.*;
 
 import arc.scene.ui.layout.*;
 import arc.struct.*;
 import arc.*;
 import arc.struct.*;
+import arc.scene.style.*;
+import arc.scene.ui.*;
 
 import endlessOctagon.util.ObjectStack;
 
@@ -70,7 +74,7 @@ public class MapInfoDialog extends BaseDialog{
     public CoreBuild core;
     public Block target;
     public int amount;
-    public BlockCheckElement(Block target, int amount){
+    public CheckElement(Block target, int amount){
       this(Vars.player.core(),target, amount);
     }
     
@@ -115,7 +119,7 @@ public class MapInfoDialog extends BaseDialog{
     
     private final Seq<Cons<ObjectStack<Block>>> chooseListeners = new Seq<>(1);
     /** The current block and the previous block, can both be null...*/
-    private ObjectStack<Block> currentBlock, pevBlock = null;
+    private ObjectStack<Block> currentBlock, prevBlock = null;
     /** The amount.*/
     private int currentAmount = 1, lastAmount = 1;
     /** The default return value if {@link #currentBlock} is {@code null}*/
@@ -137,7 +141,7 @@ public class MapInfoDialog extends BaseDialog{
     }
     public BlockChooserDialog(Boolf<Block> use, Block defaultBlock){
       this(use);
-      if(defaultBlock = defaultBlock;
+      if(defaultBlock != null) = defaultBlock;
     }
     
      public void onChoose(Cons<ObjectStack<Block>> cons){
@@ -146,7 +150,7 @@ public class MapInfoDialog extends BaseDialog{
      }    
          
      protected void afterChoose(){
-       chooseListeners.each(cons -> cons.get(get());
+       chooseListeners.each(cons -> cons.get(get()));
      }
     /** Returns the current block stack or {@link #defaultBlock} as Stack if it is null.*/
     public ObjectStatck<Block> get(){
@@ -158,13 +162,35 @@ public class MapInfoDialog extends BaseDialog{
       cont.table(top -> {
       buildBlockChooser(top);
       }).top();
+      cont.table(bottom -> {
+        Slider slider = new Slider(1f,10f,1f,false);
+        Label valueLabel = new Label("",Styles.outlineLabel);
+        
+        slider.changed(()->{
+          this.lastAmount = currentAmount;
+          this.currentAmount = (int)slider.getValue();
+          valueLabel.setText(""+currentAmount);
+        });
+        
+        bottom.add(Core.bundle.get("stat.amount", "Amount")+":");
+        bottom.add(valueLabel);
+        bottom.row();
+        bottom.add(slider);
+      }).bottom();
     }
     
     public void buildBlockChooser(Table t){
+      // The group so only one is active
+      ButtonGroup<ImageButton> group = new ButtonGroup<>();
       Seq<Block> cBlocks = Vars.content.blocks().select(use);
       Table blocks = new Table();
       int current = 1;
       for(var block : cBlocks){
+        var icon = new TextureRegionDrawable(block.uiIcon);
+        blocks.button(icon, Styles.clearTogglei, ()->{
+          prevBlock = currentBlock;
+          currentBlock = block;
+        }).group(group).size(40);
         if(i%MAX_PER_ROW==0)blocks.row();
         i++;
       }
