@@ -17,6 +17,7 @@ import mindustry.gen.*; // Where is this package? Can't find it...
 
 import endlessOctagon.content.*;
 import endlessOctagon.util.ui.*;
+import endlessOctagon.util.ui.MapInfoDialog;
 import endlessOctagon.util.ui.MapInfoDialog.*;
 import endlessOctagon.util.*;
 import endlessOctagon.content.*;
@@ -124,10 +125,16 @@ public final class EndlessOctagonMod extends Mod{
         settingTable.game.button("Change Log", Icon.info, ()->{
             changeDialog.show();
         }).size(250f, 100f);
-	    settingTable.game.row();
+	    settingTable.game.row(); 
+	    //Test only V V V
 	settingTable.game.button("(Block Chooser)", Icon.cancel, ()->{
             BlockChooserDialog dialog = new BlockChooserDialog((e)->e.requirements.length > 0 && e.isPlaceable() && !e.isHidden());
 		dialog.onChoose((e)->Log.info(e));
+		dialog.show();
+        }).size(250f, 100f);
+	    settingTable.game.row(); 
+	settingTable.game.button("(Map Dialog)", Icon.cancel, ()->{
+            MapInfoDialog dialog = new MapInfoDialog();
 		dialog.show();
         }).size(250f, 100f);
     }
