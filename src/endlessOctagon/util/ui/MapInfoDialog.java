@@ -54,7 +54,7 @@ public class MapInfoDialog extends BaseDialog{
     
     shown(this::rebuild);
     
-    Events.run(EventType.Trigger.update, new Runnable(){
+    /*Events.run(EventType.Trigger.update, new Runnable(){
       public static final int WAIT = 8;
       
       private int cycle = 0;
@@ -67,7 +67,7 @@ public class MapInfoDialog extends BaseDialog{
           rebuild(); // Even rare
         }
       }
-    });
+    });*/ // Soon.
     
   }
   
@@ -258,8 +258,8 @@ public class MapInfoDialog extends BaseDialog{
         });
         
         bottom.add(Core.bundle.get("stat.amount", "Amount")+":");
-        bottom.add(valueLabel);
         bottom.row();
+        bottom.add(valueLabel);
         bottom.add(slider);
       });
     }
