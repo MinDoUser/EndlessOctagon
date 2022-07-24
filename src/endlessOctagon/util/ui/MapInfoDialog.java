@@ -45,7 +45,7 @@ public class MapInfoDialog extends BaseDialog{
     addCloseButton();
     
     DEFAULT_CHOOSER.onChoose((stack)->{
-      if(stack.object != null)
+      if(stack.object != null && stack != null)
       checkList.add(new CheckElement(stack));
       else Log.warn("Object was null!");
     });
@@ -100,11 +100,13 @@ public class MapInfoDialog extends BaseDialog{
       return;
     }
     l.table(topT ->{
-        topT.button(Core.bundle.get("newentry"), Icon.add, ()->{
+        topT.button(Core.bundle.get("newentry", "New Entry"), Icon.add, ()->{
           DEFAULT_CHOOSER.show();
         }).disabled((b)->DEFAULT_CHOOSER.isShown()).size(300, 75);
       });
       l.row();
+      l.image().growX().minHeight(10f);
+    l.row();
     l.table(botT ->{
       Table t = new Table();
       if(checkList.isEmpty()){
@@ -166,7 +168,7 @@ public class MapInfoDialog extends BaseDialog{
     public Table build(){
       if(removed)return new Table(); // Do nothing if removed.
       
-      final String BUILD_STRING = Core.bundle.get("stat.canbuild")+":";
+      final String BUILD_STRING = Core.bundle.get("stat.canbuild", "Can Build")+":";
       
       Table rTable = new Table();
       rTable.setBackground(Tex.whiteui);
@@ -210,7 +212,7 @@ public class MapInfoDialog extends BaseDialog{
       
       shown(this::rebuild);
       
-      this.buttons.button("Ok!", Icon.left, ()->{
+      this.buttons.button("Ok!", Icon.ok, ()->{
         this.hide();
         afterChoose();
       }).size(180, 75);
@@ -236,7 +238,7 @@ public class MapInfoDialog extends BaseDialog{
      }
     /** Returns the current block stack or {@link #defaultBlock} as Stack if it is null.*/
     public ObjectStack<Block> get(){
-      if(currentBlock.object == null || currentBlock == null) return new ObjectStack<Block>(defaultBlock, 1);
+      if(currentBlock == null || currentBlock.object == null) return new ObjectStack<Block>(defaultBlock, 1);
       return currentBlock;
     }
     
@@ -244,6 +246,7 @@ public class MapInfoDialog extends BaseDialog{
       cont.table(top -> {
       buildBlockChooser(top);
       });
+      cont.clear();
       cont.row();
       cont.image().growX().minHeight(10f);
       cont.row();
