@@ -19,6 +19,7 @@ import arc.*;
 import arc.func.*;
 import arc.scene.style.*;
 import arc.scene.ui.*;
+import arc.util.*;
 
 import endlessOctagon.util.ObjectStack;
 
@@ -62,7 +63,7 @@ public class MapInfoDialog extends BaseDialog{
         if(cycle%WAIT == 0){
           checkAll();
         }
-        if(cycle%WAIT*2==0){
+        if(cycle%WAIT*5==0){
           rebuild(); // Even rare
         }
       }
@@ -101,7 +102,7 @@ public class MapInfoDialog extends BaseDialog{
     l.table(topT ->{
         topT.button(Core.bundle.get("newentry"), Icon.add, ()->{
           DEFAULT_CHOOSER.show();
-        }).disabled(DEFAULT_CHOOSER::isShown).size(300, 75);
+        }).disabled((b)->DEFAULT_CHOOSER.isShown()).size(300, 75);
       }).top();
     left.table(botT ->{
       Table t = new Table();
