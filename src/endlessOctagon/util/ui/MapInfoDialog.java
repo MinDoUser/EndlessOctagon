@@ -97,6 +97,8 @@ public class MapInfoDialog extends BaseDialog{
     }
     
     public Table build(){
+      final String BUILD_STRING = Core.bundle.get("stat.canbuild")+":";
+      
       Table rTable = new Table();
       rTable.setBackground(Tex.whiteui);
       rTable.setColor(Pal.darkestGray);
@@ -106,7 +108,10 @@ public class MapInfoDialog extends BaseDialog{
         tl.add(target.localizedName);
       }).left();
       rTable.table(tr->{
-        tr.add(Core.bundle.get("stat.canbuild")+":"+(validBuild())?Core.bundle.get("yes"):Core.bundle.get("no")).padRight(50f);
+        Label buildLabel = new Label("");
+        String cStr = validBuild() ?  Core.bundle.get("no","No") : Core.bundle.get("yes","Yes");
+        buildLabel.setText(BUILD_STRING+" "+cStr);
+        tr.add(buildLabel).padRight(50f);
         if(amount > 1){
           tr.row();
           tr.add("x"+amount).padRight(75f);
@@ -193,7 +198,7 @@ public class MapInfoDialog extends BaseDialog{
         var icon = new TextureRegionDrawable(block.uiIcon);
         blocks.button(icon, Styles.clearTogglei, ()->{
           prevBlock = currentBlock;
-          currentBlock = block;
+          currentBlock = new ObjectStack<Block>(block, currentAmount);
         }).group(group).size(40);
         if(i%MAX_PER_ROW==0)blocks.row();
         i++;
