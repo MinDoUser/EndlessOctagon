@@ -103,7 +103,7 @@ public class MapInfoDialog extends BaseDialog{
         topT.button(Core.bundle.get("newentry"), Icon.add, ()->{
           DEFAULT_CHOOSER.show();
         }).disabled((b)->DEFAULT_CHOOSER.isShown()).size(300, 75);
-      })
+      });
       l.row();
     l.table(botT ->{
       Table t = new Table();
@@ -117,7 +117,7 @@ public class MapInfoDialog extends BaseDialog{
       });
       }
       botT.pane(t).scrollX(false);
-      })
+      });
   }
   
   public static class CheckElement {
@@ -175,7 +175,7 @@ public class MapInfoDialog extends BaseDialog{
         tl.image(target.uiIcon);
         tl.row();
         tl.add(target.localizedName);
-      })
+      });
       rTable.table(tr->{
         Label buildLabel = new Label("");
         String cStr = validBuild() ?  Core.bundle.get("no","No") : Core.bundle.get("yes","Yes");
@@ -186,7 +186,7 @@ public class MapInfoDialog extends BaseDialog{
           tr.row();
           tr.add("x"+amount).padRight(75f);
         }
-      })
+      });
       
       return rTable;
     }
