@@ -29,6 +29,12 @@ import endlessOctagon.util.ObjectStack;
 public class MapInfoDialog extends BaseDialog{
   public static final BlockChooserDialog DEFAULT_CHOOSER;
   
+  static {
+    DEFAULT_CHOOSER = new BlockChooserDialog(b->{
+      return b.requirements.length > 0 && !b.isHidden() && b.unlocked() && b.isPlaceable();
+    });
+  }
+  
   public Table left, right;
   /** The blocks to be checked over time*/
   public final Seq<CheckElement> checkList = new Seq<>();
@@ -37,13 +43,15 @@ public class MapInfoDialog extends BaseDialog{
     
     addCloseButton();
     
-    rebuild();
+    DEFAULT_CHOOSER.onChoose((stack)->{
+      if(stack.object != null)
+      checkList.add(new CheckElement(stack));
+      else Log.warn("Object was null!");
+    });
+    
+    //rebuild();
     
     shown(this::rebuild);
-    
-    DEFAULT_CHOOSER = new BlockChooserDialog(b->{
-      return b.requirements.length > 0 && !b.isHidden() && b.unlocked();
-    });
     
     Events.run(EventType.Trigger.update, new Runnable(){
       public static final int WAIT = 8;
@@ -68,6 +76,13 @@ public class MapInfoDialog extends BaseDialog{
         if(checkList.remove(elem))
         rebuild();
       }
+      if(!elem.validBuild() && elem.wasValid)elem.showAgain();
+      
+      if(elem.validBuild() && elem.showInfo()){
+        elem.checked = true;
+        elem.wasValid = true;
+        Vars.ui.showInfoFade("Block [stat]"+elem.target.localizedName+"[]"+Core.bundle.get("buildable"));
+      }
     });
   }
   
@@ -85,7 +100,8 @@ public class MapInfoDialog extends BaseDialog{
     }
     l.table(topT ->{
         topT.button(Core.bundle.get("newentry"), Icon.add, ()->{
-        });
+          DEFAULT_CHOOSER.show();
+        }).disabled(DEFAULT_CHOOSER::isShown).size(300, 75);
       }).top();
     left.table(botT ->{
       Table t = new Table();
@@ -93,7 +109,7 @@ public class MapInfoDialog extends BaseDialog{
         t.add("[accent]"+Core.bundle.get("empty"));
       }else{
       checkList.each(elem -> {
-        t.add(elem.build);
+        t.add(elem.build());
         t.row();
         t.row();
       });
@@ -108,6 +124,8 @@ public class MapInfoDialog extends BaseDialog{
     public int amount;
     /** Whether this CheckElement was removed. Do not change it unless you know what you're doing.*/
     public boolean removed = false;
+    public boolean checked = false;
+    public boolean wasValid = false;
     public CheckElement(ObjectStack<Block> stack){
       this(stack.object, stack.amount);
     }
@@ -125,6 +143,16 @@ public class MapInfoDialog extends BaseDialog{
       this.target = target;
       if(amount <= 0) this.amount = 1;
       else this.amount = amount;
+    }
+    
+    public boolean showInfo(){
+      return !checked;
+    }
+    
+    public void showAgain(){
+      if(!wasValid) return;
+      if(validBuild)return; //I still valid, not show again.
+      checked = false; 
     }
     
     public boolean validBuild(){
