@@ -1,5 +1,5 @@
 package endlessOctagon.util;
-// Easy.
+// Easy. no?
 /**A stack of any object.*/
 public class ObjectStack<T> {
   public T object;
@@ -22,6 +22,11 @@ public class ObjectStack<T> {
     this.object = object;
     this.amount = amount;
     return this;
+  }
+  
+  public static <E> ObjectStack<E> of(E object, int amount){
+    ObjectStack<E> rStack = new ObjectStack().set(object, amount);
+    return rStack;
   }
   
   /** Multiplies the amount of this stack by param {@code mult}*/
