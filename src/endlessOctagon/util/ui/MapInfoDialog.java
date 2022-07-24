@@ -45,8 +45,10 @@ public class MapInfoDialog extends BaseDialog{
     addCloseButton();
     
     DEFAULT_CHOOSER.onChoose((stack)->{
-      if(stack.object != null && stack != null)
+      if(stack != null && stack.object != null){
       checkList.add(new CheckElement(stack));
+        Log.info("Stack:"stack);
+      }
       else Log.warn("Object was null!");
     });
     
@@ -101,6 +103,7 @@ public class MapInfoDialog extends BaseDialog{
     }
     l.table(topT ->{
         topT.button(Core.bundle.get("newentry", "New Entry"), Icon.add, ()->{
+          Log.info("Show");
           DEFAULT_CHOOSER.show();
         }).disabled((b)->DEFAULT_CHOOSER.isShown()).size(300, 75);
       });
@@ -243,10 +246,10 @@ public class MapInfoDialog extends BaseDialog{
     }
     
     public void rebuild(){
+      cont.clear();
       cont.table(top -> {
       buildBlockChooser(top);
       });
-      cont.clear();
       cont.row();
       cont.image().growX().minHeight(10f);
       cont.row();
