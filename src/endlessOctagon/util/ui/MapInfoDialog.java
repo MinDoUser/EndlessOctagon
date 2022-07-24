@@ -47,7 +47,8 @@ public class MapInfoDialog extends BaseDialog{
     DEFAULT_CHOOSER.onChoose((stack)->{
       if(stack != null && stack.object != null){
       checkList.add(new CheckElement(stack));
-        Log.info("Stack:"stack);
+        Log.info("Stack:"+stack);
+        checkList(e->Log.info(e));
       }
       else Log.warn("Object was null!");
     });
