@@ -152,7 +152,7 @@ public class MapInfoDialog extends BaseDialog{
     
     public void showAgain(){
       if(!wasValid) return;
-      if(validBuild)return; //I still valid, not show again.
+      if(validBuild())return; //I still valid, not show again.
       checked = false; 
     }
     
