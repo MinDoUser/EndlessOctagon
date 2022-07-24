@@ -40,7 +40,8 @@ public class ObjectStack<T> {
   public boolean equals(Object other){
     if(other instanceof ObjectStack o){
       if((o.amount == this.amount) && (o.object.equals(this.object)))return true;
-    }else return false;
+    }
+    return false;
   }
   
   @Override
