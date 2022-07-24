@@ -212,8 +212,9 @@ public class MapInfoDialog extends BaseDialog{
       this.buttons.button("Ok!", Icon.left, ()->{
         this.hide();
         afterChoose();
-      });
+      }).size(180, 75);
       this.buttons.button("@cancel", Icon.cancel, ()->{
+        if(this.currentBlock == null) currentBlock = new ObjectStack<>(defaultBlock, 1);
         this.currentBlock.object = defaultBlock; //Reset.
         this.currentBlock.amount = 1;
         this.hide();
@@ -274,6 +275,7 @@ public class MapInfoDialog extends BaseDialog{
         if(i%MAX_PER_ROW==0)blocks.row();
         i++;
       }
+      t.pane(blocks).scrollX(false);
     }
   }
   
