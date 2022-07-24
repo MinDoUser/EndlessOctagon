@@ -27,6 +27,8 @@ import endlessOctagon.util.ObjectStack;
 *more soon
 */
 public class MapInfoDialog extends BaseDialog{
+  public static final BlockChooserDialog DEFAULT_CHOOSER;
+  
   public Table left, right;
   /** The blocks to be checked over time*/
   public final Seq<CheckElement> checkList = new Seq<>();
@@ -39,8 +41,12 @@ public class MapInfoDialog extends BaseDialog{
     
     shown(this::rebuild);
     
+    DEFAULT_CHOOSER = new BlockChooserDialog(b->{
+      return b.requirements.length > 0 && !b.isHidden() && b.unlocked();
+    });
+    
     Events.run(EventType.Trigger.update, new Runnable(){
-      public static final int WAIT = 4;
+      public static final int WAIT = 8;
       
       private int cycle = 0;
       @Override
@@ -48,13 +54,21 @@ public class MapInfoDialog extends BaseDialog{
         if(cycle%WAIT == 0){
           checkAll();
         }
+        if(cycle%WAIT*2==0){
+          rebuild(); // Even rare
+        }
       }
     });
     
   }
   
   public void checkAll(){
-    
+    checkList.each(elem ->{
+      if(elem.removed){
+        if(checkList.remove(elem))
+        rebuild();
+      }
+    });
   }
   
   public void rebuild(){
@@ -65,11 +79,26 @@ public class MapInfoDialog extends BaseDialog{
   
   public void buildLeftSide(Table l){
     this.left = l;
+    if(Vars.state.isMenu()){
+      l.add("Open a map to show"); //This shouldn't happen, but...
+      return;
+    }
     l.table(topT ->{
-        
+        topT.button(Core.bundle.get("newentry"), Icon.add, ()->{
+        });
       }).top();
     left.table(botT ->{
-        
+      Table t = new Table();
+      if(checkList.isEmpty()){
+        t.add("[accent]"+Core.bundle.get("empty"));
+      }else{
+      checkList.each(elem -> {
+        t.add(elem.build);
+        t.row();
+        t.row();
+      });
+      }
+      botT.pane(t).scrollX(false);
       }).bottom();
   }
   
@@ -77,6 +106,12 @@ public class MapInfoDialog extends BaseDialog{
     public CoreBuild core;
     public Block target;
     public int amount;
+    /** Whether this CheckElement was removed. Do not change it unless you know what you're doing.*/
+    public boolean removed = false;
+    public CheckElement(ObjectStack<Block> stack){
+      this(stack.object, stack.amount);
+    }
+    
     public CheckElement(Block target, int amount){
       this(Vars.player.core(),target, amount);
     }
@@ -88,15 +123,19 @@ public class MapInfoDialog extends BaseDialog{
     public CheckElement(CoreBuild core, Block target, int amount){
       this.core = core;
       this.target = target;
-      this.amount = amount;
+      if(amount <= 0) this.amount = 1;
+      else this.amount = amount;
     }
     
     public boolean validBuild(){
+      if(core == null) return false; //True?
       ItemStack[] req = target.requirements;
       return core.items.has(req);
     }
     
     public Table build(){
+      if(removed)return new Table(); // Do nothing if removed.
+      
       final String BUILD_STRING = Core.bundle.get("stat.canbuild")+":";
       
       Table rTable = new Table();
@@ -111,7 +150,8 @@ public class MapInfoDialog extends BaseDialog{
         Label buildLabel = new Label("");
         String cStr = validBuild() ?  Core.bundle.get("no","No") : Core.bundle.get("yes","Yes");
         buildLabel.setText(BUILD_STRING+" "+cStr);
-        tr.add(buildLabel).padRight(50f);
+        tr.add(buildLabel).padRight(150f);
+        tr.button(Icon.cancel, ()->{this.removed = true;});
         if(amount > 1){
           tr.row();
           tr.add("x"+amount).padRight(75f);
