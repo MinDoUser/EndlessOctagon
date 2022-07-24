@@ -48,7 +48,7 @@ public class MapInfoDialog extends BaseDialog{
       if(stack != null && stack.object != null){
       checkList.add(new CheckElement(stack));
         Log.info("Stack:"+stack);
-        checkList(e->Log.info(e));
+        checkList.each(e->Log.info(e));
       }
       else Log.warn("Object was null!");
     });
