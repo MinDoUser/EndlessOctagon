@@ -207,15 +207,17 @@ public class MapInfoDialog extends BaseDialog{
       super("");
       this.use = use;
       
+      shown(this::rebuild);
+      
       this.buttons.button("Ok!", Icon.left, ()->{
         this.hide();
         afterChoose();
       });
       this.buttons.button("@cancel", Icon.cancel, ()->{
-        this.currentBlock.object = null; //Reset.
+        this.currentBlock.object = defaultBlock; //Reset.
         this.currentBlock.amount = 1;
         this.hide();
-      });
+      }).size(180, 75);
     }
     public BlockChooserDialog(Boolf<Block> use, Block defaultBlock){
       this(use);
@@ -232,7 +234,7 @@ public class MapInfoDialog extends BaseDialog{
      }
     /** Returns the current block stack or {@link #defaultBlock} as Stack if it is null.*/
     public ObjectStack<Block> get(){
-      if(currentBlock.object == null) return new ObjectStack<Block>(defaultBlock, 1);
+      if(currentBlock.object == null || currentBlock == null) return new ObjectStack<Block>(defaultBlock, 1);
       return currentBlock;
     }
     
