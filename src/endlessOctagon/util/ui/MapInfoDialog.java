@@ -90,7 +90,7 @@ public class MapInfoDialog extends BaseDialog{
   public void rebuild(){
     cont.table(t->{
       buildLeftSide(t);
-    }).left();
+    });
   }
   
   public void buildLeftSide(Table l){
@@ -103,8 +103,9 @@ public class MapInfoDialog extends BaseDialog{
         topT.button(Core.bundle.get("newentry"), Icon.add, ()->{
           DEFAULT_CHOOSER.show();
         }).disabled((b)->DEFAULT_CHOOSER.isShown()).size(300, 75);
-      }).top();
-    left.table(botT ->{
+      })
+      l.row();
+    l.table(botT ->{
       Table t = new Table();
       if(checkList.isEmpty()){
         t.add("[accent]"+Core.bundle.get("empty"));
@@ -116,7 +117,7 @@ public class MapInfoDialog extends BaseDialog{
       });
       }
       botT.pane(t).scrollX(false);
-      }).bottom();
+      })
   }
   
   public static class CheckElement {
@@ -152,7 +153,7 @@ public class MapInfoDialog extends BaseDialog{
     
     public void showAgain(){
       if(!wasValid) return;
-      if(validBuild())return; //I still valid, not show again.
+      if(validBuild())return; //If still valid, not show again.
       checked = false; 
     }
     
@@ -174,7 +175,7 @@ public class MapInfoDialog extends BaseDialog{
         tl.image(target.uiIcon);
         tl.row();
         tl.add(target.localizedName);
-      }).left();
+      })
       rTable.table(tr->{
         Label buildLabel = new Label("");
         String cStr = validBuild() ?  Core.bundle.get("no","No") : Core.bundle.get("yes","Yes");
@@ -185,7 +186,7 @@ public class MapInfoDialog extends BaseDialog{
           tr.row();
           tr.add("x"+amount).padRight(75f);
         }
-      }).right();
+      })
       
       return rTable;
     }
@@ -242,10 +243,13 @@ public class MapInfoDialog extends BaseDialog{
     public void rebuild(){
       cont.table(top -> {
       buildBlockChooser(top);
-      }).top();
+      });
+      cont.row();
+      cont.image().growX().minHeight(10f);
+      cont.row();
       cont.table(bottom -> {
         Slider slider = new Slider(1f,10f,1f,false);
-        Label valueLabel = new Label("",Styles.outlineLabel);
+        Label valueLabel = new Label("1",Styles.outlineLabel);
         
         slider.changed(()->{
           this.lastAmount = currentAmount;
@@ -257,7 +261,7 @@ public class MapInfoDialog extends BaseDialog{
         bottom.add(valueLabel);
         bottom.row();
         bottom.add(slider);
-      }).bottom();
+      });
     }
     
     public void buildBlockChooser(Table t){
@@ -268,14 +272,15 @@ public class MapInfoDialog extends BaseDialog{
       int i = 1;
       for(var block : cBlocks){
         var icon = new TextureRegionDrawable(block.uiIcon);
-        blocks.button(icon, Styles.clearTogglei, ()->{
+        ImageButton button = blocks.button(icon, Styles.clearTogglei, ()->{
           prevBlock = currentBlock;
           currentBlock = new ObjectStack<Block>(block, currentAmount);
-        }).group(group).size(40);
+        }).group(group).size(50).get(); //Resize them to a good size
+        button.resizeImage(Vars.iconLarge);
         if(i%MAX_PER_ROW==0)blocks.row();
         i++;
       }
-      t.pane(blocks).scrollX(false);
+      t.pane(blocks).minWidth(400f).scrollX(false);
     }
   }
   
