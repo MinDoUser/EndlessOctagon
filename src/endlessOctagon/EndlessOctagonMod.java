@@ -41,6 +41,7 @@ public final class EndlessOctagonMod extends Mod{
 			Log.info(EOBlocks.eravirBlocks);
 		});*/
 		//Log.info(Vars.content.planets()); //Testing
+		new MapInfoFragment().build(Vars.ui.hudGroup);
             //show dialog upon startup
             Time.runTask(10f, () -> {
 		    loadChangeDialog();
@@ -127,11 +128,6 @@ public final class EndlessOctagonMod extends Mod{
         }).size(250f, 100f);
 	    settingTable.game.row(); 
 	    //Test only V V V
-	settingTable.game.button("(Block Chooser)", Icon.cancel, ()->{
-            BlockChooserDialog dialog = new BlockChooserDialog((e)->e.requirements.length > 0 && e.isPlaceable() && !e.isHidden());
-		dialog.onChoose((e)->Log.info(e));
-		dialog.show();
-        }).size(250f, 100f);
 	    settingTable.game.row(); 
 	settingTable.game.button("(Map Dialog)", Icon.cancel, ()->{
             EOVars.mapInfo.show();
