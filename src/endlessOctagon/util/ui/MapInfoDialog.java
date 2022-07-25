@@ -59,7 +59,9 @@ public class MapInfoDialog extends BaseDialog{
     
     shown(this::rebuild);
     
-    /*Events.run(EventType.Trigger.update, new Runnable(){
+    
+    
+    /*Events.run(EventType.Trigger.update, new Runnable(){ // Wait, this is stupid... Everytime there will be a new instance, there will be also a new Event Listener...
       public static final int WAIT = 8;
       
       private int cycle = 0;
@@ -74,14 +76,21 @@ public class MapInfoDialog extends BaseDialog{
       }
     });*/ // Soon.
     
+    update(this::checkRemove);
+    
+  }
+  
+  public void checkRemove(){
+    checkList(elem -> {
+    if(elem.removed){
+        if(checkList.remove(elem))
+        rebuild();
+      }
+    });
   }
   
   public void checkAll(){
     checkList.each(elem ->{
-      if(elem.removed){
-        if(checkList.remove(elem))
-        rebuild();
-      }
       if(!elem.validBuild() && elem.wasValid)elem.showAgain();
       
       if(elem.validBuild() && elem.showInfo()){
@@ -93,6 +102,7 @@ public class MapInfoDialog extends BaseDialog{
   }
   
   public void rebuild(){
+    cont.clear();
     cont.table(t->{
       buildLeftSide(t);
     });
@@ -216,6 +226,8 @@ public class MapInfoDialog extends BaseDialog{
       super("@blockchooser");
       this.use = use;
       
+      currentBlock = new ObjectStack<>(defaultBlock, 1);
+      
       shown(this::rebuild);
       
       this.buttons.button("Ok!", Icon.ok, ()->{
@@ -263,7 +275,7 @@ public class MapInfoDialog extends BaseDialog{
         slider.changed(()->{
           this.lastAmount = currentAmount;
           this.currentAmount = (int)slider.getValue();
-          currentBlock.amount = currentAmount;
+          if(currentBlock  != null)currentBlock.amount = currentAmount;
           valueLabel.setText(""+currentAmount);
         });
         
