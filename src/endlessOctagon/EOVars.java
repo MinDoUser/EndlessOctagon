@@ -1,6 +1,6 @@
 package endlessOctagon;
 
-import endlessOctagon.util.ui;
+import endlessOctagon.util.ui.*;
 import endlessOctagon.util.*;
 
 public final class EOVars {
