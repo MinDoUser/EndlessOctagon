@@ -174,7 +174,7 @@ public class MapInfoDialog extends BaseDialog{
     public Table build(){
       if(removed)return new Table(); // Do nothing if removed.
       
-      final String BUILD_STRING = Core.bundle.get("stat.canbuild", "Can Build")+":";
+      final String BUILD_STRING = Core.bundle.get("canbuild", "Can Build")+":";
       
       Table rTable = new Table();
       rTable.setBackground(Tex.whiteui);
@@ -213,7 +213,7 @@ public class MapInfoDialog extends BaseDialog{
     
     private Boolf<Block> use;
     public BlockChooserDialog(Boolf<Block> use){
-      super("");
+      super("@blockchooser");
       this.use = use;
       
       shown(this::rebuild);
@@ -263,10 +263,11 @@ public class MapInfoDialog extends BaseDialog{
         slider.changed(()->{
           this.lastAmount = currentAmount;
           this.currentAmount = (int)slider.getValue();
+          currentBlock.amount = currentAmount;
           valueLabel.setText(""+currentAmount);
         });
         
-        bottom.add(Core.bundle.get("stat.amount", "Amount")+":");
+        bottom.add(Core.bundle.get("amount", "Amount")+":");
         bottom.row();
         bottom.add(valueLabel);
         bottom.add(slider);
