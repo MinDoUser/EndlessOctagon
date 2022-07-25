@@ -134,8 +134,7 @@ public final class EndlessOctagonMod extends Mod{
         }).size(250f, 100f);
 	    settingTable.game.row(); 
 	settingTable.game.button("(Map Dialog)", Icon.cancel, ()->{
-            MapInfoDialog dialog = new MapInfoDialog();
-		dialog.show();
+            EOVars.mapInfo.show();
         }).size(250f, 100f);
     }
 	public static final endlessOctagon.util.Loadable[] loadables = {
