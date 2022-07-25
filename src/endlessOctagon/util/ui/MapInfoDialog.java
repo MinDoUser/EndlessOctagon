@@ -81,7 +81,7 @@ public class MapInfoDialog extends BaseDialog{
   }
   
   public void checkRemove(){
-    checkList(elem -> {
+    checkList.each(elem -> {
     if(elem.removed){
         if(checkList.remove(elem))
         rebuild();
