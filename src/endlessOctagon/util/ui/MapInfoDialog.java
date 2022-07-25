@@ -178,7 +178,8 @@ public class MapInfoDialog extends BaseDialog{
     public boolean validBuild(){
       if(core == null) return false; //True?
       ItemStack[] req = target.requirements;
-      return core.items.has(req);
+      ItemStack[] nR = ItemStack.mult(req, (float)amount);
+      return core.items.has(nR);
     }
     
     public Table build(){
@@ -190,13 +191,13 @@ public class MapInfoDialog extends BaseDialog{
       rTable.setBackground(Tex.whiteui);
       rTable.setColor(Pal.darkestGray);
       rTable.table(tl->{
-        tl.image(target.uiIcon);
+        tl.image(target.uiIcon).size(Vars.iconLarge).left();
         tl.row();
         tl.add(target.localizedName);
-      });
+      }).width(450);
       rTable.table(tr->{
         Label buildLabel = new Label("");
-        String cStr = validBuild() ?  Core.bundle.get("no","No") : Core.bundle.get("yes","Yes");
+        String cStr = !validBuild() ?  Core.bundle.get("no","No") : Core.bundle.get("yes","Yes");
         buildLabel.setText(BUILD_STRING+" "+cStr);
         tr.add(buildLabel).padRight(150f);
         tr.button(Icon.cancel, ()->{this.removed = true;});
@@ -204,7 +205,7 @@ public class MapInfoDialog extends BaseDialog{
           tr.row();
           tr.add("x"+amount).padRight(75f);
         }
-      });
+      }).right();
       
       return rTable;
     }
