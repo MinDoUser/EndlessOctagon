@@ -30,6 +30,8 @@ import endlessOctagon.util.ObjectStack;
 public class MapInfoDialog extends BaseDialog{
   public static final BlockChooserDialog DEFAULT_CHOOSER;
   
+  public static MapInfoDialog instance;
+  
   static {
     DEFAULT_CHOOSER = new BlockChooserDialog(b->{
       boolean r = b.requirements.length > 0 && !b.isHidden() && b.isPlaceable();
@@ -48,8 +50,8 @@ public class MapInfoDialog extends BaseDialog{
     DEFAULT_CHOOSER.onChoose((stack)->{
       if(stack != null && stack.object != null){
       checkList.add(new CheckElement(stack));
-        Log.info("Stack:"+stack);
-        checkList.each(e->Log.info(e));
+        //Log.info("Stack:"+stack);
+        //checkList.each(e->Log.info(e));
         //Rebuild, otherwhise no changes.
         rebuild();
       }
@@ -62,8 +64,8 @@ public class MapInfoDialog extends BaseDialog{
     
     
     
-    /*Events.run(EventType.Trigger.update, new Runnable(){ // Wait, this is stupid... Everytime there will be a new instance, there will be also a new Event Listener...
-      public static final int WAIT = 8;
+    Events.run(EventType.Trigger.update, new Runnable(){ // Wait, this is stupid... Everytime there will be a new instance, there will be also a new Event Listener...
+      public static final int WAIT = 120; // Think this is enough();
       
       private int cycle = 0;
       @Override
@@ -71,11 +73,8 @@ public class MapInfoDialog extends BaseDialog{
         if(cycle%WAIT == 0){
           checkAll();
         }
-        if(cycle%WAIT*5==0){
-          rebuild(); // Even rare
-        }
       }
-    });*/ // Soon.
+    });
     
     update(this::checkRemove);
     
@@ -117,7 +116,7 @@ public class MapInfoDialog extends BaseDialog{
     }
     l.table(topT ->{
         topT.button(Core.bundle.get("newentry", "New Entry"), Icon.add, ()->{
-          Log.info("Show");
+          //Log.info("Show");
           DEFAULT_CHOOSER.show();
         }).disabled((b)->DEFAULT_CHOOSER.isShown()).size(300, 75);
       });
@@ -138,7 +137,6 @@ public class MapInfoDialog extends BaseDialog{
       botT.pane(t).scrollX(false);
       });
   }
-  
   public static class CheckElement {
     public CoreBuild core;
     public Block target;
