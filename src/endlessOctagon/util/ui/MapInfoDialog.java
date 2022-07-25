@@ -32,7 +32,8 @@ public class MapInfoDialog extends BaseDialog{
   
   static {
     DEFAULT_CHOOSER = new BlockChooserDialog(b->{
-      return b.requirements.length > 0 && !b.isHidden() && b.unlocked() && b.isPlaceable();
+      boolean r = b.requirements.length > 0 && !b.isHidden() && b.isPlaceable();
+      return Vars.state.isCampaign() ? r&&b.unlocked():r;
     });
   }
   
@@ -194,17 +195,15 @@ public class MapInfoDialog extends BaseDialog{
         tl.image(target.uiIcon).size(Vars.iconLarge).left();
         tl.row();
         tl.add(target.localizedName);
-      }).width(450);
+      }).width(450).left();
       rTable.table(tr->{
         Label buildLabel = new Label("");
         String cStr = !validBuild() ?  Core.bundle.get("no","No") : Core.bundle.get("yes","Yes");
         buildLabel.setText(BUILD_STRING+" "+cStr);
         tr.add(buildLabel).padRight(150f);
         tr.button(Icon.cancel, ()->{this.removed = true;});
-        if(amount > 1){
           tr.row();
           tr.add("x"+amount).padRight(75f);
-        }
       }).right();
       
       return rTable;
