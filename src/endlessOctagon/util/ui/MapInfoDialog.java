@@ -65,13 +65,20 @@ public class MapInfoDialog extends BaseDialog{
     
     
     Events.run(EventType.Trigger.update, new Runnable(){ // Wait, this is stupid... Everytime there will be a new instance, there will be also a new Event Listener...
-      public static final int WAIT = 120; // Think this is enough();
+      public static final int WAIT = 60; // Think this is enough();
       
       private int cycle = 0;
       @Override
       public void run(){
-        if(cycle%WAIT == 0){
+        cycle++;
+        if(cycle%WAIT == 0 && !Vars.state.isMenu()){
           checkAll();
+        }
+        if(
+          (cycle%WAIT == 0) && (Vars.state.isMenu()) && (Core.settings.getBool("clearonmapclose")) && (!checkList.isEmpty())
+        ) {
+          checkList.clear();
+          Log.info("Seqence cleared.");
         }
       }
     });
@@ -96,7 +103,7 @@ public class MapInfoDialog extends BaseDialog{
       if(elem.validBuild() && elem.showInfo()){
         elem.checked = true;
         elem.wasValid = true;
-        Vars.ui.showInfoFade("Block [stat]"+elem.target.localizedName+"[]"+Core.bundle.get("buildable"));
+        Vars.ui.showInfoFade("Block [stat]"+elem.target.localizedName+"[]"+Core.bundle.get("buildable", "is buildable"));
       }
     });
   }
@@ -119,6 +126,7 @@ public class MapInfoDialog extends BaseDialog{
           //Log.info("Show");
           DEFAULT_CHOOSER.show();
         }).disabled((b)->DEFAULT_CHOOSER.isShown()).size(300, 75);
+      topT.button("@clear", Icon.cancel, checkList::clear);
       });
       l.row();
       l.image().growX().minHeight(10f);
@@ -193,7 +201,7 @@ public class MapInfoDialog extends BaseDialog{
         tl.image(target.uiIcon).size(Vars.iconLarge).left();
         tl.row();
         tl.add(target.localizedName);
-      }).width(450).left();
+      }).width(470).left();
       rTable.table(tr->{
         Label buildLabel = new Label("");
         String cStr = !validBuild() ?  Core.bundle.get("no","No") : Core.bundle.get("yes","Yes");
@@ -212,6 +220,8 @@ public class MapInfoDialog extends BaseDialog{
     public static final int MAX_PER_ROW = 7;
     
     private final Seq<Cons<ObjectStack<Block>>> chooseListeners = new Seq<>(1);
+    
+    public final int MAX_CHOOSE;
     /** The current block and the previous block, can both be null...*/
     private ObjectStack<Block> currentBlock, prevBlock = null;
     /** The amount.*/
@@ -220,8 +230,9 @@ public class MapInfoDialog extends BaseDialog{
     public Block defaultBlock = Blocks.duo;
     
     private Boolf<Block> use;
-    public BlockChooserDialog(Boolf<Block> use){
+    public BlockChooserDialog(Boolf<Block> use, int maxChoose){
       super("@blockchooser");
+      this.MAX_CHOOSE = maxChoose;
       this.use = use;
       
       currentBlock = new ObjectStack<>(defaultBlock, 1);
@@ -239,8 +250,8 @@ public class MapInfoDialog extends BaseDialog{
         this.hide();
       }).size(180, 75);
     }
-    public BlockChooserDialog(Boolf<Block> use, Block defaultBlock){
-      this(use);
+    public BlockChooserDialog(Boolf<Block> use, Block defaultBlock, int maxChoose){
+      this(use,maxChoose);
       if(defaultBlock != null)this.defaultBlock = defaultBlock;
     }
     
@@ -267,7 +278,7 @@ public class MapInfoDialog extends BaseDialog{
       cont.image().growX().minHeight(10f);
       cont.row();
       cont.table(bottom -> {
-        Slider slider = new Slider(1f,10f,1f,false);
+        Slider slider = new Slider(1f,(float)MAX_CHOOSE,1f,false);
         Label valueLabel = new Label("1",Styles.outlineLabel);
         
         slider.changed(()->{
@@ -288,6 +299,10 @@ public class MapInfoDialog extends BaseDialog{
       // The group so only one is active
       ButtonGroup<ImageButton> group = new ButtonGroup<>();
       Seq<Block> cBlocks = Vars.content.blocks().select(use);
+      Label blockLabel
+      if(!cBlocks.isEmpty())
+      blockLabel = new Label(cBlocks.first().localizedName);
+      else blockLabel = new Label("No Blocks");
       Table blocks = new Table();
       int i = 1;
       for(var block : cBlocks){
@@ -295,11 +310,14 @@ public class MapInfoDialog extends BaseDialog{
         ImageButton button = blocks.button(icon, Styles.clearTogglei, ()->{
           prevBlock = currentBlock;
           currentBlock = new ObjectStack<Block>(block, currentAmount);
+          blockLabel.setText(block.localizedName);
         }).group(group).size(50).get(); //Resize them to a good size
         button.resizeImage(Vars.iconLarge);
         if(i%MAX_PER_ROW==0)blocks.row();
         i++;
       }
+      blocks.row();
+      blocks.add(blockLabel);
       t.pane(blocks).minWidth(400f).scrollX(false);
     }
   }
