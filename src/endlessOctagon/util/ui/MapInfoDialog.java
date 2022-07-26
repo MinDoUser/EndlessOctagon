@@ -76,7 +76,8 @@ public class MapInfoDialog extends BaseDialog{
           (cycle%WAIT == 0) && (Vars.state.isMenu()) && (Core.settings.getBool("clearonmapclose")) && (!checkList.isEmpty())
         ) {
           checkList.clear();
-          Log.info("Seqence cleared.");
+          rebuild(); //Else no changes will be performed.
+          //Log.info("Seqence cleared.");
         }
       }
     });
@@ -101,7 +102,7 @@ public class MapInfoDialog extends BaseDialog{
       if(elem.validBuild() && elem.showInfo()){
         elem.checked = true;
         elem.wasValid = true;
-        Vars.ui.showInfoFade("Block [stat]"+elem.target.localizedName+"[]"+Core.bundle.get("buildable", "is buildable"));
+        Vars.ui.showInfoFade("Block [stat]"+elem.target.localizedName+"[] "+Core.bundle.get("buildable", "is buildable"));
       }
     });
   }
@@ -124,7 +125,7 @@ public class MapInfoDialog extends BaseDialog{
           //Log.info("Show");
           DEFAULT_CHOOSER.show();
         }).disabled((b)->DEFAULT_CHOOSER.isShown()).size(300, 75);
-      topT.button("@clear", Icon.cancel, checkList::clear);
+      topT.button("@clear", Icon.cancel, checkList::clear).width(150);
       });
       l.row();
       l.image().growX().minHeight(10f);
@@ -315,8 +316,10 @@ public class MapInfoDialog extends BaseDialog{
         i++;
       }
       blocks.row();
-      blocks.add(blockLabel);
-      t.pane(blocks).minWidth(400f).scrollX(false);
+      Table bt = new Table();
+      bt.add(blockLabel).left();
+      blocks.add(bt);
+      t.pane(blocks).minWidth(450f).scrollX(false);
     }
   }
   
