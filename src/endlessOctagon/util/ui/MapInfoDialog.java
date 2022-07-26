@@ -30,13 +30,11 @@ import endlessOctagon.util.ObjectStack;
 public class MapInfoDialog extends BaseDialog{
   public static final BlockChooserDialog DEFAULT_CHOOSER;
   
-  public static MapInfoDialog instance;
-  
   static {
     DEFAULT_CHOOSER = new BlockChooserDialog(b->{
       boolean r = b.requirements.length > 0 && !b.isHidden() && b.isPlaceable();
       return Vars.state.isCampaign() ? r&&b.unlocked():r;
-    });
+    }, 25);
   }
   
   public Table left, right;
@@ -299,7 +297,7 @@ public class MapInfoDialog extends BaseDialog{
       // The group so only one is active
       ButtonGroup<ImageButton> group = new ButtonGroup<>();
       Seq<Block> cBlocks = Vars.content.blocks().select(use);
-      Label blockLabel
+      Label blockLabel;
       if(!cBlocks.isEmpty())
       blockLabel = new Label(cBlocks.first().localizedName);
       else blockLabel = new Label("No Blocks");
