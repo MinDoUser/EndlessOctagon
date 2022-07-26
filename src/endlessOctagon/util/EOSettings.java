@@ -40,6 +40,7 @@ public final class EOSettings implements Loadable{
 	    modSettingDialog.show();
 	    }).size(250f, 100f);
 		modSettings.checkPref("hidestartlog", false);//.description = Core.bundle.get("hidestartlog.description");
+	  	modSettings.checkPref("clearonmapclose", true); // Whether to clear the blocks of the map settings dialog upon map closed or not.
 	  modSettings.checkPref("showlockedblocks", true, bool -> {
 		  CustomDatabase cdb = EndlessOctagonMod.cDatabase;
 		  if(cdb == null){
