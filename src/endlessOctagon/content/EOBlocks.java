@@ -152,7 +152,7 @@ public final class EOBlocks implements endlessOctagon.util.Loadable{
              }};
         }};
     
-    thunder = = new ItemTurret("thunder"){{
+    thunder = new ItemTurret("thunder"){{
             requirements(Category.turret, with(Items.surgeAlloy, 200, Items.metaglass, 420, Items.silicon, 700, Items.titaium, 1150, Items.thorium, 400));
 
             ammo(
@@ -162,7 +162,7 @@ public final class EOBlocks implements endlessOctagon.util.Loadable{
             heatColor = EOPal.lightblue;
       
             reload = 90f;
-            recoil = 1.3f
+            recoil = 1.3f;
 
             shoot.shots = 5;
             shoot.shotDelay = 7f;
@@ -187,7 +187,7 @@ public final class EOBlocks implements endlessOctagon.util.Loadable{
             consumePower(4.75f);
             size = 3;
             range = 180;
-            consumeItem(EOItems.oxa).boost();                                           
+            consumeItem(EOItems.oxa).boost();    // 0_0?                                        
     }};
     //=== === === === === === === === === ===
     //End of defense
