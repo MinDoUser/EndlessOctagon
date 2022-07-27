@@ -125,7 +125,10 @@ public class MapInfoDialog extends BaseDialog{
           //Log.info("Show");
           DEFAULT_CHOOSER.show();
         }).disabled((b)->DEFAULT_CHOOSER.isShown()).size(300, 75);
-      topT.button("@clear", Icon.cancel, checkList::clear).width(150);
+      topT.button("@clear", Icon.cancel, ()->{
+        checkList.clear();
+        rebuild();
+      }).width(150);
       });
       l.row();
       l.image().growX().minHeight(10f);
