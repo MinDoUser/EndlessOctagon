@@ -14,7 +14,7 @@ public class EOBullets implements endlessOctagon.util.Loadable {
   public static  BulletType 
     defOverdrive, shockBullet, thunderBullet;
   @Override
-  public void load(){
+  public void loadObject(){
     defOverdrive = new OverdriveBulletType(2.7f, 16, 2.0f){{
             width = 8f;
             height = 10f;
