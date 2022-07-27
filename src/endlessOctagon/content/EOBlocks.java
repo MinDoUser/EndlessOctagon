@@ -46,7 +46,7 @@ public final class EOBlocks implements endlessOctagon.util.Loadable{
   
   public static Block 
     //Turrets
-    crowl, shock,
+    crowl, shock, thunder,
     //Walls
     oxaWall, oxaWallLarge,
     //Crafter
@@ -91,20 +91,11 @@ public final class EOBlocks implements endlessOctagon.util.Loadable{
   @Override
   public final void loadObject(){
     //Start of turrets
-    final OverdriveBulletType CROWL_BULLET = new OverdriveBulletType(2.7f, 16, 2.0f){{
-            width = 8f;
-            height = 10f;
-            shrinkY = 0f;
-            lifetime = 62f;
-            backColor = Pal.accent;
-            frontColor = Pal.accent;
-            despawnEffect = Fx.absorb;
-            collidesAir = true;
-    }};
+    
     crowl = new ItemTurret("crowl"){{
             requirements(Category.turret, with(Items.copper, 135, Items.lead, 50, EOItems.oxa, 125, Items.titanium, 15));
             ammo(
-                EOItems.oxa, CROWL_BULLET
+                EOItems.oxa, EOBullets.defOverdrive
             );
 
             //spread = 2f;
@@ -112,7 +103,7 @@ public final class EOBlocks implements endlessOctagon.util.Loadable{
             //alternate = true;
             reload = 45f;
             //restitution = 0.03f;
-            range = calculateTurretRange(CROWL_BULLET);//(CROWL_BULLET.lifetime * CROWL_BULLET.speed) + 2f;
+            range = calculateTurretRange(EOBullets.defOverdrive);
             shootCone = 15f;
             ammoUseEffect = Fx.smeltsmoke;
             health = 350;
@@ -124,35 +115,16 @@ public final class EOBlocks implements endlessOctagon.util.Loadable{
 
             limitRange();
         }};
-    Effect sfe = new MultiEffect(EOFx.blueWaveSmall, Fx.steam);
-    //TODO move them all into a own class...
-    final BulletType SHOCK_BULLET = new BasicBulletType(4.5f, 65){{
-                width = 12f;
-                hitSize = 7f;
-                height = 20f;
-                shootEffect = sfe;
-                smokeEffect = Fx.shootSmallSmoke;
-                ammoMultiplier = 2;
-                pierceCap = 2;
-                pierce = false;
-                pierceBuilding = false;
-                hitColor = backColor = trailColor = EOPal.darkBlue;
-                frontColor = Color.white;
-                trailWidth = 2.1f;
-                trailLength = 10;
-                hitEffect = despawnEffect = Fx.hitBulletColor;
-                buildingDamageMultiplier = 0.85f;
-            }};
     
             shock = new PowerTurret("shock"){{
             requirements(Category.turret, with(Items.titanium, 60, Items.silicon, 170, Items.metaglass, 25));
-            range = calculateTurretRange(SHOCK_BULLET);
+            range = calculateTurretRange(EOBullets.shockBullet);
 
             shoot.firstShotDelay = 40f;
 
             recoil = 2f;
             reload = 80f;
-            shake = 2f;
+            shake = 0f;
             shootEffect = EOFx.blueWaveSmall;
             smokeEffect = Fx.none;
             //heatColor = Color.red;
@@ -166,7 +138,7 @@ public final class EOBlocks implements endlessOctagon.util.Loadable{
 
             consumePower(2.5f);
 
-            shootType = SHOCK_BULLET;
+            shootType = EOBullets.shockBullet;
               
              drawer = new DrawTurret("reinforced-"){{
                 parts.add(new RegionPart("-barrel"){{
@@ -179,6 +151,32 @@ public final class EOBlocks implements endlessOctagon.util.Loadable{
                 }});
              }};
         }};
+    
+    thunder = = new ItemTurret("thunder"){{
+            requirements(Category.turret, with(Items.surgeAlloy, 200, Items.metaglass, 420, Items.silicon, 700, Items.titaium, 1150, Items.thorium, 400));
+
+            ammo(
+            Items.surgeAlloy, EOBullets.thunderBullet 
+            );
+      
+            heatColor = EOPal.lightblue;
+      
+            reload = 90f;
+            recoil = 1.3f
+
+            shoot.shots = 5;
+            shoot.shotDelay = 7f;
+
+            minWarmup = 0.75f;
+            coolantMultiplier = 3f;
+
+            shake = 1.1f;
+            ammoPerShot = 2;
+      
+            coolant = consumeCoolant(0.26f);
+
+            consumePower(4.5f);
+    }};
     //End of turrets
     //Start of defense
     //=== === === === === === === === === ===
