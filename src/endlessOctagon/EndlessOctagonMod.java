@@ -134,7 +134,7 @@ public final class EndlessOctagonMod extends Mod{
         }).size(250f, 100f);
     }
 	public static final endlessOctagon.util.Loadable[] loadables = {
-		new EOFx(),new EOItems(), new EOBlocks(), new EOPlanets()
+		new EOFx(), new EOBullets(), new EOItems(), new EOBlocks(), new EOPlanets()
 	};
     
   @Override
