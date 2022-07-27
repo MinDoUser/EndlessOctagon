@@ -112,6 +112,8 @@ public final class EOBlocks implements endlessOctagon.util.Loadable{
             size = 2;
       
             coolant = consumeCoolant(0.25f);
+      
+            drawer = new DrawTurret("reinforced-");
 
             limitRange();
         }};
@@ -174,6 +176,8 @@ public final class EOBlocks implements endlessOctagon.util.Loadable{
             ammoPerShot = 2;
       
             coolant = consumeCoolant(0.26f);
+      
+            drawer = new DrawTurret("reinforced-");
 
             consumePower(4.5f);
     }};
