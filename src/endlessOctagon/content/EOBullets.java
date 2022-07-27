@@ -4,6 +4,9 @@ import mindustry.entities.bullet.*;
 import mindustry.entities.effect.*;
 import mindustry.content.*;
 import mindustry.graphics.*;
+import mindustry.entities.*;
+
+import arc.graphics.Color;
   
 import endlessOctagon.bullets.*;
   
@@ -46,15 +49,15 @@ public class EOBullets implements endlessOctagon.util.Loadable {
       height = 21f;
       hitSize = 8f;
       shootEffect = new MultiEffect(Fx.shootTitan, Fx.explosion, new WaveEffect(){{
-                    colorFrom = colorTo = EOPal.lightblue;
+                    colorFrom = colorTo = EOPal.lightBlue;
                     lifetime = 14f;
                     sizeTo = 20f;
                     strokeFrom = 3f;
                     strokeTo = 0.3f;
                 }});
-      smokeEffect = Fx.shootSmokeBig;
+      smokeEffect = Fx.shootBigSmoke;
       ammoMultiplier = 1;
-       hitColor = backColor = trailColor = EOPal.darkblue;
+       hitColor = backColor = trailColor = EOPal.darkBlue;
        frontColor = Color.white;
        trailWidth = 1.75f;
        trailLength = 7;
@@ -62,8 +65,8 @@ public class EOBullets implements endlessOctagon.util.Loadable {
        buildingDamageMultiplier = 1.75f; //Lol, why not?
       despawnEffect = new MultiEffect(Fx.hitBulletColor, new WaveEffect(){{
                     sizeTo = 30f;
-                    colorFrom = EOPal.darkblue;
-                    colorTo = EOPal.lightblue;
+                    colorFrom = EOPal.darkBlue;
+                    colorTo = EOPal.lightBlue;
                     lifetime = 16f;
       }});
       trailEffect = EOFx.blueWaveSmall;
@@ -72,7 +75,7 @@ public class EOBullets implements endlessOctagon.util.Loadable {
                     damage = 33;
                     collidesAir = false;
                     ammoMultiplier = 1f;
-                    lightningColor = EOPal.lightblue;
+                    lightningColor = EOPal.lightBlue;
                     lightningLength = 14;
                     lightningLengthRand = 10;
 
