@@ -321,7 +321,8 @@ public class MapInfoDialog extends BaseDialog{
       blocks.row();
       Table bt = new Table();
       bt.add(blockLabel).left();
-      blocks.add(bt);
+      t.add(bt);
+      t.row();
       t.pane(blocks).minWidth(450f).scrollX(false);
     }
   }
