@@ -49,8 +49,12 @@ public final class EOBlocks implements endlessOctagon.util.Loadable{
     crowl, shock, thunder,
     //Walls
     oxaWall, oxaWallLarge,
+    ironWall, ironWallLarge,
     //Crafter
     oxaForge,
+  
+  //Liquid
+  plateConduit, plateRouter,
   //Effect
     connectProjector,
     //Environment
@@ -59,33 +63,6 @@ public final class EOBlocks implements endlessOctagon.util.Loadable{
   
   private float calculateTurretRange(mindustry.entities.bullet.BulletType b){
     return (b.lifetime * b.speed)+2f;
-  }
-  
-  public static boolean addAndCheck(Block b){
-    boolean is = isEravirBlock(b);
-    if(is){
-      eravirBlocks.add(b);
-      Log.info("Block "+b.name+" was added");
-    }else{
-      Log.info("Block "+b.name+" was sadly not added.");
-    }
-    return is;
-  } 
-  
-  public static boolean isEravirBlock(Block b){
-    boolean[] bools = new boolean[b.requirements.length];
-    int i = 0;
-    if(b.requirements.length >= 0)return false; //Not add this crap without requirements.
-    for(var stack : b.requirements){
-      Item item = stack.item;
-      if(EOItems.eravirItems.contains(item))bools[i] = true;
-         else bools[i] = false;
-      i++;
-    }
-    for(boolean bool : bools){
-      if(!bool)return false;
-    }
-    return true;
   }
    
   @Override
@@ -208,12 +185,35 @@ public final class EOBlocks implements endlessOctagon.util.Loadable{
             health = 100 * wallHealthMultiplier;
         }};
 
-        oxaWallLarge = new Wall("oxa-wall-large"){{
+    oxaWallLarge = new Wall("oxa-wall-large"){{
             requirements(Category.defense, ItemStack.mult(oxaWall.requirements, 4));
             health = 100 * wallHealthMultiplier * 4;
             size = 2;
         }};
+    
+    
+    ironWall = new Wall("iron-wall"){{
+            requirements(Category.defense, with(EOItems.iron, 8));
+            health = 100 * wallHealthMultiplier;
+        }};
+
+    ironWallLarge = new Wall("iron-wall-large"){{
+            requirements(Category.defense, ItemStack.mult(ironWall.requirements, 4));
+            health = 100 * wallHealthMultiplier * 4;
+            size = 2;
+        }};
     //end of walls
+    //Liquids
+      plateConduit = new Conduit("plate-conduit"){{
+            requirements(Category.liquid, with(EOItems.multiSteel, 2));
+            health = 85;
+        }};
+    
+      plateRouter = new LiquidRouter("plate-router"){{
+            requirements(Category.liquid, with(EOItems.iron, 4, EOItems.multiSteel, 4));
+            liquidCapacity = 30f;
+        }};
+    //End of liquids
     //Start of environment
     sump = new Floor("sump"){{
             speedMultiplier = 0.47f;
@@ -244,5 +244,30 @@ public final class EOBlocks implements endlessOctagon.util.Loadable{
 
             consumeItems(with(Items.coal, 1, Items.sand, 2));
         }};
+  }
+  //Utils.
+    
+  public static boolean addAndCheck(Block b){
+    boolean is = isEravirBlock(b);
+    if(is){
+      eravirBlocks.add(b);
+    }
+    return is;
+  } 
+  
+  public static boolean isEravirBlock(Block b){
+    boolean[] bools = new boolean[b.requirements.length];
+    int i = 0;
+    if(b.requirements.length >= 0)return false; //Not add this crap without requirements.
+    for(var stack : b.requirements){
+      Item item = stack.item;
+      if(EOItems.eravirItems.contains(item))bools[i] = true;
+         else bools[i] = false;
+      i++;
+    }
+    for(boolean bool : bools){
+      if(!bool)return false;
+    }
+    return true;
   }
 }
