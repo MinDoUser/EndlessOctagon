@@ -47,6 +47,8 @@ public final class EOBlocks implements endlessOctagon.util.Loadable{
   public static Block 
     //Turrets
     crowl, shock, thunder,
+  
+    shadow,
     //Walls
     oxaWall, oxaWallLarge,
     ironWall, ironWallLarge,
@@ -162,6 +164,68 @@ public final class EOBlocks implements endlessOctagon.util.Loadable{
 
             consumePower(4.5f);
     }};
+    
+    
+    shadow = new ItemTurret("shadow"){{
+            requirements(Category.turret, with(Items.silicon, 135, EOItems.iron, 50, Items.graphite, 75));
+            ammo(
+                EOItems.iron, new BasicBulletType(6f, 85){{
+                width = 12f;
+                hitSize = 7f;
+                height = 17f;
+                shootEffect = Fx.colorSparkBig;
+                smokeEffect = Fx.shootBigSmoke;
+                ammoMultiplier = 2;
+                pierceCap = 2;
+                pierce = false;
+                pierceBuilding = false;
+                hitColor = backColor = trailColor = EOItems.iron.color;
+                frontColor = Color.white;
+                trailWidth = 1.8f;
+                trailLength = 6;
+                hitEffect = despawnEffect = Fx.hitBulletColor;
+                buildingDamageMultiplier = 0.80f;
+            }},
+              
+              EOItems.multiSteel, new BasicBulletType(5.2f, 122){{
+                width = 12f;
+                hitSize = 7f;
+                height = 17f;
+                shootEffect = Fx.colorSparkBig;
+                smokeEffect = Fx.shootBigSmoke;
+                ammoMultiplier = 2;
+                hitColor = backColor = trailColor = EOItems.multiSteel.color;
+                frontColor = Color.white;
+                trailWidth = 2.4f;
+                trailLength = 6;
+                hitEffect = despawnEffect = Fx.hitBulletColor;
+                buildingDamageMultiplier = 0.80f;
+                reloadMultiplier = 1.2f;
+                rangeChange = 11.5f*8f;
+            }},
+        );
+
+            coolantMultiplier = 6f;
+            shootSound = Sounds.shootAlt;
+
+            shake = 1.1f;
+            ammoPerShot = 2;
+            drawer = new DrawTurret("reinforced-");
+            shootY = 1;
+            outlineColor = Pal.darkOutline;
+            size = 2;
+            envEnabled |= Env.space;
+            reload = 40f;
+            recoil = 2f;
+            range = 175;
+            shootCone = 3f;
+            scaledHealth = 180;
+            rotateSpeed = 1.5f;
+            researchCostMultiplier = 0.2f;
+
+            coolant = consume(new ConsumeLiquid(Liquids.water, 15f / 60f));
+            limitRange();
+        }};
     //End of turrets
     //Start of defense
     //=== === === === === === === === === ===
