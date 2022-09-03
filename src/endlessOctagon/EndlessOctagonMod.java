@@ -118,7 +118,7 @@ public final class EndlessOctagonMod extends Mod{
 
 	public static final void createTitle(Table table, String title){
 		table.row();
-		table.add("title", Styles.techLabel).row();
+		table.add(title, Styles.techLabel).row();
 	    	table.row();
 		table.image().growX();
 		table.row();
