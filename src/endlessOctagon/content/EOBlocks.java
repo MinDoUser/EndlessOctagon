@@ -202,7 +202,7 @@ public final class EOBlocks implements endlessOctagon.util.Loadable{
                 buildingDamageMultiplier = 0.80f;
                 reloadMultiplier = 1.2f;
                 rangeChange = 11.5f*8f;
-            }},
+            }}
         );
 
             coolantMultiplier = 6f;
