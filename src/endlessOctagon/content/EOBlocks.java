@@ -204,7 +204,7 @@ public final class EOBlocks implements endlessOctagon.util.Loadable{
                 hitEffect = despawnEffect = Fx.hitBulletColor;
                 buildingDamageMultiplier = 0.80f;
                 reloadMultiplier = 1.2f;
-                rangeChange = 11.5f*8f;
+                rangeChange = 2.5f*8f;
             }}
         );
 
@@ -220,11 +220,11 @@ public final class EOBlocks implements endlessOctagon.util.Loadable{
             envEnabled |= Env.space;
             reload = 40f;
             recoil = 2f;
-            range = 175;
+            range = 170;
             shootCone = 3f;
             scaledHealth = 180;
             rotateSpeed = 1.5f;
-            researchCostMultiplier = 0.2f;
+            alwaysUnlocked = true;
 
             coolant = consume(new ConsumeLiquid(Liquids.water, 15f / 60f));
             limitRange();
