@@ -124,7 +124,7 @@ public final class EndlessOctagonMod extends Mod{
 		table.row();
 	}
 	
-	public static final addObjectLogs(Table table, ObjectLog[] logs){
+	public static final void addObjectLogs(Table table, ObjectLog[] logs){
 	for(ObjectLog log : logs){
             	table.add(log.buildTable());
             	table.row();
