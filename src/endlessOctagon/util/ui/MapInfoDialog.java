@@ -32,7 +32,7 @@ public class MapInfoDialog extends BaseDialog{
   
   static {
     DEFAULT_CHOOSER = new BlockChooserDialog(b->{
-      boolean r = b.requirements.length > 0 && !b.isHidden() && b.isPlaceable();
+      boolean r = b.requirements.length > 0 && !b.isHidden() && b.isPlaceable() && b.environmentBuildable(); ///Checks whether the block can be build
       return Vars.state.isCampaign() ? r&&b.unlocked():r;
     }, 25);
   }
