@@ -26,7 +26,7 @@ public final class EndlessOctagonMod extends Mod{
     
     public BaseDialog changeDialog;
     
-    public ObjectLog[] CURRENT_LOGS_V_1_0_1;
+    public ObjectLog[] LOGS_V_1_0_1, LOGS_V_1_1_1;
 	
     public static CustomDatabase cDatabase;
 
@@ -53,7 +53,8 @@ public final class EndlessOctagonMod extends Mod{
 	
 	
     public final void loadChangeDialog(){
-	    CURRENT_LOGS_V_1_0_1 = new ObjectLog[]{
+	    //TODO redo the following...
+	    LOGS_V_1_0_1 = new ObjectLog[]{
                          new ObjectLog(EOItems.oxa){{
                               description = "A new Item";
                               type = ObjectLog.NEW;
@@ -67,19 +68,35 @@ public final class EndlessOctagonMod extends Mod{
                               type = ObjectLog.NEW;
                          }}
                 };// Update here?
+	    
+	    LOGS_V_1_1_1 = new ObjectLog[]{
+		    new ObjectLog(EOItems.iron){{
+                              description = "A new basic item.";
+                              type = ObjectLog.NEW;
+                    }},
+		    new ObjectLog(EOItems.multiSteel){{
+                              description = "A new item.";
+                              type = ObjectLog.NEW;
+                    }},
+		    new ObjectLog(EOBlocks.shadow){{
+                              description = "The basic turret";
+                              type = ObjectLog.NEW;
+                    }},
+		    new ObjectLog(EOBlocks.plateConduit){{
+                              description = "Transports liquid";
+                              type = ObjectLog.NEW;
+                    }},
+		    new ObjectLog(EOBlocks.plateRouter){{
+                              description = "Distributes liquids";
+                              type = ObjectLog.NEW;
+                    }}
+	    };
+	    
         changeDialog = new BaseDialog("");
         Table cont = changeDialog.cont;
         Table changes = new Table();
-        changes.add("1.0.1", Styles.techLabel).row();
-	    changes.row();
-	changes.image().growX();
-	changes.row();
-        for(ObjectLog log : CURRENT_LOGS_V_1_0_1){
-            changes.add(log.buildTable());
-            changes.row();
-	    changes.image().growX();
-            changes.row();
-        }
+        createTitle(changes, "V 1.0.1");
+        addObjectLogs(changes, LOGS_V_1_0_1);
 	addLog(changes, "Added Change Log", Icon.add, false);
 	addLog(changes, "Added new button to open change log. \n You can find it here: Settings -> Game -> Change Log", Icon.wrench, false);
 	addLog(changes, "Added a option to hide startup dialog. \n You can find it here: Settings -> Game -> Mod Settings", Icon.wrench, false);
@@ -91,10 +108,30 @@ public final class EndlessOctagonMod extends Mod{
 	    changes.row();
 	changes.add(new WarningBar()).growX().height(30f).color(Color.white);
 	addLog(changes, "Updated all stuff to make it work on V7", Icon.wrench, false);
+	    createTitle(changes, "V 1.1.1");
+	 addLog(changes, "Changed the \"Goal\" of the mod. See README.md for more information", null, false); //TODO: Replace with own update icon
+	  addObjectLogs(changes, LOGS_V_1_1_1);
 	cont.pane(changes);
         cont.row();
         changeDialog.buttons.button("Ok!", changeDialog::hide).size(100f, 50f);
     }
+
+	public static final void createTitle(Table table, String title){
+		table.row();
+		table.add("title", Styles.techLabel).row();
+	    	table.row();
+		table.image().growX();
+		table.row();
+	}
+	
+	public static final addObjectLogs(Table table, ObjectLog[] logs){
+	for(ObjectLog log : logs){
+            	table.add(log.buildTable());
+            	table.row();
+	    	table.image().growX();
+            	table.row();
+        }
+	}
 
   	/** ONLY ON STARTUP! ?*/
     public final void changeScreen(){
@@ -127,11 +164,6 @@ public final class EndlessOctagonMod extends Mod{
             changeDialog.show();
         }).size(250f, 100f);
 	    settingTable.game.row(); 
-	    //Test only V V V
-	    settingTable.game.row(); 
-	settingTable.game.button("(Map Dialog)", Icon.cancel, ()->{
-            EOVars.mapInfo.show();
-        }).size(250f, 100f);
     }
 	public static final endlessOctagon.util.Loadable[] loadables = {
 		new EOFx(), new EOBullets(), new EOItems(), new EOBlocks(), new EOPlanets()
