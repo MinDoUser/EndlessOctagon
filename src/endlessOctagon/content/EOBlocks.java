@@ -209,7 +209,7 @@ public final class EOBlocks implements endlessOctagon.util.Loadable{
         );
 
             coolantMultiplier = 6f;
-            shootSound = Sounds.shootAlt;
+            //shootSound = Sounds.shootAlt; Sounds do not exist?
 
             shake = 1.1f;
             ammoPerShot = 2;
