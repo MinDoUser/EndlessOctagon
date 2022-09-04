@@ -58,6 +58,10 @@ public final class EOBlocks implements endlessOctagon.util.Loadable{
     //Crafter
     oxaForge,
   
+  //Drills
+  alphaDrill, //Soon: betaDrill, gammaDrill, omegaDrill(?),
+  
+  steamCondenser,
   //Liquid
   plateConduit, plateRouter,
   //Effect
@@ -311,6 +315,39 @@ public final class EOBlocks implements endlessOctagon.util.Loadable{
 
             consumeItems(with(Items.coal, 1, Items.sand, 2));
         }};
+    
+      //End of crafter
+    //Start of drills
+        alphaDrill = new Drill("alpha-drill"){{
+            requirements(Category.production, with(Items.silicon, 100, EOItems.multiSteel, 75, EOItems.iron, 175));
+            drillTime = 270;
+            size = 3;
+            hasPower = true;
+            tier = 3;
+            updateEffect = new MultiEffect(Fx.pulverizeMedium, Fx.ventSteam);
+            drillEffect = Fx.mineBig;
+
+            consumePower(0.75f);
+            consumeLiquid(Liquids.water, 0.09f);
+        }};
+    
+        steamCondenser = new AttributeCrafter("steam-condenser"){{
+            requirements(Category.production, with(Items.graphite, 20, EOItems.iron, 75));
+            attribute = Attribute.steam;
+            minEfficiency = 9f - 0.0001f;
+            baseEfficiency = 0f;
+            displayEfficiency = false;
+            craftEffect = Fx.steam;
+            drawer = new DrawMulti(new DrawRegion("-bottom"), new DrawLiquidTile(Liquids.water, 38f / 4f), new DrawDefault());
+            craftTime = 170f;
+            size = 3;
+            ambientSoundVolume = 0.06f;
+            hasLiquids = true;
+            boostScale = 1f / 9f;
+            outputLiquid = new LiquidStack(Liquids.water, 34f / 60f);
+            liquidCapacity = 60f;
+        }};
+    //End of drills
   }
   //Utils.
     
