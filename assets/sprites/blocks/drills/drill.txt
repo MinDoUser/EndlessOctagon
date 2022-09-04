@@ -1,0 +1,5 @@
+<? FILE = "10jnt", ENTRY = "alpha.row.12-2">
+< setUpInfo: -> {
+  <?INFO = "info.sheet">
+  <Call: "OnSetUp"> -> <OnCalled: Write "Loaded!">
+} >
