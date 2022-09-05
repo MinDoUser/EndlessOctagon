@@ -326,6 +326,7 @@ public final class EOBlocks implements endlessOctagon.util.Loadable{
             tier = 3;
             updateEffect = new MultiEffect(Fx.pulverizeMedium, Fx.ventSteam);
             drillEffect = Fx.mineBig;
+          squareSprite = false;
 
             consumePower(0.75f);
             consumeLiquid(Liquids.water, 0.09f);
@@ -337,8 +338,8 @@ public final class EOBlocks implements endlessOctagon.util.Loadable{
             minEfficiency = 9f - 0.0001f;
             baseEfficiency = 0f;
             displayEfficiency = false;
-            craftEffect = Fx.steam;
-            drawer = new DrawMulti(new DrawRegion("-bottom"), new DrawLiquidTile(Liquids.water, 38f / 4f), new DrawDefault());
+            craftEffect = Fx.turbinegenerate;
+            drawer = new DrawMulti(new DrawRegion("-bottom"), new DrawLiquidRegion(Liquids.water), new DrawDefault());
             craftTime = 170f;
             size = 3;
             ambientSoundVolume = 0.06f;
@@ -346,6 +347,7 @@ public final class EOBlocks implements endlessOctagon.util.Loadable{
             boostScale = 1f / 9f;
             outputLiquid = new LiquidStack(Liquids.water, 34f / 60f);
             liquidCapacity = 60f;
+          squareSprite = false;
         }};
     //End of drills
   }
