@@ -324,6 +324,7 @@ public final class EOBlocks implements endlessOctagon.util.Loadable{
             size = 3;
             hasPower = true;
             tier = 3;
+            liquidBoostIntensity = 1f;
             updateEffect = new MultiEffect(Fx.pulverizeMedium, Fx.ventSteam);
             drillEffect = Fx.mineBig;
           squareSprite = false;
