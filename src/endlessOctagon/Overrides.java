@@ -15,7 +15,7 @@ public final class Overrides {
   public static final void overridePlanets(){
     Seq<Planet> planets = Vars.content.planets();//{Planets.serpulo, Planets.eriker, Planets.tantros};
     planets.each(planet->{
-      if(!planet.uiIcon == Core.atlas.find("error")) planet.uiIcon = Core.atlas.find("eo-esag");
+      if(!(planet.uiIcon == Core.atlas.find("error"))) planet.uiIcon = Core.atlas.find("eo-esag");
       if(planet instanceof ExtendedPlanet)return; //Not create them doubled
       createPlanetStats(planet);
     });
