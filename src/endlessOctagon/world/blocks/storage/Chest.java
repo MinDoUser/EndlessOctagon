@@ -4,7 +4,10 @@ import mindustry.world.blocks.storage.*;
 import mindustry.gen.*;
 import mindustry.type.*;
 
+import mindustry.Vars;
+
 import arc.graphics.Color;
+import arc.graphics.g2d.Draw;
 /** A storage block wich can only keep one kind of item*/
 public class Chest extends StorageBlock {
   public Chest(String name){
