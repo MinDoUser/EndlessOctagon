@@ -42,6 +42,7 @@ import static mindustry.type.ItemStack.*;
 
 import endlessOctagon.world.blocks.crafter.*;
 import endlessOctagon.world.blocks.defense.*;
+import endlessOctagon.world.blocks.storage.*;
 import endlessOctagon.bullets.*;
 
 public final class EOBlocks implements endlessOctagon.util.Loadable{
@@ -62,6 +63,8 @@ public final class EOBlocks implements endlessOctagon.util.Loadable{
   alphaDrill, //Soon: betaDrill, gammaDrill, omegaDrill(?),
   
   steamCondenser,
+  //Storage
+  chest,
   //Liquid
   plateConduit, plateRouter,
   //Effect
@@ -351,6 +354,14 @@ public final class EOBlocks implements endlessOctagon.util.Loadable{
           squareSprite = false;
         }};
     //End of drills
+    //Start of storage
+    chest = new Chest("chest"){{
+            requirements(Category.effect, with(Items.silicon, 150, EOItems.iron, 200));
+            size = 2;
+            itemCapacity = 250;
+            scaledHealth = 55;
+        }};
+    //End of storage
   }
   //Utils.
     
