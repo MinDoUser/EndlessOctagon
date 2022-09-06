@@ -3,6 +3,8 @@ package endlessOctagon.world.blocks.storage;
 import mindustry.world.blocks.storage.*;
 import mindustry.gen.*;
 import mindustry.type.*;
+
+import arc.graphics.Color;
 /** A storage block wich can only keep one kind of item*/
 public class Chest extends StorageBlock {
   public Chest(String name){
@@ -21,8 +23,13 @@ public class Chest extends StorageBlock {
     
         @Override
         public void drawSelect(){
-            if(items.first() != null){
-                //TODO: Draw current item.
+          Item item;
+            if((item = items.first()) != null){
+                float dx = x - size * Vars.tilesize/2f, dy = y + size * Vars.tilesize/2f, s = Vars.iconSmall / 4f;
+                Draw.mixcol(Color.darkGray, 1f);
+                Draw.rect(item.fullIcon, dx, dy - 1, s, s);
+                Draw.reset();
+                Draw.rect(item.fullIcon, dx, dy, s, s);
             }
         }
   }
