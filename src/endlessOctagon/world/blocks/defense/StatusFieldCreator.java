@@ -51,7 +51,7 @@ public class StatusFieldCreator extends Block{
    @Override
     public void setStats(){
         super.setStats();
-        stats.add(Stat.range, range / tilesize, StatUnit.blocks);
+        stats.add(Stat.range, range / Vars.tilesize, StatUnit.blocks);
     }
   
   public class StatusFieldCreatorBuild extends Building implements Ranged {
