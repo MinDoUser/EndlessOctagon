@@ -31,7 +31,7 @@ public class StatusFieldCreator extends Block{
   /** Whether the effect is applied on enemies only. If false, it's onyl applied on units in the same team*/
   public boolean onEnemy = true;
   /** If true, this effect is applied to all nearby units*/
-  public boolean all = false;
+  public boolean any = false;
   /** The effect being played when apply the status*/
   public Effect effect = new WaveEffect(){{
       sizeFrom = 12;
