@@ -66,6 +66,13 @@ public class StatusFieldCreator extends Block{
     }
   
   @Override
+    public void setBars(){
+        super.setBars();
+
+        addBar("progress", (StatusFieldCreatorBuild e) -> new Bar("bar.progress", Pal.accent, () -> e.timer/duration));
+    }
+  
+  @Override
     public void drawPlace(int x, int y, int rotation, boolean valid){
         super.drawPlace(x, y, rotation, valid);
         
@@ -74,7 +81,7 @@ public class StatusFieldCreator extends Block{
   
   public class StatusFieldCreatorBuild extends Building implements Ranged {
     
-    private float timer = 0f;
+    public float timer = 0f;
     
     @Override
     public float range(){
@@ -83,20 +90,29 @@ public class StatusFieldCreator extends Block{
     
     @Override
     public void updateTile(){
+      if(status == StatusEffects.none)return;
       boolean b = consumeBuilder.size <= 0 || ignoreEfficiency;
       if(efficiency > 0.0 || b){
       timer += b?Time.delta:Time.delta*efficiency;
       if(timer >= duration){
         timer = 0;
-        effect.at(this.x, this.y, status.color);
+        applyStatus();
+      }
+    }
+    }
+    
+    protected void applyStatus(){
+      effect.at(this.x, this.y, status.color);
         
         Units.nearby(null, this.x, this.y, range(), (unit)->{
-          if((unit.team == this.team && (!onEnemy || all)) || (unit.team != this.team && (onEnemy || all)) ){
+          if(applyOn(unit)){
             unit.apply(status, duration);
           }
         });
-      }
     }
+    
+    public boolean applyOn(Unit unit){
+      return (unit.team == this.team && !onEnemy) || (unit.team != this.team && onEnemy) || any;
     }
     
   }
