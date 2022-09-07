@@ -59,7 +59,7 @@ public class StatusFieldCreator extends Block{
    @Override
     public void setStats(){
         super.setStats();
-        if(!(status == StatusEffects.none || status.isHidden()))stats.add(EOStat.statusEffect, EOStat.createContentValue(status));
+        if(!(status == StatusEffects.none || status.isHidden()))stats.add(EOStats.statusEffect, EOStats.createContentValue(status));
         stats.add(Stat.range, range / tilesize, StatUnit.blocks);
     }
   
@@ -67,7 +67,7 @@ public class StatusFieldCreator extends Block{
     public void drawPlace(int x, int y, int rotation, boolean valid){
         super.drawPlace(x, y, rotation, valid);
         
-        Drawf.dashCircle(x * tilesize + offset, y * tilesize + offset, range(), Pal.accent);
+        Drawf.dashCircle(x * tilesize + offset, y * tilesize + offset, range, Pal.accent);
     }
   
   public class StatusFieldCreatorBuild extends Building implements Ranged {
@@ -88,7 +88,7 @@ public class StatusFieldCreator extends Block{
         effect.at(this.x, this.y, status.color);
         
         Units.nearby(null, this.x, this.y, range(), (unit)->{
-          if((unit.team == this.team && (!onEnemy || any)) || (unit.team != this.team && (onEnemy || any)) ){
+          if((unit.team == this.team && (!onEnemy || all)) || (unit.team != this.team && (onEnemy || all)) ){
             unit.apply(status, duration);
           }
         });
