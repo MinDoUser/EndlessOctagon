@@ -11,7 +11,7 @@ import arc.scene.event.*;
 
 public final class EOStats {
   public static final Stat 
-    special = new Stat("special");
+    special = new Stat("special"), statusEffect = new Stat("statuseffect");
   
   public static StatValue createContentValue(UnlockableContent content){
     if(content == null || content.isHidden()){
