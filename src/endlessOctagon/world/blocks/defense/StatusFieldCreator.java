@@ -22,6 +22,8 @@ import static mindustry.Vars.*;
 
 public class StatusFieldCreator extends Block{
   public float range = 100f;
+  /** Whether to ignore the efficiency*/
+  public boolean ignoreEfficiency = false;
   /**Douration of a effect in ticks*/
   public static final float duration = 1f*Time.toMinutes;
   /**  Do not set to {@code null}. Use {@link StatusEffects#none} instead*/
@@ -81,8 +83,9 @@ public class StatusFieldCreator extends Block{
     
     @Override
     public void updateTile(){
-      if(efficiency <= 0.01)return;
-      timer += Time.delta*efficiency;
+      boolean b = consumeBuilder.size <= 0 || ignoreEfficiency;
+      if(efficiency > 0.0 || b){
+      timer += b?Time.delta:Time.delta*efficiency;
       if(timer >= duration){
         timer = 0;
         effect.at(this.x, this.y, status.color);
@@ -93,6 +96,7 @@ public class StatusFieldCreator extends Block{
           }
         });
       }
+    }
     }
     
   }
