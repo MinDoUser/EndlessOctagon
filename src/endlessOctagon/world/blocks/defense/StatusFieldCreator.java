@@ -8,6 +8,7 @@ import mindustry.content.*;
 import mindustry.entities.*;
 import mindustry.entities.effect.*;
 import mindustry.world.meta.*;
+import mindustry.Vars;
 //import mindustry.annotations.Annotations.*;
 
 import arc.util.*;
