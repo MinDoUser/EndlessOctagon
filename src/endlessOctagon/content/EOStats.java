@@ -4,6 +4,7 @@ package endlessOctagon.content;
 
 import mindustry.world.meta.*;
 import mindustry.ctype.*;
+import mindustry.Vars;
 
 import arc.scene.ui.*;
 import arc.util.*;
