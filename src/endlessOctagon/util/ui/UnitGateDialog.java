@@ -13,6 +13,7 @@ import arc.graphics.*;
 import arc.*;
 import arc.struct.*;
 
+import endlessOctagon.util.*;
 import endlessOctagon.world.blocks.units.*;
 import endlessOctagon.world.blocks.units.UnitGate.*;
 
@@ -94,13 +95,13 @@ public class UnitGateDialog extends BaseDialog {
           
           t.button(Icon.units, ()-> {
             building.configure(plan.unit);
-          }).tooltip("Spawn").disabled(()->!useBuilding);
+          }).tooltip("Spawn").disabled((e)->!useBuilding);
           t.row();
           final String BUILD_STRING = Core.bundle.get("canbuild", "Can Build")+":";
           if(useBuilding){
           
             boolean build =  building.items.has(plan.requirements);
-            t.add(BUILD_STRING + (!build) ? Core.bundle.get("no","No") : Core.bundle.get("yes","Yes")).right();
+            t.add(BUILD_STRING + (!build ? Core.bundle.get("no","No") : Core.bundle.get("yes","Yes"))).right();
           }else{
             t.add(BUILD_STRING+" ? ").right();
           }
