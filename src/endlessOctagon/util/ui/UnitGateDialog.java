@@ -45,7 +45,7 @@ public class UnitGateDialog extends BaseDialog {
     
   }
   
-  public static Table createTableOfPlan(UnitBuildPlan plan){
+  public static Table createTableOfPlan(UnitBuildPlan plan, UnitGateBuild building){
     Table rTable = new Table();
     rTable.setBackground(Tex.whiteui);
     rTable.setColor(Pal.darkestGray);
@@ -61,19 +61,19 @@ public class UnitGateDialog extends BaseDialog {
           var unit = plan.unit;
           BaseDialog dialog = new BaseDialog(unit.localizedName);
           dialog.addCloseButton();
-          dialog.cont.table(t -> {
-            t.left();
-            t.image(unit.uiIcon).size(Vars.iconLarge);
-            t.row();
-            t.add(unit.loclaizedName, Styles.techLabel);
-            t.image().growX().color(Color.white);
+          dialog.cont.table(table -> {
+            table.left();
+            table.image(unit.uiIcon).size(Vars.iconLarge);
+            table.row();
+            table.add(unit.loclaizedName, Styles.techLabel);
+            table.image().growX().color(Color.white);
           }).width(300);
           dialog.cont.row();
           if(unit.description != null)dialog.cont.add(unit.description);
           dialog.cont.row();
-          dialog.cont.table(t -> {
-            t.add(Core.bundle.get("stat.buildcost"));
-            t.table(req -> {
+          dialog.cont.table(table -> {
+            table.add(Core.bundle.get("stat.buildcost"));
+            table.table(req -> {
               req.right();
               for(int i = 0; i < plan.requirements.length; i++){
               if(i % 6 == 0){
@@ -88,7 +88,7 @@ public class UnitGateDialog extends BaseDialog {
           }).tooltip("Info");
           
           t.button(Icon.units, ()-> {
-            unitGate.configure(plan.unit);
+            building.configure(plan.unit);
           }).tooltip("Spawn");
           t.row();
           final String BUILD_STRING = Core.bundle.get("canbuild", "Can Build")+":";
