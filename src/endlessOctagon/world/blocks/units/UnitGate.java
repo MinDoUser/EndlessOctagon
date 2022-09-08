@@ -8,6 +8,7 @@ import mindustry.entities.*;
 import mindustry.graphics.*;
 
 import arc.struct.*;
+import arc.*;
 
 import endlessOctagon.util.units.*;
 
@@ -64,8 +65,8 @@ public class UnitGate extends Block {
         ));
     }
   
-  protected void onConfigure(UnitGateBuild build, Integer i){
-    if(!configureable || i == null)return;
+  protected void onConfigure(UnitGateBuild tile, Integer i){
+    if(!configurable || i == null)return;
       
       if(tile.selectedPlan == i)return;
       tile.selectedPlan = (i<0 || i >= plans.size) ? -1:i;
@@ -82,7 +83,7 @@ public class UnitGate extends Block {
     }
     
     public float unitProgress(){
-      return (selectedPlan = -1) ? 0 : progress/getPlan().time;
+      return (selectedPlan == -1) ? 0 : progress/getPlan().time;
     }
     
   }
