@@ -9,12 +9,14 @@ import mindustry.graphics.*;
 
 import arc.struct.*;
 import arc.*;
+import arc.scene.ui.layout.*;
 
 import endlessOctagon.util.units.*;
+import endlessOctagon.EOVars;
 
 public class UnitGate extends Block {
   
-  Seq<UnitBuildPlan> plans = new Seq<>(4);
+  public Seq<UnitBuildPlan> plans = new Seq<>(4);
   
   public UnitGate(String name){
     super(name);
@@ -85,6 +87,13 @@ public class UnitGate extends Block {
     public float unitProgress(){
       return (selectedPlan == -1) ? 0 : progress/getPlan().time;
     }
+    
+    @Override
+     public void buildConfiguration(Table table){
+       table.button(Icon.book, Styles.cleari, ()-> {
+         EOVars.unitGateDialog.show(this);
+       }).tooltip("Configure");
+     }
     
   }
 }
