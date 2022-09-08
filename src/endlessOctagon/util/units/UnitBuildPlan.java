@@ -2,6 +2,7 @@ package endlessOctagon.util.units;
 
 import mindustry.world.blocks.units.UnitFactory.UnitPlan;
 import mindustry.type.*;
+import mindustry.content.*;
 
 public class UnitBuildPlan extends UnitPlan implements Comparable<UnitBuildPlan> {
   /** The priority of this plan. The higher, the more priorized it is. -1 for no priorization */
@@ -16,7 +17,7 @@ public class UnitBuildPlan extends UnitPlan implements Comparable<UnitBuildPlan>
   }
   
   public UnitBuildPlan(){
-    
+    this(UnitTypes.alpha,60f,new ItemStack[]{new ItemStack(Items.copper, 1)});
   }
   
   @Override
