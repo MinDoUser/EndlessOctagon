@@ -26,7 +26,7 @@ public class UnitGateDialog extends BaseDialog {
       Log.warn("No gate selected!");
       return;
     }
-    if(build.block.plans.size <= 0){
+    if(unitGate.block.plans.size <= 0){
       cont.add("The selected gate has no plans!");
       return;
     }
@@ -35,7 +35,7 @@ public class UnitGateDialog extends BaseDialog {
   /**Use this instead of {@link show()}*/
   public void show(UnitGateBuild build){
     if(build == null){
-      Log.error(new NullPointerException("Build was null!"));
+      Log.err(new NullPointerException("Build was null!"));
       return;
     }
     unitGate = build;
