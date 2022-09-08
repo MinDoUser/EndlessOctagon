@@ -16,7 +16,7 @@ public class UnitBuildPlan extends UnitPlan implements Comparable<UnitBuildPlan>
   }
   
   public UnitBuildPlan(){
-    super();
+    
   }
   
   @Override
