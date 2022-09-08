@@ -71,7 +71,7 @@ public class UnitGateDialog extends BaseDialog {
             table.left();
             table.image(unit.uiIcon).size(Vars.iconLarge);
             table.row();
-            table.add(unit.loclaizedName, Styles.techLabel);
+            table.add(unit.localizedName, Styles.techLabel);
             table.image().growX().color(Color.white);
           }).width(300);
           dialog.cont.row();
