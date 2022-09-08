@@ -26,7 +26,8 @@ public class UnitGateDialog extends BaseDialog {
       Log.warn("No gate selected!");
       return;
     }
-    if(unitGate.block.plans.size <= 0){
+    UnitGate gate = (UnitGate)unitGate.block;
+    if(gate.plans.size <= 0){
       cont.add("The selected gate has no plans!");
       return;
     }
