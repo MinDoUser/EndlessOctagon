@@ -9,10 +9,12 @@ import endlessOctagon.world.blocks.units.UnitGate.*;
 
 public class UnitGateDialog extends BaseDialog {
   
-  protected UnitGateBuild unitGate = null;
+  protected final UnitGateBuild unitGate;
   
-  public UnitGateDialog(){
+  public UnitGateDialog(UnitGateBuild build){
     super("");
+    if(build == null)throw new NullPointerException("build was null");
+    unitGate = build;
     
     addCloseButton();
     
@@ -21,19 +23,14 @@ public class UnitGateDialog extends BaseDialog {
   
   public void rebuild(){
     cont.clear();
-    if(unitGate == null){
-      cont.add("No gate selected!");
-      Log.warn("No gate selected!");
-      return;
-    }
     UnitGate gate = (UnitGate)unitGate.block;
     if(gate.plans.size <= 0){
-      cont.add("The selected gate has no plans!");
+      cont.add("Thegate has no plans!");
       return;
     }
     
   }
-  /**Use this instead of {@link show()}*/
+  /*
   public void show(UnitGateBuild build){
     if(build == null){
       Log.err(new NullPointerException("Build was null!"));
@@ -43,5 +40,5 @@ public class UnitGateDialog extends BaseDialog {
     this.title.setText("Unit Gate ("+(unitGate.x/8)+','+(unitGate.y/8)+")");
     
     this.show();
-  }
+  }*/
 }
