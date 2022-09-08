@@ -5,6 +5,7 @@ import mindustry.gen.*;
 import mindustry.type.*;
 import mindustry.ui.*;
 import mindustry.entities.*;
+import mindustry.graphics.*;
 
 import arc.struct.*;
 
@@ -20,7 +21,7 @@ public class UnitGate extends Block {
     configurable = true;
     
     config(Integer.class, this::onConfigure);
-    config(UnitType.class, (UnitFactoryBuild tile, UnitType val) -> {
+    config(UnitType.class, (UnitGateBuild tile, UnitType val) -> {
       int next = plans.indexOf(p -> p.unit == val);
       onConfigure(tile, next);
     });
@@ -48,7 +49,7 @@ public class UnitGate extends Block {
   @Override
     public void setBars(){
         super.setBars();
-        addBar("progress", (UnitGateBuild e) -> new Bar("bar.progress", Pal.ammo, e::fraction));
+        addBar("progress", (UnitGateBuild e) -> new Bar("bar.progress", Pal.ammo, e::unitProgress));
       
         addBar("units", (UnitGateBuild e) ->
           new Bar(
@@ -78,6 +79,10 @@ public class UnitGate extends Block {
     public UnitBuildPlan getPlan(){
       if(selectedPlan < 0 || selectedPlan >= plans.size)return null;
       return plans.get(selectedPlan);
+    }
+    
+    public float unitProgress(){
+      return (selectedPlan = -1) ? 0 : progress/getPlan().time;
     }
     
   }
