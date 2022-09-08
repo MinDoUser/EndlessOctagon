@@ -11,6 +11,7 @@ import arc.scene.ui.layout.*;
 import arc.scene.ui.*;
 import arc.graphics.*;
 import arc.*;
+import arc.struct.*;
 
 import endlessOctagon.world.blocks.units.*;
 import endlessOctagon.world.blocks.units.UnitGate.*;
@@ -44,8 +45,12 @@ public class UnitGateDialog extends BaseDialog {
     
     
   }
-  
   public static Table createTableOfPlan(UnitBuildPlan plan, UnitGateBuild building){
+    return createTableOfPlan(plan, building, true);
+  }
+  
+  /**@param useBuilding if !useBuilding, building is not needed and can be null, else not*/
+  public static Table createTableOfPlan(UnitBuildPlan plan, UnitGateBuild building, boolean useBuilding){
     Table rTable = new Table();
     rTable.setBackground(Tex.whiteui);
     rTable.setColor(Pal.darkestGray);
@@ -89,11 +94,16 @@ public class UnitGateDialog extends BaseDialog {
           
           t.button(Icon.units, ()-> {
             building.configure(plan.unit);
-          }).tooltip("Spawn");
+          }).tooltip("Spawn").disabled(()->!useBuilding);
           t.row();
           final String BUILD_STRING = Core.bundle.get("canbuild", "Can Build")+":";
-          boolean build = unitGate.items.has(plans.requirements);
-          t.add(!build ? Core.bundle.get("no","No") : Core.bundle.get("yes","Yes")).right();
+          if(useBuilding){
+          
+            boolean build =  building.items.has(plan.requirements);
+            t.add(BUILD_STRING + (!build) ? Core.bundle.get("no","No") : Core.bundle.get("yes","Yes")).right();
+          }else{
+            t.add(BUILD_STRING+" ? ").right();
+          }
         });
       });
     return rTable;
