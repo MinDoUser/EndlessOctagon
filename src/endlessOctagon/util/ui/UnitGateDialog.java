@@ -13,7 +13,7 @@ import arc.graphics.*;
 import arc.*;
 import arc.struct.*;
 
-import endlessOctagon.util.*;
+import endlessOctagon.util.units.*;
 import endlessOctagon.world.blocks.units.*;
 import endlessOctagon.world.blocks.units.UnitGate.*;
 
