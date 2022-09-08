@@ -76,6 +76,7 @@ public class UnitGate extends Block {
   }
   
   public class UnitGateBuild extends Building {
+    public final UnitGateDialog(this);
     public int selectedPlan = -1;
     public float progress = 0f;
     /** @return null if {@code selectedPlan} smaller than 0 or greater than the size of plans*/
@@ -91,7 +92,7 @@ public class UnitGate extends Block {
     @Override
      public void buildConfiguration(Table table){
        table.button(Icon.book, Styles.cleari, ()-> {
-         EOVars.unitGateDialog.show(this);
+         unitGateDialog.show();
        }).tooltip("Configure");
      }
     
