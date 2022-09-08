@@ -12,7 +12,7 @@ import arc.*;
 import arc.scene.ui.layout.*;
 
 import endlessOctagon.util.units.*;
-import endlessOctagon.EOVars;
+import endlessOctagon.util.ui.*;
 
 public class UnitGate extends Block {
   
