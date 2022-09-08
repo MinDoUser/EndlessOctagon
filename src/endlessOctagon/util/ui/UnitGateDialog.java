@@ -36,7 +36,7 @@ public class UnitGateDialog extends BaseDialog {
   public void show(UnitGateBuild build){
     if(build == null){
       Log.error(new NullPointerException("Build was null!"));
-      return
+      return;
     }
     unitGate = build;
     this.title.setText("Unit Gate ("+(unitGate.x/8)+','+(unitGate.y/8)+")");
