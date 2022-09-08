@@ -54,12 +54,12 @@ public class UnitGate extends Block {
           new Bar(
             () -> e.getPlan().unit == null ? "[lightgray]" + Iconc.cancel :
                 Core.bundle.format("bar.unitcap",
-                    Fonts.getUnicodeStr(e.getPlan().unit.().name),
+                    Fonts.getUnicodeStr(e.getPlan().unit.name),
                     e.team.data().countType(e.getPlan().unit),
                     Units.getStringCap(e.team)
                 ),
             () -> Pal.power,
-            () -> e.unit() == null ? 0f : (float)e.team.data().countType(e.unit()) / Units.getCap(e.team)
+            () -> e.getPlan().unit == null ? 0f : (float)e.team.data().countType(e.getPlan().unit) / Units.getCap(e.team)
         ));
     }
   
