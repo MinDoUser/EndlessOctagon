@@ -54,7 +54,7 @@ public class UnitGateDialog extends BaseDialog {
       t.row();
       t.add(plan.unit.localizedName).left();
       t.row();
-      t.add(Strings.fixed(plan.time/60f, 1)+Core.bundle.get("unit.seconds").color(Color.lightGray);
+      t.add(Strings.fixed(plan.time/60f, 1)+Core.bundle.get("unit.seconds")).color(Color.lightGray);
     }).width(450).left();
       rTable.table(t -> {
         t.button(Icon.infoCircle, ()->{
@@ -63,7 +63,7 @@ public class UnitGateDialog extends BaseDialog {
           dialog.addCloseButton();
           dialog.cont.table(t -> {
             t.left();
-            t.image(unit.uiIcon)size(Vars.iconLarge);
+            t.image(unit.uiIcon).size(Vars.iconLarge);
             t.row();
             t.add(unit.loclaizedName, Styles.techLabel);
             t.image().growX().color(Color.white);
@@ -93,8 +93,8 @@ public class UnitGateDialog extends BaseDialog {
           t.row();
           final String BUILD_STRING = Core.bundle.get("canbuild", "Can Build")+":";
           boolean build = unitGate.items.has(plans.requirements);
-          t.add(!build ? Core.bundle.get("no","No") : Core.bundle.get("yes","Yes").right();
-        }
+          t.add(!build ? Core.bundle.get("no","No") : Core.bundle.get("yes","Yes")).right();
+        });
       });
     return rTable;
   }
