@@ -6,10 +6,14 @@ import mindustry.type.*;
 import mindustry.ui.*;
 import mindustry.entities.*;
 import mindustry.graphics.*;
+import mindustry.game.EventType.*;
+import mindustry.world.consumers.*;
 
 import arc.struct.*;
 import arc.*;
 import arc.scene.ui.layout.*;
+import arc.scene.style.*;
+import arc.graphics.*;
 
 import endlessOctagon.util.units.*;
 import endlessOctagon.util.ui.*;
@@ -28,6 +32,8 @@ public class UnitGate extends Block {
       int next = plans.indexOf(p -> p.unit == val);
       onConfigure(tile, next);
     });
+    
+    consume(new ConsumeItemDynamic((UnitGateBuild e) -> e.selectedPlan != -1 ? plans.get(Math.min(e.currentPlan, plans.size - 1)).requirements : ItemStack.empty));
   }
   /** This will reset all current plans! Only the *buildPlans* are in the plans list*/
   public void plans(UnitBuildPlan... buildPlans){
@@ -74,7 +80,7 @@ public class UnitGate extends Block {
       tile.selectedPlan = (i<0 || i >= plans.size) ? -1:i;
       tile.progress = 0f;
   }
-  
+  //TODO: Replace this with a Queue
   public class UnitGateBuild extends Building {
     public final UnitGateDialog unitGateDialog = new UnitGateDialog(this);
     public int selectedPlan = -1;
@@ -89,12 +95,62 @@ public class UnitGate extends Block {
       return (selectedPlan == -1) ? 0 : progress/getPlan().time;
     }
     
+    
+    
     @Override
      public void buildConfiguration(Table table){
        table.button(Icon.book, Styles.cleari, ()-> {
          unitGateDialog.show();
        }).tooltip("Configure");
      }
+    
+    @Override
+    public void display(Table table){
+      super.display(table);
+      
+      TextureRegionDrawable reg = new TextureRegionDrawable();
+
+       table.row();
+       table.table(t -> {
+            t.left();
+            t.image().update(i -> {
+                i.setDrawable(selectedPlan == -1 ? Icon.cancel : reg.set(getPlan().unit.uiIcon));
+                i.setScaling(Scaling.fit);
+                i.setColor(selectedPlan == -1 ? Color.lightGray : Color.white);
+            }).size(32).padBottom(-4).padRight(2);
+            t.label(() -> selectedPlan == -1 ? "@none" : getPlan().unit.localizedName).wrap().width(230f).color(Color.lightGray);
+       }).left();
+    }
+    
+    @Override
+        public void updateTile(){
+            if(!configurable){
+                selectedPlan = 0;
+            }
+
+            if(selectedPlan < 0 || selectedPlan >= plans.size){
+                selectedPlan = -1;
+            }
+          
+            if(selectedPlan >= 0 && efficiency > 0){
+              progress += edelta() * Vars.state.rules.unitBuildSpeed(team);
+              
+              if(progress >= getPlan().time){
+                getPlan().unit.spawn(this.team,this.x, this.y);
+                consume();
+                
+                progress = 0;
+                
+                Events.fire(new UnitCreateEvent(getPlan().unit, this));
+              }
+            }
+          if(selectedPlan < 0)progress = 0;
+        }
+    
+    @Override
+        public Object config(){
+            return selectedPlan;
+        }
     
   }
 }
