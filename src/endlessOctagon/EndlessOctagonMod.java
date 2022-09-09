@@ -173,10 +173,10 @@ public final class EndlessOctagonMod extends Mod{
 	 settingTable.game.button("Table Test", Icon.cancel, ()->{
             	BaseDialog dialog = new BaseDialog("Table Test");
 		dialog.cont.table(t -> {
-			UnitBuildPlan plan1 = new UnitBuildPlan(UnitType.beta, 30f, new ItemStack[]{new ItemStack(Items.silicon, 12), new ItemStack(Items.titanium, 75)});
+			UnitBuildPlan plan1 = new UnitBuildPlan(UnitTypes.beta, 30f, new ItemStack[]{new ItemStack(Items.silicon, 12), new ItemStack(Items.titanium, 75)});
 			t.add(UnitGateDialog.createTableOfPlan(plan1, null, false));
 			t.row();
-			UnitBuildPlan plan2 = new UnitBuildPlan(UnitType.risso, 120f, new ItemStack[]{new ItemStack(Items.thorium, 120), new ItemStack(Items.scrap, 175)});
+			UnitBuildPlan plan2 = new UnitBuildPlan(UnitTypes.risso, 120f, new ItemStack[]{new ItemStack(Items.thorium, 120), new ItemStack(Items.scrap, 175)});
 			t.add(UnitGateDialog.createTableOfPlan(plan2, null, false));
 		});
 		 dialog.addCloseButton();
