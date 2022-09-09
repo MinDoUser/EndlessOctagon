@@ -15,7 +15,12 @@ import mindustry.Vars;
 import mindustry.ui.dialogs.SettingsMenuDialog;
 import mindustry.gen.*; // Where is this package? Can't find it...
 
+//TESTING ONLY!
+import mindustry.content.*;
+import mindustry.type.*;
+
 import endlessOctagon.content.*;
+import endlessOctagon.util.unit.*; //Testing only, remove later
 import endlessOctagon.util.ui.*;
 import endlessOctagon.util.ui.MapInfoDialog;
 import endlessOctagon.util.ui.MapInfoDialog.*;
@@ -159,11 +164,24 @@ public final class EndlessOctagonMod extends Mod{
 	    //=== === === === === === === === ===
         SettingsMenuDialog settingTable = Vars.ui.settings;
 		
-		settingTable.game.row();
+	settingTable.game.row();
         settingTable.game.button("Change Log", Icon.info, ()->{
             changeDialog.show();
         }).size(250f, 100f);
-	    settingTable.game.row(); 
+	settingTable.game.row(); 
+	    ///TESTING ONLY !
+	 settingTable.game.button("Table Test", Icon.cancel, ()->{
+            	BaseDialog dialog = new BaseDialog("Table Test");
+		dialog.cont.table(t -> {
+			UnitBuildPlan plan1 = new UnitBuildPlan(UnitType.beta, 30f, new ItemStack[]{new ItemStack(Item.silicon, 12), new ItemStack(Item.titanium, 75)});
+			t.add(UnitBuildPlan.createTableOfPlan(plan1));
+			t.row();
+			UnitBuildPlan plan2 = new UnitBuildPlan(UnitType.risso, 120f, new ItemStack[]{new ItemStack(Item.thorium, 120), new ItemStack(Item.scrap, 175)});
+			t.add(UnitBuildPlan.createTableOfPlan(plan2));
+		});
+		 dialog.addCloseButton();
+		 dialog.show();
+        }).size(250f, 100f);
     }
 	public static final endlessOctagon.util.Loadable[] loadables = {
 		new EOFx(), new EOBullets(), new EOItems(), new EOBlocks(), new EOPlanets()
