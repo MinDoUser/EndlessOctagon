@@ -60,8 +60,8 @@ public class UnitGateDialog extends BaseDialog {
       t.row();
       t.add(plan.unit.localizedName).left();
       t.row();
-      t.add(Strings.fixed(plan.time/60f, 1)+Core.bundle.get("unit.seconds")).color(Color.lightGray);
-    }).width(450).left();
+      t.add(Strings.fixed(plan.time/60f, 1)+Core.bundle.get("unit.seconds")).color(Color.lightGray).left();
+    }).width(150).left();
       rTable.table(t -> {
         t.button(Icon.infoCircle, ()->{
           var unit = plan.unit;
@@ -72,6 +72,7 @@ public class UnitGateDialog extends BaseDialog {
             table.image(unit.uiIcon).size(Vars.iconLarge);
             table.row();
             table.add(unit.localizedName, Styles.techLabel);
+            table.row();
             table.image().growX().color(Color.white);
           }).width(300);
           dialog.cont.row();
@@ -87,11 +88,12 @@ public class UnitGateDialog extends BaseDialog {
               }
 
               var stack = plan.requirements[i];
-              req.add(new ItemDisplay(stack.item, stack.amount, false)).pad(5);
+              req.add(new ItemDisplay(stack.item, stack.amount, false)).pad(5).left();
               }
             }).right().grow().pad(10f);
             dialog.show();
-          }).tooltip("Info");
+          });
+        }).tooltip("Info");
           
           t.button(Icon.units, ()-> {
             building.configure(plan.unit);
@@ -106,7 +108,7 @@ public class UnitGateDialog extends BaseDialog {
             t.add(BUILD_STRING+" ? ").right();
           }
         });
-      });
+     // });
     return rTable;
   }
   /*
