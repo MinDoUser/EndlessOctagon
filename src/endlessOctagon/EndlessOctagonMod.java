@@ -20,7 +20,7 @@ import mindustry.content.*;
 import mindustry.type.*;
 
 import endlessOctagon.content.*;
-import endlessOctagon.util.unit.*; //Testing only, remove later
+import endlessOctagon.util.units.*; //Testing only, remove later
 import endlessOctagon.util.ui.*;
 import endlessOctagon.util.ui.MapInfoDialog;
 import endlessOctagon.util.ui.MapInfoDialog.*;
@@ -173,11 +173,11 @@ public final class EndlessOctagonMod extends Mod{
 	 settingTable.game.button("Table Test", Icon.cancel, ()->{
             	BaseDialog dialog = new BaseDialog("Table Test");
 		dialog.cont.table(t -> {
-			UnitBuildPlan plan1 = new UnitBuildPlan(UnitType.beta, 30f, new ItemStack[]{new ItemStack(Item.silicon, 12), new ItemStack(Item.titanium, 75)});
-			t.add(UnitBuildPlan.createTableOfPlan(plan1));
+			UnitBuildPlan plan1 = new UnitBuildPlan(UnitType.beta, 30f, new ItemStack[]{new ItemStack(Items.silicon, 12), new ItemStack(Items.titanium, 75)});
+			t.add(UnitGateDialog.createTableOfPlan(plan1, null, false));
 			t.row();
-			UnitBuildPlan plan2 = new UnitBuildPlan(UnitType.risso, 120f, new ItemStack[]{new ItemStack(Item.thorium, 120), new ItemStack(Item.scrap, 175)});
-			t.add(UnitBuildPlan.createTableOfPlan(plan2));
+			UnitBuildPlan plan2 = new UnitBuildPlan(UnitType.risso, 120f, new ItemStack[]{new ItemStack(Items.thorium, 120), new ItemStack(Items.scrap, 175)});
+			t.add(UnitGateDialog.createTableOfPlan(plan2, null, false));
 		});
 		 dialog.addCloseButton();
 		 dialog.show();
