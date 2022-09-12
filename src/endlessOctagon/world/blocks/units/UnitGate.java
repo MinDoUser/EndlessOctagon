@@ -1,6 +1,7 @@
 package endlessOctagon.world.blocks.units;
 
 import mindustry.world.*;
+import mindustry.world.meta.*;
 import mindustry.gen.*;
 import mindustry.type.*;
 import mindustry.ui.*;
@@ -24,6 +25,19 @@ public class UnitGate extends Block {
   
   public UnitGate(String name){
     super(name);
+    
+    hasItems = hasPower = true;
+    acceptsItems = true;
+    update = true;
+    destructible = true;
+    solid = true;
+    breakable = true;
+    
+    group = BlockGroup.units;
+    
+    flags = EnumSet.of(BlockFlag.unitAssembler);
+    
+    category = Category.units;
     
     configurable = true;
     
