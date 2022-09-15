@@ -37,7 +37,7 @@ public class UnitGate extends Block {
     acceptsItems = true;
     update = true;
     destructible = true;
-    solid = true;
+    solid = false;
     breakable = true;
     
     group = BlockGroup.units;
@@ -201,6 +201,22 @@ public class UnitGate extends Block {
               }
           if(selectedPlan < 0)progress = 0;
         }
+    @Override
+    public boolean acceptItem(Building source, Item item){
+      return getPlan() != null && items.get(item) < getMaximumAccepted(item);
+    }
+    
+    @Override
+    public boolean getMaximumAccepted(Item item){
+      if(getPlan() == null) return false;
+      for(var stack : getPlan().requirements){
+        if(stack.item == item){
+          items.get(item) < itemCapacity;
+        }
+      }
+      return false;
+    }
+    
     
     @Override
         public Object config(){
