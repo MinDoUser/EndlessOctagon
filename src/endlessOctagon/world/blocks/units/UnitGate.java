@@ -19,6 +19,7 @@ import arc.scene.style.*;
 import arc.util.*;
 import arc.graphics.*;
 import arc.graphics.g2d.*;
+import arc.math.*;
 
 import endlessOctagon.util.units.*;
 import endlessOctagon.util.ui.*;
