@@ -10,7 +10,7 @@ import mindustry.graphics.*;
 import mindustry.game.EventType.*;
 import mindustry.world.consumers.*;
 import mindustry.Vars;
-import mindustry.annotations.Annotations.*;
+import mindustry.annotations.Annotations;
 
 import arc.struct.*;
 import arc.*;
@@ -26,7 +26,7 @@ import endlessOctagon.util.ui.*;
 
 public class UnitGate extends Block {
   
-  public @Load("@-top") TextureRegion topRegion;
+  public @Annotations.Load("@-top") TextureRegion topRegion;
   
   public Seq<UnitBuildPlan> plans = new Seq<>(4);
   
