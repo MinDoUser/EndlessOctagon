@@ -10,6 +10,7 @@ import mindustry.graphics.*;
 import mindustry.game.EventType.*;
 import mindustry.world.consumers.*;
 import mindustry.Vars;
+import mindustry.annotations.Annotations.*;
 
 import arc.struct.*;
 import arc.*;
@@ -17,11 +18,14 @@ import arc.scene.ui.layout.*;
 import arc.scene.style.*;
 import arc.util.*;
 import arc.graphics.*;
+import arc.graphics.g2d.*;
 
 import endlessOctagon.util.units.*;
 import endlessOctagon.util.ui.*;
 
 public class UnitGate extends Block {
+  
+  public @Load("@-top") TextureRegion topRegion;
   
   public Seq<UnitBuildPlan> plans = new Seq<>(4);
   
@@ -139,6 +143,20 @@ public class UnitGate extends Block {
     }
     
     @Override
+        public void draw(){
+            Draw.rect(region, x, y);
+
+            if(selectedPlan != -1){
+                UnitBuildPlan plan = plans.get(selectedPlan);
+                Draw.draw(Layer.blockOver, () -> Drawf.construct(this, plan.unit, rotdeg() - 90f, progress / plan.time, speedScl, time));
+            }
+
+            Draw.z(Layer.blockOver+0.25f);
+
+            Draw.rect(topRegion, x, y);
+        }
+    
+    @Override
         public void updateTile(){
             if(!configurable){
                 selectedPlan = 0;
@@ -149,9 +167,14 @@ public class UnitGate extends Block {
             }
           
             if(selectedPlan >= 0 && efficiency > 0){
+              time += edelta() * speedScl * Vars.state.rules.unitBuildSpeed(team);
               progress += edelta() * Vars.state.rules.unitBuildSpeed(team);
-              
-              if(progress >= getPlan().time){
+              speedScl = Mathf.lerpDelta(speedScl, 1f, 0.05f);
+            }else{
+                speedScl = Mathf.lerpDelta(speedScl, 0f, 0.05f);
+            }
+
+            if(progress >= getPlan().time){
                 getPlan().unit.spawn(this.team,this.x, this.y);
                 consume();
                 
