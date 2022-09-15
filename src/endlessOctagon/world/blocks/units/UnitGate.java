@@ -104,7 +104,7 @@ public class UnitGate extends Block {
   public class UnitGateBuild extends Building {
     public final UnitGateDialog unitGateDialog = new UnitGateDialog(this);
     public int selectedPlan = -1;
-    public float progress = 0f;
+    public float progress = 0f, speedScl = 0f, time = 0f;
     /** @return null if {@code selectedPlan} smaller than 0 or greater than the size of plans*/
     public UnitBuildPlan getPlan(){
       if(selectedPlan < 0 || selectedPlan >= plans.size)return null;
