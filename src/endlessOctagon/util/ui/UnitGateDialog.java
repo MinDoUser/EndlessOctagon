@@ -45,7 +45,7 @@ public class UnitGateDialog extends BaseDialog {
       cont.add("The gate has no plans!");
       return;
     }
-    Tabel table = new Table();
+    Table table = new Table();
     for(var plan : plansSeq){
       table.add(createTableOfPlan(plan, unitGate));
       table.row();
