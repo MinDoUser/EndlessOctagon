@@ -10,7 +10,7 @@ import mindustry.graphics.*;
 import mindustry.game.EventType.*;
 import mindustry.world.consumers.*;
 import mindustry.Vars;
-import mindustry.annotations.Annotations;
+//import mindustry.annotations.Annotations; //"Package does not exist" ... ?!
 
 import arc.struct.*;
 import arc.*;
@@ -25,8 +25,8 @@ import endlessOctagon.util.units.*;
 import endlessOctagon.util.ui.*;
 
 public class UnitGate extends Block {
-  
-  public @Annotations.Load("@-top") TextureRegion topRegion;
+  // @Load is not found ?! 
+  public TextureRegion topRegion;
   
   public Seq<UnitBuildPlan> plans = new Seq<>(4);
   
