@@ -43,7 +43,9 @@ import static mindustry.type.ItemStack.*;
 import endlessOctagon.world.blocks.crafter.*;
 import endlessOctagon.world.blocks.defense.*;
 import endlessOctagon.world.blocks.storage.*;
+import endlessOctagon.world.blocks.units.*;
 import endlessOctagon.bullets.*;
+import endlessOctagon.util.units.*;
 
 public final class EOBlocks implements endlessOctagon.util.Loadable{
   public static final Seq<Block> eravirBlocks = new Seq<>();
@@ -67,6 +69,8 @@ public final class EOBlocks implements endlessOctagon.util.Loadable{
   chest,
   //Liquid
   plateConduit, plateRouter,
+  //units
+  T1UnitGate,
   //Effect
     connectProjector,
     //Environment
@@ -362,6 +366,21 @@ public final class EOBlocks implements endlessOctagon.util.Loadable{
             scaledHealth = 55;
         }};
     //End of storage
+    //Start of units
+    T1UnitGate = new UnitGate("t1-unit-gate"){{
+      requirements(Category.effect, with(Items.silicon, 150, EOItems.iron, 200, EOItems.multiSteel, 100, Items.graphite, 225));
+      //TODO: Replace with mod units and mod items later
+      plans = Seq.with(
+                new UnitBuildPlan(UnitTypes.dagger, 60f * 40f, with(Items.silicon, 20, Items.graphite, 35)),
+                new UnitBuildPlan(UnitTypes.crawler, 60f * 20f, with(Items.silicon, 10, Items.metaglass, 30))
+            );
+      size = 3;
+      
+      consumePower(0.75f);
+      
+      scaledHealth = 75;
+    }};
+    //End of units
   }
   //Utils.
     
