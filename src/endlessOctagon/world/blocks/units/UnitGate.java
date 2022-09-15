@@ -191,7 +191,7 @@ public class UnitGate extends Block {
                 speedScl = Mathf.lerpDelta(speedScl, 0f, 0.05f);
             }
 
-            if(progress >= getPlan().time){
+            if(getPlan() != null && progress >= getPlan().time){
                 getPlan().unit.spawn(this.team,this.x, this.y);
                 consume();
                 
