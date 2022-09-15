@@ -211,7 +211,7 @@ public class UnitGate extends Block {
       if(getPlan() == null) return false;
       for(var stack : getPlan().requirements){
         if(stack.item == item){
-          items.get(item) < itemCapacity;
+          return items.get(item) < itemCapacity;
         }
       }
       return false;
