@@ -36,13 +36,23 @@ public class UnitGateDialog extends BaseDialog {
   }
   
   public void rebuild(){
+    title.setText("Unit Gate ("unitGate.x+","+unitGate.y")");
+    
     cont.clear();
     //UnitGate gate = (UnitGate)unitGate.block;
     if(plansSeq.size <= 0){
+      cont.image(Icon.warning);
       cont.add("The gate has no plans!");
       return;
     }
+    Tabel table = new Table();
+    for(var plan : plansSeq){
+      table.add(createTableOfPlan(plan, unitGate));
+      table.row();
+      table.row();
+    }
     
+    cont.pane(table).scrollX(false);
     
     
   }
