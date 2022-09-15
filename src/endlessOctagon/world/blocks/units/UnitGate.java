@@ -207,14 +207,14 @@ public class UnitGate extends Block {
     }
     
     @Override
-    public boolean getMaximumAccepted(Item item){
-      if(getPlan() == null) return false;
+    public int getMaximumAccepted(Item item){
+      if(getPlan() == null) return 0;
       for(var stack : getPlan().requirements){
         if(stack.item == item){
-          return items.get(item) < itemCapacity;
+          return Math.max(itemCapacity, stack.amount);
         }
       }
-      return false;
+      return 0;
     }
     
     
