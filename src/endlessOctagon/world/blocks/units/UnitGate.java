@@ -165,7 +165,7 @@ public class UnitGate extends Block {
 
             if(selectedPlan != -1){
                 UnitBuildPlan plan = plans.get(selectedPlan);
-                Draw.draw(Layer.blockOver, () -> Drawf.construct(this, plan.unit, rotdeg() - 90f, progress / plan.time, speedScl, time));
+                Draw.draw(Layer.blockOver, () -> Drawf.construct(this, plan.unit, 0, progress / plan.time, speedScl, time));
             }
 
             Draw.z(Layer.blockOver+0.25f);
