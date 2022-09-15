@@ -62,6 +62,11 @@ public class UnitGate extends Block {
   }
   
   @Override
+  protected TextureRegion[] icons(){
+    return new TextureRegion[]{region, topRegion};
+  }
+  
+  @Override
   public void init(){
     int capacity = 0;
     for(UnitBuildPlan plan : plans){
