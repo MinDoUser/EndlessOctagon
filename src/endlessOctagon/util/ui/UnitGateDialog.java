@@ -35,7 +35,7 @@ public class UnitGateDialog extends BaseDialog {
   }
   
   public void rebuild(){
-    title.setText("Unit Gate ("+unitGate.x+","+unitGate.y+")");
+    title.setText("Unit Gate ("+(unitGate.x/8f)+","+(unitGate.y/8f)+")");
     
     cont.clear();
     //UnitGate gate = (UnitGate)unitGate.block;
@@ -116,7 +116,7 @@ public class UnitGateDialog extends BaseDialog {
           }else{
             t.add(BUILD_STRING+" ? ").right();
           }
-        });
+        }).width(200f);
      // });
     return rTable;
   }
