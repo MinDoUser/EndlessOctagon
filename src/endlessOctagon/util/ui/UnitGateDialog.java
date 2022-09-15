@@ -36,7 +36,7 @@ public class UnitGateDialog extends BaseDialog {
   }
   
   public void rebuild(){
-    title.setText("Unit Gate ("unitGate.x+","+unitGate.y")");
+    title.setText("Unit Gate ("+unitGate.x+","+unitGate.y+")");
     
     cont.clear();
     //UnitGate gate = (UnitGate)unitGate.block;
