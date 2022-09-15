@@ -9,11 +9,13 @@ import mindustry.entities.*;
 import mindustry.graphics.*;
 import mindustry.game.EventType.*;
 import mindustry.world.consumers.*;
+import mindustry.Vars;
 
 import arc.struct.*;
 import arc.*;
 import arc.scene.ui.layout.*;
 import arc.scene.style.*;
+import arc.util.*;
 import arc.graphics.*;
 
 import endlessOctagon.util.units.*;
@@ -47,7 +49,7 @@ public class UnitGate extends Block {
       onConfigure(tile, next);
     });
     
-    consume(new ConsumeItemDynamic((UnitGateBuild e) -> e.selectedPlan != -1 ? plans.get(Math.min(e.currentPlan, plans.size - 1)).requirements : ItemStack.empty));
+    consume(new ConsumeItemDynamic((UnitGateBuild e) -> e.selectedPlan != -1 ? plans.get(Math.min(e.selectedPlan, plans.size - 1)).requirements : ItemStack.empty));
   }
   /** This will reset all current plans! Only the *buildPlans* are in the plans list*/
   public void plans(UnitBuildPlan... buildPlans){
@@ -76,14 +78,14 @@ public class UnitGate extends Block {
       
         addBar("units", (UnitGateBuild e) ->
           new Bar(
-            () -> e.getPlan().unit == null ? "[lightgray]" + Iconc.cancel :
+            () -> e.getPlan() == null ? "[lightgray]" + Iconc.cancel :
                 Core.bundle.format("bar.unitcap",
                     Fonts.getUnicodeStr(e.getPlan().unit.name),
                     e.team.data().countType(e.getPlan().unit),
                     Units.getStringCap(e.team)
                 ),
             () -> Pal.power,
-            () -> e.getPlan().unit == null ? 0f : (float)e.team.data().countType(e.getPlan().unit) / Units.getCap(e.team)
+            () -> e.getPlan() == null ? 0f : (float)e.team.data().countType(e.getPlan().unit) / Units.getCap(e.team)
         ));
     }
   
@@ -155,7 +157,7 @@ public class UnitGate extends Block {
                 
                 progress = 0;
                 
-                Events.fire(new UnitCreateEvent(getPlan().unit, this));
+                //Events.fire(new UnitCreateEvent(getPlan().unit, this));
               }
             }
           if(selectedPlan < 0)progress = 0;
