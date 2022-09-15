@@ -182,7 +182,6 @@ public class UnitGate extends Block {
                 
                 //Events.fire(new UnitCreateEvent(getPlan().unit, this));
               }
-            }
           if(selectedPlan < 0)progress = 0;
         }
     
