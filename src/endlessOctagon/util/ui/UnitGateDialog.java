@@ -27,8 +27,7 @@ public class UnitGateDialog extends BaseDialog {
     super("");
     if(build == null)throw new NullPointerException("build was null");
     unitGate = build;
-    UnitGate gate = (UnitGate)unitGate.block;
-    plansSeq = gate.plans;
+    plansSeq = unitGate.plans();
     
     addCloseButton();
     
