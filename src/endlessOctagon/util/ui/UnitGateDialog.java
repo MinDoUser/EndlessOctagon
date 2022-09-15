@@ -116,7 +116,7 @@ public class UnitGateDialog extends BaseDialog {
           }else{
             t.add(BUILD_STRING+" ? ").right();
           }
-        }).width(200f);
+        }).width(750f);
      // });
     return rTable;
   }
