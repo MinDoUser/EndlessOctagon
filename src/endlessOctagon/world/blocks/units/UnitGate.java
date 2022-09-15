@@ -123,6 +123,10 @@ public class UnitGate extends Block {
       return (selectedPlan == -1) ? 0 : progress/getPlan().time;
     }
     
+    public Seq<UnitBuildPlan> plans(){
+      
+      return plans; // This is require to avoid nulls
+    }
     
     
     @Override
