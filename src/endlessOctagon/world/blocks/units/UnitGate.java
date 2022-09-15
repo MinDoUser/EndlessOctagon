@@ -77,6 +77,13 @@ public class UnitGate extends Block {
   }
   
   @Override
+    public void load(){
+        super.load();
+
+        topRegion = Core.atlas.find(name + "-top");
+    }
+  
+  @Override
     public void setBars(){
         super.setBars();
         addBar("progress", (UnitGateBuild e) -> new Bar("bar.progress", Pal.ammo, e::unitProgress));
