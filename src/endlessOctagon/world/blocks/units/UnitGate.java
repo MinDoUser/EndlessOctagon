@@ -109,7 +109,7 @@ public class UnitGate extends Block {
   protected void onConfigure(UnitGateBuild tile, Integer i){
     //Catch things may cause an exception later.
     if(!configurable || i == null)return;
-    if(i < 0  || >= plans.size) return;
+    if(i < 0  || i >= plans.size) return;
     
     queuedPlans.addLast(i); //Done.
     
