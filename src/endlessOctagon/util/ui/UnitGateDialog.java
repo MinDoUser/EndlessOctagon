@@ -31,11 +31,13 @@ public class UnitGateDialog extends BaseDialog {
     
     addCloseButton();
     
+    buttons.button("@queue", Icon.info, this::showQueued);
+    
     shown(this::rebuild);
   }
   
   public void rebuild(){
-    title.setText("Unit Gate ("+(unitGate.x/8f)+","+(unitGate.y/8f)+")");
+    title.setText("Unit Gate ("+(int)(unitGate.x/8f)+","+(int)(unitGate.y/8f)+")");// (int) removes the anoying ".0"
     
     cont.clear();
     //UnitGate gate = (UnitGate)unitGate.block;
@@ -55,6 +57,24 @@ public class UnitGateDialog extends BaseDialog {
     
     
   }
+  
+  protected void showQueued(){
+    BaseDialog dialog = new BaseDialog("@queue");
+    dialog.cont.table(t -> {
+      
+    });
+  }
+  
+  public static Table createPlanOverview(Seq<UnitBuildPlan> plans){
+    Table table = new Table();
+    table.table(t -> {
+      plans.each(plan -> {
+        if(plan == null)return;
+      });
+    });
+    return table;
+  }
+  
   public static Table createTableOfPlan(UnitBuildPlan plan, UnitGateBuild building){
     return createTableOfPlan(plan, building, true);
   }
