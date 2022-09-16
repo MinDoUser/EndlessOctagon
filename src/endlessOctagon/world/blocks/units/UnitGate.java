@@ -107,17 +107,26 @@ public class UnitGate extends Block {
     }
   
   protected void onConfigure(UnitGateBuild tile, Integer i){
+    //Catch things may cause an exception later.
     if(!configurable || i == null)return;
-      
-      if(tile.selectedPlan == i)return;
+    if(i < 0  || >= plans.size) return;
+    
+    queuedPlans.addLast(i); //Done.
+    
+      /*if(tile.selectedPlan == i)return;
       tile.selectedPlan = (i<0 || i >= plans.size) ? -1:i;
-      tile.progress = 0f;
+      tile.progress = 0f;*/ //We don't require this due we now have a queue for plans...
   }
   //TODO: Replace this with a Queue
   public class UnitGateBuild extends Building {
     public final UnitGateDialog unitGateDialog = new UnitGateDialog(this);
     public int selectedPlan = -1;
     public float progress = 0f, speedScl = 0f, time = 0f;
+    
+    protected IntQueue queuedPlans = new IntQueue(10); // About ten spaces should be enough
+    
+    /** The current spawn pos. */
+    private int spawnPos = -1;
     /** @return null if {@code selectedPlan} smaller than 0 or greater than the size of plans*/
     public UnitBuildPlan getPlan(){
       if(selectedPlan < 0 || selectedPlan >= plans.size)return null;
@@ -192,9 +201,16 @@ public class UnitGate extends Block {
             }
 
             if(getPlan() != null && progress >= getPlan().time){
-                getPlan().unit.spawn(this.team,this.x, this.y);
+                getPlan().unit.spawn(this.team,this.x+spawnPos, this.y+spawnPos); //Avoid all being spawned at the middle and displayed as one unit.
                 consume();
+                if(!queuedPlans.isEmpty()){
+                  selectedPlan = queuedPlans.removeFirst(); // Avoid NoSuchElementException
+                } else {
+                  selectedPlan = -1;
+                }
                 
+                spawnPos++;
+                if(spawnPos > 1)spawnPos = -1;
                 progress = 0;
                 
                 //Events.fire(new UnitCreateEvent(getPlan().unit, this));
