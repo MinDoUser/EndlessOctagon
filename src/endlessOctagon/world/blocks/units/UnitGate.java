@@ -111,7 +111,7 @@ public class UnitGate extends Block {
     if(!configurable || i == null)return;
     if(i < 0  || i >= plans.size) return;
     
-    queuedPlans.addLast(i); //Done.
+    tile.queuedPlans.addLast(i); //Done.
     
       /*if(tile.selectedPlan == i)return;
       tile.selectedPlan = (i<0 || i >= plans.size) ? -1:i;
