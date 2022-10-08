@@ -5,7 +5,7 @@ import mindustry.Vars;
 
 public final class EOUtils {
   
-  public static final float maxAlpha = 0.75, minAlpha = 0.0;
+  public static final float maxAlpha = 0.75f, minAlpha = 0.0f; //float
   
   /** This is not the best options, see the other "updateLight" methods */
   public static void updateLight(boolean darker){
