@@ -12,7 +12,7 @@ public final class EOVars {
     dice2 = '\u2681',
     dice3 = '\u2682',
     dice4 = '\u2683',
-    dice5 = '\u2684'
+    dice5 = '\u2684',
     dice6 = '\u2685';
   
   //public static final UnitGateDialog unitGateDialog = new UnitGateDialog();
