@@ -15,12 +15,13 @@ public class EOItems implements endlessOctagon.util.Loadable{
     GENIUM_COLOR = Color.valueOf("eab678"),
   
     C_IRON = Color.valueOf("b364cd"),
-    C_MULTI_STEEL = Color.valueOf("daddea");
+    C_MULTI_STEEL = Color.valueOf("daddea"),
+    C_GOLD = Color.valueOf("e8d174");
   
     public static Item 
       oxa, genium,
   
-    iron, multiSteel;
+    iron, multiSteel, gold;
   public final void loadObject(){
     oxa = new Item("oxa", OXA_COLOR){{
             hardness = 1;
@@ -46,6 +47,12 @@ public class EOItems implements endlessOctagon.util.Loadable{
       alwaysUnlocked = false;
     }};
     
-    eravirItems.addAll(iron, multiSteel, Items.graphite, Items.silicon);
+    gold = new Item("gold", C_GOLD){{
+      hardness = 1;
+      cost = 1.35f;
+      alwaysUnlocked = false;
+    }};
+    
+    eravirItems.addAll(iron, multiSteel, gold, Items.graphite, Items.silicon);
   }
 }
