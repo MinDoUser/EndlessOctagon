@@ -45,6 +45,8 @@ public final class EOUnitTypes implements endlessOctagon.util.Loadable {
   private void loadCoreUnits(){
     volatileUnit = new UnitType("volatile"){{
             aiController = BuilderAI::new;
+      
+            constrctor = UnitEntity::create;
             isEnemy = false;
 
             lowAltitude = true;
