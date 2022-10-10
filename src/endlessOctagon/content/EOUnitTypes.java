@@ -55,7 +55,7 @@ public final class EOUnitTypes implements endlessOctagon.util.Loadable {
             mineTier = 1;
             buildSpeed = 1.1f;
             drag = 0.05f;
-            speed = 3.1f;
+            speed = 2.8f;
             rotateSpeed = 15f;
             accel = 0.1f;
             itemCapacity = 45;
@@ -65,7 +65,7 @@ public final class EOUnitTypes implements endlessOctagon.util.Loadable {
             alwaysUnlocked = true;
 
             weapons.add(new Weapon(){{
-                reload = 17f;
+                reload = 37f;
                 x = 0f;
                 y = 1f;
                 top = false;
@@ -74,7 +74,7 @@ public final class EOUnitTypes implements endlessOctagon.util.Loadable {
                  bullet = new BasicBulletType(4f, 40){{
                     sprite = "missile-large";
                     smokeEffect = Fx.shootBigSmoke;
-                    shootEffect = Fx.shootBigColor;
+                    shootEffect = Fx.pointHit;
                     width = 5f;
                     height = 7f;
                     lifetime = 42f;
@@ -84,6 +84,7 @@ public final class EOUnitTypes implements endlessOctagon.util.Loadable {
                     trailWidth = 1.7f;
                     trailLength = 5;
                     despawnEffect = hitEffect = Fx.hitBulletColor;
+                    buildingDamageMultiplier = 0.25f;
                 }};
             }});
         }};
