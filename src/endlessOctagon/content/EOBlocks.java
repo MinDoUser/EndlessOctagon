@@ -67,6 +67,7 @@ public final class EOBlocks implements endlessOctagon.util.Loadable{
   steamCondenser,
   //Storage
   chest,
+  coreElement,
   //Liquid
   plateConduit, plateRouter,
   //units
@@ -365,6 +366,26 @@ public final class EOBlocks implements endlessOctagon.util.Loadable{
             itemCapacity = 250;
             scaledHealth = 55;
         }};
+    
+    elementCore = new CoreBlock("core-element"){{
+            //TODO update cost
+            requirements(Category.effect, with(Items.graphite, 1100, Items.silicon, 800, EOItems.iron, 1400, EOItems.multiSteel, 900));
+
+            isFirstTier = true;
+            unitType = EOUnitTypes.volatileUnit;
+            health = 4750;
+            itemCapacity = 3500;
+            size = 4;
+            armor = 5f;
+            alwaysUnlocked = true;
+            incinerateNonBuildable = true;
+
+            buildCostMultiplier = 0.7f;
+
+            unitCapModifier = 22;
+            researchCostMultiplier = 0.07f;
+        }};
+
     //End of storage
     //Start of units
     T1UnitGate = new UnitGate("t1-unit-gate"){{
