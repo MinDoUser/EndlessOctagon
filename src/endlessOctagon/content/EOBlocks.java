@@ -367,7 +367,7 @@ public final class EOBlocks implements endlessOctagon.util.Loadable{
             scaledHealth = 55;
         }};
     
-    elementCore = new CoreBlock("core-element"){{
+    coreElement = new CoreBlock("core-element"){{
             //TODO update cost
             requirements(Category.effect, with(Items.graphite, 1100, Items.silicon, 800, EOItems.iron, 1400, EOItems.multiSteel, 900));
 
