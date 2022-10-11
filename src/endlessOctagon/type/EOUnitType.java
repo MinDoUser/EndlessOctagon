@@ -30,7 +30,7 @@ public class EOUnitType extends UnitType {
     super.load();
     if(rotors != null && hasRotors){
       for(var rotor : rotors){
-        if(rotor != null)rotor.toDrawData().loadRegions();
+        if(rotor != null)rotor.loadRegions();
       }
     }
   }
@@ -41,7 +41,7 @@ public class EOUnitType extends UnitType {
     
     if(rotors != null && hasRotors){
       for(var rotor : rotors){
-        if(rotor != null)rotor.toDrawData().update(unit);
+        if(rotor != null)rotor.toDrawData().updateRot(unit);
       }
     }
   }
@@ -51,7 +51,7 @@ public class EOUnitType extends UnitType {
     super.draw(unit);
     if(rotors != null && hasRotors){
       for(var rotor : rotors){
-        if(rotor != null)rotor.toDrawData().draw(unit);
+        if(rotor != null)rotor.toDrawData().drawRotor(unit);
       }
     }
   }
