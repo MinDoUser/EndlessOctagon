@@ -18,11 +18,11 @@ public class EOUnitType extends UnitType {
   public EOUnitType(String name){
     super(name);
     
-    contructor = UnitEntity::create; //Prevent nulls. o_o
+    constructor = UnitEntity::create; //Prevent nulls. o_o
   }
   
   public void addRotors(UnitRotor... rotors){
-    rotors.addAll(rotors);
+    this.rotors.addAll(rotors);
   }
   
   @Override
@@ -30,7 +30,7 @@ public class EOUnitType extends UnitType {
     super.load();
     if(rotors != null && hasRotors){
       for(var rotor : rotors){
-        if(rotor != null)rotor.loadRegions();
+        if(rotor != null)rotor.toDrawData().loadRegions();
       }
     }
   }
@@ -41,7 +41,7 @@ public class EOUnitType extends UnitType {
     
     if(rotors != null && hasRotors){
       for(var rotor : rotors){
-        if(rotor != null)rotor.update(unit);
+        if(rotor != null)rotor.toDrawData().update(unit);
       }
     }
   }
@@ -51,7 +51,7 @@ public class EOUnitType extends UnitType {
     super.draw(unit);
     if(rotors != null && hasRotors){
       for(var rotor : rotors){
-        if(rotor != null)rotor.draw(unit);
+        if(rotor != null)rotor.toDrawData().draw(unit);
       }
     }
   }
