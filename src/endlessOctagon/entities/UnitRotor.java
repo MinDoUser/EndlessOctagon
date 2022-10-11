@@ -6,6 +6,7 @@ import mindustry.gen.*;
 import arc.Core;
 import arc.graphics.g2d.*;
 import arc.math.*;
+import arc.util.Time;
 
 /** A rotor for units*/
 public class UnitRotor {
@@ -58,8 +59,8 @@ public class UnitRotor {
     }
     /** Update rotation. Call this in {@code update(Unit unit)} of the UnitType*/
     public void updateRot(Unit unit){
-      rotor.rotorRot += rotor.rotor.speed * Time.delta;
-      rotor.rotorRot %= 360f; //Reset when > 360° 
+      rotorRot += rotor.speed * Time.delta;
+      rotorRot %= 360f; //Reset when > 360° 
     }
     /** Draw rotor. Call this in {@code draw(Unit unit)} of the UnitType */
     public void drawRotor(Unit unit){
@@ -71,7 +72,7 @@ public class UnitRotor {
                 Draw.rect(rotor.bladeRegion, x, y,
                     unit.rotation - 90f
                     + 360f / rotor.blades * j
-                    + mount.rotorRot
+                    + rotorRot
                 );
             }
 
