@@ -16,9 +16,25 @@ This mod also add some intresting features and override some ingame dialogs...
 ## The Features
 <ul>
   <li> 
-    A _Block Checker_ 
+    A Block Checker
     <br>
     The Block Checker is a option to check whether a block can build with the items in the core.
   </li>
   <li> <i>soon</i> </li>
+</ul>
+
+### TODO
+<ul>
+<li>
+[X] Create own conduits
+</li>
+<li>
+[ ] Create own conveyors
+</li>
+<li>
+[ ] Create thrusters for the Element Core
+</li>
+<li>
+[ ] Create own planet with own grid and other stuff
+</li>
 </ul>
