@@ -29,16 +29,22 @@ import static arc.graphics.g2d.Lines.*;
 import static arc.math.Angles.*;
 import static mindustry.Vars.*;
 
+import endlessOctagon.type.*;
+import endlessOctagon.entities.*;
+
 public final class EOUnitTypes implements endlessOctagon.util.Loadable {
   
   public static UnitType 
     //Core units
-    volatileUnit //can't name it 'volatile' cuz it's a word of java ...
+    volatileUnit, //can't name it 'volatile' cuz it's a word of java ...
+    //Copters
+    array
     ;
   
   @Override
   public void loadObject(){
     loadCoreUnits();
+    loadCopters();
     // More methods and calls.
   }
   /** Load core units */
@@ -63,6 +69,7 @@ public final class EOUnitTypes implements endlessOctagon.util.Loadable {
             engineOffset = 6f;
             hitSize = 8f;
             alwaysUnlocked = true;
+            useUnitCap = false;
 
             weapons.add(new Weapon(){{
                 reload = 37f;
@@ -88,6 +95,63 @@ public final class EOUnitTypes implements endlessOctagon.util.Loadable {
                 }};
             }});
         }};
+  }
+  
+  private void loadCopters(){
+    array = new EOUnitType("array"){{
+      flying = true;
+      lowAltitude = true;
+      engineSize = -1f;
+      mineSpeed = 2.57f;
+      mineTier = 2;
+      speed = 2.2f;
+      rotateSpeed = 10f;
+      hitSize = 9.5f;
+      itemCapacity = 55;
+      health = 725f;
+      
+      targetFlags = new BlockFlag[]{BlockFlag.factory, BlockFlag.generator, null};
+      ammoType = new ItemAmmoType(EOItems.iron);
+      
+      hasRotors = true;
+      addRotors(
+        new UnitRotor("array"){{
+            speed = 27f;
+            x=0f;
+            y = -1.2f;
+        }}
+      );
+      
+      weapons.add(new Weapon("eo-missile-launcher"){{
+        reload = 40f;
+        x = 7f;
+        rotate = true;
+        shake = 1f;
+        shoot.shots = 2;
+        inaccuracy = 5f;
+        velocityRnd = 0.2f;
+        shootSound = Sounds.missile;
+
+        bullet = new MissileBulletType(3f, 22){{
+              width = 8f;
+              height = 8f;
+              shrinkY = 0f;
+              drag = -0.003f;
+              homingRange = 65f;
+              keepVelocity = false;
+              splashDamageRadius = 20f;
+              splashDamage = 22f;
+              lifetime = 50f;
+              trailColor = Pal.unitBack;
+              backColor = Pal.unitBack;
+              frontColor = Pal.unitFront;
+              hitEffect = Fx.blastExplosion;
+              despawnEffect = Fx.blastExplosion;
+              weaveScale = 6f;
+              weaveMag = 1f;
+       }};
+      }});
+    }}
   }
   
 }
