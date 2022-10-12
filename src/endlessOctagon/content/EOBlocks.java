@@ -370,7 +370,8 @@ public final class EOBlocks implements endlessOctagon.util.Loadable{
     coreElement = new CoreBlock("core-element"){{
             //TODO update cost
             requirements(Category.effect, with(Items.graphite, 1100, Items.silicon, 800, EOItems.iron, 1400, EOItems.multiSteel, 900));
-
+            
+            squareSprite = false;
             isFirstTier = true;
             unitType = EOUnitTypes.volatileUnit;
             health = 4750;
