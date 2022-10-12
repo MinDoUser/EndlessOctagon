@@ -151,7 +151,7 @@ public final class EOUnitTypes implements endlessOctagon.util.Loadable {
               weaveMag = 1f;
        }};
       }});
-    }}
+    }};
   }
   
 }
