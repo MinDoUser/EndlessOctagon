@@ -105,7 +105,7 @@ public final class EOUnitTypes implements endlessOctagon.util.Loadable {
       mineSpeed = 2.57f;
       mineTier = 2;
       speed = 2.2f;
-      rotateSpeed = 10f;
+      rotateSpeed = 2.8f;
       hitSize = 9.5f;
       itemCapacity = 55;
       health = 725f;
@@ -115,7 +115,7 @@ public final class EOUnitTypes implements endlessOctagon.util.Loadable {
       
       hasRotors = true;
       addRotors(
-        new UnitRotor("array"){{
+        new UnitRotor(name){{
             speed = 27f;
             x=0f;
             y = -1.2f;
