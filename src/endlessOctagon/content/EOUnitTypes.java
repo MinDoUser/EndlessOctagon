@@ -127,7 +127,8 @@ public final class EOUnitTypes implements endlessOctagon.util.Loadable {
         x = 7f;
         rotate = true;
         shake = 1f;
-        shoot.shots = 2;
+        shoot.shots = 4;
+        shoot.shotDelay = 3.5f;
         inaccuracy = 5f;
         velocityRnd = 0.2f;
         shootSound = Sounds.missile;
