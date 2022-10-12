@@ -13,7 +13,7 @@ public class EOUnitType extends UnitType {
   /** Whether this unit has rotors or not */
   public boolean hasRotors = false;
   public Seq<UnitRotor> rotors = new Seq<>(2);
-  protected Seq<UnitRotor.RotorDrawDate> drawDatas = new Seq<>(2);
+  protected Seq<UnitRotor.RotorDrawData> drawDatas = new Seq<>(2);
   
   
   public EOUnitType(String name){
@@ -25,7 +25,7 @@ public class EOUnitType extends UnitType {
   public void addRotors(UnitRotor... rotors){
     this.rotors.addAll(rotors);
     for(var rotor : rotors){
-      this.drawDatas.add(rotor.toDrawData);
+      this.drawDatas.add(rotor.toDrawData());
     }
   }
   
