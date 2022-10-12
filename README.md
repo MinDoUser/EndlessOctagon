@@ -2,13 +2,12 @@
 A java mod. <br> *[more soon]*
 <br><br>
 Please note that:<br>
-<i>This mod is <b>far away</b> from <b>done</b>! </i><br>
-There are a lot of things maybe not work or still missing!
+<code><i>This mod is <b>far away</b> from <b>done</b>! </i><br>
+There are a lot of things maybe not work or still missing!</code>
 
 ## The Idea
 <br>
 The idea is to add a new Campaign planet with a own set of blocks, items, etc.
-
 This planet is <del>(so far)</del> called **Eravir** and also nowhere near done. (Non existent yet...)
 
 This mod also add some intresting features and override some ingame dialogs...
@@ -36,5 +35,8 @@ This mod also add some intresting features and override some ingame dialogs...
 </li>
 <li>
 [ ] Create own planet with own grid and other stuff
+</li>
+<li>
+[ ] Understand <code>build.gradle</code> and fix some warnings and other stuff.
 </li>
 </ul>
