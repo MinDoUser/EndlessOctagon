@@ -76,6 +76,12 @@ public final class EOBlocks implements endlessOctagon.util.Loadable{
     connectProjector,
     //Environment
     sump,
+    lightStone,
+    ironStone,
+    greenStone,
+    lightStoneWall,
+    ironStoneWall,
+    greenStoneWall,
     wallOreGenium;
   
   private float calculateTurretRange(mindustry.entities.bullet.BulletType b){
@@ -302,6 +308,31 @@ public final class EOBlocks implements endlessOctagon.util.Loadable{
             attributes.set(Attribute.oil, 0.56f);
             attributes.set(Attribute.water, 1.95f);
         }};
+    
+    greenStone = new Floor("green-stone"){{
+            speedMultiplier = 0.95f;
+            attributes.set(Attribute.water, 0.22f); // A bit wet?
+            attributes.set(Attribute.oil, 0.37f);
+        }};
+    
+    lightStone = new Floor("light-stone"); //Nothing.
+    
+    ironStone = new Floor("iron-stone"){{
+            attributes.set(Attribute.water, -0.05f);
+        }};
+    
+    greenStoneWall = new StaticWall("green-stone-wall"){{
+            greenStone.asFloor().wall = this;
+            attributes.set(Attribute.sand, 1.3f);
+        }};
+    lightStoneWall = new StaticWall("light-stone-wall"){{
+            lightStone.asFloor().wall = this;
+            attributes.set(Attribute.sand, 0.45f);
+        }};
+    ironStoneWall = new StaticWall("iron-stone-wall"){{
+            ironStone.asFloor().wall = this;
+        }};
+    
     wallOreGenium = new OreBlock("ore-wall-genium", EOItems.genium){{
             wallOre = true;
         }};
