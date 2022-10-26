@@ -1,6 +1,6 @@
 package endlessOctagon.maps.planet;
 
-import mindustry.maps.generator.*;
+import mindustry.maps.generators.*;
 import mindustry.world.*;
 import mindustry.content.*;
 
