@@ -20,7 +20,7 @@ import static mindustry.Vars.*;
 import endlessOctagon.content.*;
 
 public class EravirPlanetGenerator extends BlankPlanetGenerator {
-  protected static final byte def = 0, cold 1; //Wich mind of blocks
+  protected static final byte def = 0, cold = 1; //Wich mind of blocks
   
   protected Block[][] blocks = {
                                 {EOBlocks.lightStone, EOBlocks.ironStone, Blocks.dirt, Blocks.mud},
@@ -70,7 +70,7 @@ public class EravirPlanetGenerator extends BlankPlanetGenerator {
                 return Blocks.dirt;
             }
           if(result == EOBlocks.sump || result == EOBlocks.greenStone){
-            retunr EOBlocks.sump;
+            return EOBlocks.sump;
           }
         }
 
