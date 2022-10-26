@@ -43,7 +43,7 @@ public class EravirPlanetGenerator extends BlankPlanetGenerator {
   
   //From erekir generator. //TODO: Understand and upgrade
   float rawHeight(Vec3 position){
-        return Simplex.noise3d(seed, octaves, persistence, 1f/1.4, 10f + position.x, 10f + position.y, 10f + position.z);
+        return Simplex.noise3d(seed, 8, 0.75f, 1f/1.4, 10f + position.x, 10f + position.y, 10f + position.z);
     }
 
     float rawTemp(Vec3 position){
