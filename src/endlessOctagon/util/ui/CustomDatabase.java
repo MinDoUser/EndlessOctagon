@@ -56,7 +56,7 @@ public class CustomDatabase extends DatabaseDialog {
 
             Seq<Content> array = allContent[j]
                 .select(c -> c instanceof UnlockableContent u &&
-                    (!u.isHidden() || u.techNode != null || (u instanceof Planet p && p != Planets.sun && !(p.generator instanceof AsteroidGenerator))) &&
+                    (!u.isHidden() || u.techNode != null || (u instanceof Planet p && p.accessible)) &&
                     (text.isEmpty() || u.localizedName.toLowerCase().contains(text.toLowerCase())));
             if(array.size == 0) continue;
           
@@ -78,7 +78,9 @@ public class CustomDatabase extends DatabaseDialog {
                     UnlockableContent unlock = (UnlockableContent)array.get(i);
 
                     Image image = unlocked(unlock) || Vars.state.isMenu() || Core.settings.getBool("showlockedblocks")? new Image(unlock.uiIcon).setScaling(Scaling.fit) : new Image(Icon.lock, Pal.gray);
-
+                    if(unlock.uiIcon.found()){
+                      image = Core.bundle.find("eo-esag");
+                    }
                     //banned cross
                     if(state.isGame() && (unlock instanceof UnitType u && u.isBanned() || unlock instanceof Block b && state.rules.bannedBlocks.contains(b))){
                         list.stack(image, new Image(Icon.cancel){{
