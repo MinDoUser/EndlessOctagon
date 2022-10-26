@@ -77,10 +77,12 @@ public class CustomDatabase extends DatabaseDialog {
                 for(int i = 0; i < array.size; i++){
                     UnlockableContent unlock = (UnlockableContent)array.get(i);
 
-                    Image image = unlocked(unlock) || Vars.state.isMenu() || Core.settings.getBool("showlockedblocks")? new Image(unlock.uiIcon).setScaling(Scaling.fit) : new Image(Icon.lock, Pal.gray);
-                    if(unlock.uiIcon.found()){
-                      image = new Image(Core.atlas.find("eo-esag")).setScaling(Scaling.fit);
+                    Image img = unlocked(unlock) || Vars.state.isMenu() || Core.settings.getBool("showlockedblocks")? new Image(unlock.uiIcon).setScaling(Scaling.fit) : new Image(Icon.lock, Pal.gray);
+                    if(unlock.uiIcon.found() && unlock instanceof Planet){
+                      img = new Image(Core.atlas.find("eo-esag")).setScaling(Scaling.fit);
                     }
+                  
+                    Image image = img;
                     //banned cross
                     if(state.isGame() && (unlock instanceof UnitType u && u.isBanned() || unlock instanceof Block b && state.rules.bannedBlocks.contains(b))){
                         list.stack(image, new Image(Icon.cancel){{
