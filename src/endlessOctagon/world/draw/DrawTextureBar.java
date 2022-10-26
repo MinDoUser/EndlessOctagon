@@ -30,6 +30,10 @@ public class DrawTextureBar extends DrawBlock {
       rotation = 0;
       dx = build.x + Mathf.sin(build.totalProgress(), 6f, Vars.tilesize / 3f * build.block.size)+startX;
       dy = build.y;
+    }else{
+      dx = build.x;
+      dy = build.y;
+      rotation = 0;
     }
     
     
