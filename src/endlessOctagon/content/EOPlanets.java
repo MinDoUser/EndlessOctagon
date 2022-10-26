@@ -20,8 +20,8 @@ import mindustry.Vars;
 import mindustry.content.*;
 
 import endlessOctagon.type.*;
-import ebdlessOctagon.content.*;
-import endlessOctagon.maps.generators.*;
+import endlessOctagon.content.*;
+import endlessOctagon.maps.planet.*;
 
 public final class EOPlanets implements endlessOctagon.util.Loadable{
   public static Planet 
@@ -68,7 +68,7 @@ public final class EOPlanets implements endlessOctagon.util.Loadable{
             lightDstFrom = 0.24f;
             clearSectorOnLose = true;
             defaultCore = EOBlocks.coreElement;
-            iconColor = Color.valueOf("b2cfd2");
+            //iconColor = Color.valueOf("b2cfd2");
             hiddenItems.addAll(Vars.content.items()).removeAll(EOItems.eravirItems);
       
             updateLighting = true;
