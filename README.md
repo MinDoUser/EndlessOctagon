@@ -11,7 +11,7 @@ There are a lot of things maybe not work or still missing!</code>
 ## The Idea
 <br>
 The idea is to add a new Campaign planet with a own set of blocks, items, etc.
-This planet is <del>(so far)</del> called **Eravir** and also nowhere near done. (Non existent yet...)
+This planet is <del>(so far)</del> called Eravir and also nowhere near done.
 
 This mod also add some intresting features and override some ingame dialogs...
 
@@ -39,6 +39,9 @@ This mod also add some intresting features and override some ingame dialogs...
   <li>
     <p> Planet </p>
       <ul>
+        <li>
+          [X] Create Eravir
+        </li>
         <li>
           [ ] Create own planet with own grid and other stuff
         </li>
