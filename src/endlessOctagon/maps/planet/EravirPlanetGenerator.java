@@ -19,13 +19,9 @@ import static mindustry.Vars.*;
 
 import endlessOctagon.content.*;
 
-public class EravirPlanetGenerator extends PlanetGenerator {
+public class EravirPlanetGenerator extends BlankPlanetGenerator {
   
   protected Block[] blocks = {EOBlocks.lightStone, EOBlocks.ironStone, EOBlocks.lightStone}; //TODO More environment
-  
-  @Override
-  public Color getColor(Vec3 location){
-    return Color.white; //TODO fix when having blocks.
-  }
+
   
 }
