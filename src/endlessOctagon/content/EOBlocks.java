@@ -3,6 +3,7 @@ package endlessOctagon.content;
 import arc.graphics.*;
 import arc.math.*;
 import arc.struct.*;
+import arc.graphics.g2d.*;
 import mindustry.*;
 import mindustry.entities.*;
 import mindustry.entities.abilities.*;
@@ -296,7 +297,7 @@ public final class EOBlocks implements endlessOctagon.util.Loadable{
             drawer = new DrawTurret("reinforced-");
             shootY = 1;
             outlineColor = Pal.darkOutline;
-            size = 2;
+            size = 3;
             envEnabled |= Env.space;
             reload = 42f;
             recoil = 2f;
@@ -306,7 +307,7 @@ public final class EOBlocks implements endlessOctagon.util.Loadable{
             rotateSpeed = 1.5f;
             alwaysUnlocked = true;
 
-            coolant = consume(new ConsumeLiquid(Liquids.water, 15f / 60f));
+            coolant = consume(new ConsumeLiquid(Liquids.water, 7.5f / 60f));
             limitRange();
         }};
     //End of turrets
@@ -383,7 +384,7 @@ public final class EOBlocks implements endlessOctagon.util.Loadable{
             attributes.set(Attribute.water, -0.05f);
         }};
     
-    greenStoneWall = new StaticWall("green-stone-wall"){{
+    greenStoneWall = new StaticWall("green-wall"){{
             greenStone.asFloor().wall = this;
             attributes.set(Attribute.sand, 1.3f);
         }};
@@ -478,7 +479,14 @@ public final class EOBlocks implements endlessOctagon.util.Loadable{
 
             unitCapModifier = 22;
             researchCostMultiplier = 0.07f;
-        }};
+        }
+                                                
+        @Override
+        public TextureRegion[] icons(){
+          return new TextureRegion[]{arc.Core.atlas.find("eo-block-core-element-ui")};
+        }
+                                               
+     };
 
     //End of storage
     //Start of units
