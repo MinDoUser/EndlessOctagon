@@ -55,6 +55,8 @@ public final class EOBlocks implements endlessOctagon.util.Loadable{
     crowl, shock, thunder,
   
     shadow,
+  
+    mars,
     //Walls
     oxaWall, oxaWallLarge,
     ironWall, ironWallLarge,
@@ -186,7 +188,7 @@ public final class EOBlocks implements endlessOctagon.util.Loadable{
             consumePower(4.5f);
     }};
     
-    
+    //TODO: Remove or change stats.
     shadow = new ItemTurret("shadow"){{
             requirements(Category.turret, with(Items.silicon, 135, EOItems.iron, 50, Items.graphite, 75));
             ammo(
@@ -241,6 +243,66 @@ public final class EOBlocks implements endlessOctagon.util.Loadable{
             range = 170;
             shootCone = 3f;
             scaledHealth = 180;
+            rotateSpeed = 1.5f;
+            alwaysUnlocked = true;
+
+            coolant = consume(new ConsumeLiquid(Liquids.water, 15f / 60f));
+            limitRange();
+        }};
+    
+    mars = new ItemTurret("mars"){{
+            requirements(Category.turret, with(Items.silicon, 175, EOItems.iron, 125, Items.graphite, 175));
+            ammo(
+                EOItems.iron, new BasicBulletType(6f, 85){{
+                width = 12f;
+                hitSize = 7f;
+                height = 17f;
+                shootEffect = Fx.colorSparkBig;
+                smokeEffect = Fx.shootBigSmoke;
+                ammoMultiplier = 2;
+                pierce = false;
+                pierceBuilding = false;
+                hitColor = backColor = trailColor = EOItems.iron.color;
+                frontColor = Color.white;
+                trailWidth = 1.8f;
+                trailLength = 5;
+                hitEffect = despawnEffect = Fx.hitBulletColor;
+                buildingDamageMultiplier = 0.80f;
+            }},
+              
+              EOItems.multiSteel, new BasicBulletType(5.2f, 122){{
+                width = 12f;
+                hitSize = 7f;
+                height = 17f;
+                shootEffect = Fx.colorSparkBig;
+                smokeEffect = Fx.shootBigSmoke;
+                ammoMultiplier = 2;
+                hitColor = backColor = trailColor = EOItems.multiSteel.color;
+                frontColor = Color.white;
+                trailWidth = 2.4f;
+                trailLength = 6;
+                hitEffect = despawnEffect = Fx.hitBulletColor;
+                buildingDamageMultiplier = 0.80f;
+                reloadMultiplier = 1.2f;
+                rangeChange = 1.8f*8f;
+            }}
+        );
+
+            coolantMultiplier = 6f;
+            //shootSound = Sounds.shootAlt; Sounds do not exist?
+
+            shake = 1.1f;
+            ammoPerShot = 3;
+            drawer = new DrawTurret("reinforced-");
+            shootY = 1;
+            outlineColor = Pal.darkOutline;
+            size = 2;
+            envEnabled |= Env.space;
+            reload = 42f;
+            recoil = 2f;
+            range = 170;
+            shootCone = 3f;
+            scaledHealth = 185;
             rotateSpeed = 1.5f;
             alwaysUnlocked = true;
 
