@@ -62,7 +62,7 @@ public final class EOBlocks implements endlessOctagon.util.Loadable{
     oxaWall, oxaWallLarge,
     ironWall, ironWallLarge,
     //Crafter
-    oxaForge, siliconFuser,
+    oxaForge, siliconFuser, ironCurcible,
   
   //Drills
   alphaDrill, //Soon: betaDrill, gammaDrill, omegaDrill(?),
@@ -420,7 +420,7 @@ public final class EOBlocks implements endlessOctagon.util.Loadable{
         }};
     
     siliconFuser = new GenericCrafter("silicon-fuser"){{
-            requirements(Category.crafting, with(EOItems.multiSteel, 70, Items.graphite, 44));
+            requirements(Category.crafting, with(EOItems.iron, 70, Items.graphite, 44));
             craftEffect = Fx.none;
             outputItem = new ItemStack(Items.silicon, 4);
             craftTime = 50f;
@@ -442,6 +442,30 @@ public final class EOBlocks implements endlessOctagon.util.Loadable{
 
             consumeItems(with(Items.graphite, 2, Items.sand, 5));
             consumePower(1.8f);
+        }};
+    
+      ironCrucible = new GenericCrafter("iron-crucible"){{
+            requirements(Category.crafting, with(EOItems.iron, 120, Items.graphite, 160, Items.silicon, 100));
+            craftEffect = Fx.none;
+            outputItem = new ItemStack(EOItems.multiSteel, 2);
+            craftTime = 52f;
+            size = 3;
+            hasPower = true;
+            hasLiquids = false;
+            envEnabled |= Env.space | Env.underwater;
+            envDisabled = Env.none;
+            itemCapacity = 32;
+            drawer = new DrawMulti(new DrawRegion("-bottom"), new DrawArcSmelt(){{
+              flameColor = EOItems.multiSteel.color;
+            }}, new DrawDefault());
+            fogRadius = 4;
+            squareSprite = true;
+            researchCost = with(EOItems.iron, 540, Items.graphite, 700, Items.silicon, 450);
+            //ambientSound = Sounds.smelter;
+            //ambientSoundVolume = 0.12f;
+
+            consumeItems(with(Items.silicon, 2, EOItems.iron, 3, Items.graphite, 1));
+            consumePower(2.3f);
         }};
     
       //End of crafter
