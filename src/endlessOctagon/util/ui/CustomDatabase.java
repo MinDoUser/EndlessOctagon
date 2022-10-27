@@ -78,7 +78,7 @@ public class CustomDatabase extends DatabaseDialog {
                     UnlockableContent unlock = (UnlockableContent)array.get(i);
 
                     Image img = unlocked(unlock) || Vars.state.isMenu() || Core.settings.getBool("showlockedblocks")? new Image(unlock.uiIcon).setScaling(Scaling.fit) : new Image(Icon.lock, Pal.gray);
-                    if(unlock.uiIcon.found() && unlock instanceof Planet){
+                    if(!unlock.uiIcon.found() && unlock instanceof Planet){
                       img = new Image(Core.atlas.find("eo-esag")).setScaling(Scaling.fit);
                     }
                   
