@@ -419,7 +419,7 @@ public final class EOBlocks implements endlessOctagon.util.Loadable{
         }};
     
     siliconFuser = new GenericCrafter("silicon-fuser"){{
-            requirements(Category.crafting, with(EOItems.steel, 70, Items.graphite, 44));
+            requirements(Category.crafting, with(EOItems.multiSteel, 70, Items.graphite, 44));
             craftEffect = Fx.none;
             outputItem = new ItemStack(Items.silicon, 4);
             craftTime = 50f;
