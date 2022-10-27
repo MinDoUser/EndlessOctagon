@@ -62,7 +62,7 @@ public final class EOBlocks implements endlessOctagon.util.Loadable{
     oxaWall, oxaWallLarge,
     ironWall, ironWallLarge,
     //Crafter
-    oxaForge,
+    oxaForge, siliconFuser,
   
   //Drills
   alphaDrill, //Soon: betaDrill, gammaDrill, omegaDrill(?),
@@ -416,6 +416,30 @@ public final class EOBlocks implements endlessOctagon.util.Loadable{
             drawer = new DrawMulti(new DrawDefault(), new DrawFlame(Color.valueOf("ffef99")));
 
             consumeItems(with(Items.coal, 1, Items.sand, 2));
+        }};
+    
+    siliconFuser = new GenericCrafter("silicon-fuser"){{
+            requirements(Category.crafting, with(EOItems.steel, 70, Items.graphite, 44));
+            craftEffect = Fx.none;
+            outputItem = new ItemStack(Items.silicon, 4);
+            craftTime = 50f;
+            size = 3;
+            hasPower = true;
+            hasLiquids = false;
+            envEnabled |= Env.space | Env.underwater;
+            envDisabled = Env.none;
+            itemCapacity = 32;
+            drawer = new DrawMulti(new DrawRegion("-bottom"), new DrawParticles(){{
+              color = Color.valueOf("acaeb7");
+              particleSize = 1.5f;
+            }}, new DrawDefault());
+            fogRadius = 4;
+            researchCost = with(EOItems.iron, 170, Items.graphite, 60);
+            //ambientSound = Sounds.smelter;
+            //ambientSoundVolume = 0.12f;
+
+            consumeItems(with(Items.graphite, 2, Items.sand, 5));
+            consumePower(1.8f);
         }};
     
       //End of crafter
