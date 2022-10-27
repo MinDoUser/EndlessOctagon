@@ -294,6 +294,7 @@ public final class EOBlocks implements endlessOctagon.util.Loadable{
 
             shake = 1.1f;
             ammoPerShot = 3;
+            squareSprite = false;
             drawer = new DrawTurret("reinforced-");
             shootY = 1;
             outlineColor = Pal.darkOutline;
@@ -434,6 +435,7 @@ public final class EOBlocks implements endlessOctagon.util.Loadable{
               particleSize = 1.5f;
             }}, new DrawDefault());
             fogRadius = 4;
+            squareSprite = false;
             researchCost = with(EOItems.iron, 170, Items.graphite, 60);
             //ambientSound = Sounds.smelter;
             //ambientSoundVolume = 0.12f;
