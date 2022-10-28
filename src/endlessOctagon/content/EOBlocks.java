@@ -64,6 +64,9 @@ public final class EOBlocks implements endlessOctagon.util.Loadable{
     //Crafter
     oxaForge, siliconFuser, ironCrucible,
   
+  //Distribution
+  plateDuct,
+  
   //Drills
   alphaDrill, //Soon: betaDrill, gammaDrill, omegaDrill(?),
   
@@ -363,6 +366,14 @@ public final class EOBlocks implements endlessOctagon.util.Loadable{
             liquidCapacity = 30f;
         }};
     //End of liquids
+    //Distribution
+    plateDuct = new Duct("plate-duct"){{
+            requirements(Category.distribution, with(EOItems.iron, 1));
+            health = 110;
+            speed = 4f;
+            alwaysUnlocked = true;
+        }};
+    //Distribution end
     //Start of environment
     sump = new Floor("sump"){{
             speedMultiplier = 0.47f;
