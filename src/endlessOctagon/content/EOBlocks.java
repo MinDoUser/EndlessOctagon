@@ -62,7 +62,7 @@ public final class EOBlocks implements endlessOctagon.util.Loadable{
     oxaWall, oxaWallLarge,
     ironWall, ironWallLarge,
     //Crafter
-    oxaForge, siliconFuser, ironCurcible,
+    oxaForge, siliconFuser, ironCrucible,
   
   //Drills
   alphaDrill, //Soon: betaDrill, gammaDrill, omegaDrill(?),
