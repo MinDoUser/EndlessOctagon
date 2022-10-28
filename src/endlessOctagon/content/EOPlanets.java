@@ -54,7 +54,7 @@ public final class EOPlanets implements endlessOctagon.util.Loadable{
                 new HexSkyMesh(this, 2, 0.15f, 0.14f, 5, Color.valueOf("8da7b1").a(0.75f), 2, 0.42f, 1f, 0.43f),
                 new HexSkyMesh(this, 3, 0.6f, 0.15f, 5, Color.valueOf("decaba").a(0.75f), 2, 0.42f, 1.2f, 0.45f)
             );
-            accessible = false;
+            accessible = true;
             alwaysUnlocked = true;
             landCloudColor = Color.valueOf("8da7b1");
             atmosphereColor = Color.valueOf("859e97");
@@ -76,7 +76,7 @@ public final class EOPlanets implements endlessOctagon.util.Loadable{
             ruleSetter = r -> {
                 r.waveTeam = Team.crux;
                 //r.placeRangeCheck = false; //TODO true or false?
-                r.attributes.set(Attribute.heat, 0.8f);
+                r.attributes.set(Attribute.heat, 0.2f);
                 r.showSpawns = true;
                 r.fog = true;
                 r.staticFog = true;
