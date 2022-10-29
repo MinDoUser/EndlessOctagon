@@ -3,6 +3,7 @@ package endlessOctagon.util;
 import mindustry.entities.bullet.*;
 import mindustry.type.*;
 import mindustry.graphics.*;
+import mindustry.gen.*;
 
 import arc.graphics.g2d.*;
 import arc.ui.scene.*;
@@ -62,7 +63,7 @@ public class BulletRecipe {
   }
   /** Called when this recipe got unlocked*/
   public void onUnlock(){
-  	  Vars.ui.showInfoToast(icon, Core.bundle.fomat(
+  	  Vars.ui.showInfoToast(Icon.info, Core.bundle.fomat("recipe.unlocked", localizedName));
   }
   /** Called when this content got locked*/
   public void onLock(){
