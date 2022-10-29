@@ -23,7 +23,7 @@ public class EravirPlanetGenerator extends BlankPlanetGenerator {
   protected static final byte def = 0, cold = 1; //Wich mind of blocks
   
   protected Block[][] blocks = {
-                                {EOBlocks.lightStone, EOBlocks.ironStone, Blocks.dirt, Blocks.mud, Blocks.regholith, Blocks.salt, Blocks.redStone},
+                                {EOBlocks.lightStone, EOBlocks.ironStone, Blocks.dirt, Blocks.mud, Blocks.regolith, Blocks.salt, Blocks.redStone},
                                 {EOBlocks.lightStone, Blocks.ice, Blocks.redIce}
                                 }; //TODO More environment
   
