@@ -31,17 +31,17 @@ public class BulletRecipe {
     requirements = req;
     this.type = type;
     
-    unlocked = Core.settings == null ? false : Core.settings.getBool(name"-unlocked", false);
+    unlocked = Core.settings == null ? false : Core.settings.getBool(name+"-unlocked", false);
     
     loadIcon();
     loadInfo();
   }
   
-  public BulletType(String name, BulletType type, Item item, int amount){
+  public BulletRecipe(String name, BulletType type, Item item, int amount){
     this(name, type, new ItemStack[]{new ItemStack(item, (amount < 0 ? 0:amount))});
   }
          
-  public BulletType(String name, BulletType type, Item item){
+  public BulletRecipe(String name, BulletType type, Item item){
     this(name,type, item, 1);
   }    
   
@@ -90,7 +90,7 @@ public class BulletRecipe {
   }
   
   public Image getIcon(){
-  	  return new Image(unlock.uiIcon).setScaling(Scaling.fit) : new Image(Icon.lock, Pal.gray);
+  	  return unlocked() ? new Image(unlock.uiIcon).setScaling(Scaling.fit) : new Image(Icon.lock, Pal.gray);
   }
   
   /** Returns the localized name of this recipe or <code>???</code> if it's still locked.*/
