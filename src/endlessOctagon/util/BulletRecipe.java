@@ -65,7 +65,7 @@ public class BulletRecipe {
   }
   /** Called when this recipe got unlocked*/
   public void onUnlock(){
-  	  Vars.ui.showInfoToast(Icon.info, Core.bundle.fomat("recipe.unlocked", localizedName));
+  	  Vars.ui.showInfoToast(Icon.info, Core.bundle.format("recipe.unlocked", localizedName));
   }
   /** Called when this content got locked*/
   public void onLock(){
