@@ -30,7 +30,7 @@ public class BulletRecipe {
   public ItemStack[] researchCost = ItemStack.empty;
   
   public BulletRecipe(String name, BulletType type, ItemStack[] req){
-    this.name = Vars.content.transforName(name);
+    this.name = Vars.content.transformName(name);
     requirements = req;
     this.type = type;
     
