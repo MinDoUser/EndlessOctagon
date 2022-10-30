@@ -23,11 +23,11 @@ import mindustry.maps.planet.*;
 import static arc.Core.*;
 import static mindustry.Vars.*;
 
-public class CustomDatabase extends DatabaseDialog {
+public class CostumDatabase extends DatabaseDialog {
   private TextField searchField;
   private Table allTable = new Table();
   
-  public CustomDatabase(){
+  public CostumDatabase(){
     super();
     
     cont.clear();
