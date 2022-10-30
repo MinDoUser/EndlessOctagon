@@ -28,8 +28,8 @@ public final class CodeDialog extends BaseDialog {
 				t.button("Run!", runAction).size(100,50);
 				t.button("Clear!", ()->{
 						codeArea.setText("");
-				}
-		}
+				});
+		});
 		
 		keyDown(key -> {
 				if(key == KeyCode.n){
