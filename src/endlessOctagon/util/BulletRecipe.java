@@ -6,13 +6,13 @@ import mindustry.graphics.*;
 import mindustry.gen.*;
 
 import arc.graphics.g2d.*;
-import arc.ui.scene.*;
-import arc.util.scaling.*;
+import arc.scene.ui.*;
+import arc.util.*;
 import arc.*;
 
 //TODO: Need to create a own content type somehow.
 public class BulletRecipe {
-  public final String name, localizedName, description;
+  public String name, localizedName, description;
   /** The bullet to be shoot*/
   public BulletType type;
   /** Whether this is locked or not. Do not set.*/
@@ -58,7 +58,7 @@ public class BulletRecipe {
   /** lock this recipe again*/
   public void lock(){
   	  unlocked = false;
-  	  onLocked();
+  	  onLock();
   	  saveState();
   }
   /** Called when this recipe got unlocked*/
