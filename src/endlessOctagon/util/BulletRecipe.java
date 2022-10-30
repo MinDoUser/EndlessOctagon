@@ -4,6 +4,8 @@ import mindustry.entities.bullet.*;
 import mindustry.type.*;
 import mindustry.graphics.*;
 import mindustry.gen.*;
+import mindustry.Vars;
+
 
 import arc.graphics.g2d.*;
 import arc.scene.ui.*;
@@ -91,7 +93,7 @@ public class BulletRecipe {
   }
   
   public Image getIcon(){
-  	  return unlocked() ? new Image(unlock.uiIcon).setScaling(Scaling.fit) : new Image(Icon.lock, Pal.gray);
+  	  return unlocked() || !Vars.state.isCampaign() ? new Image(icon).setScaling(Scaling.fit) : new Image(Icon.lock, Pal.gray);
   }
   
   /** Returns the localized name of this recipe or <code>???</code> if it's still locked.*/
