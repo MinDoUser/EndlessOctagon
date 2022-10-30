@@ -44,7 +44,7 @@ public final class EOSettings implements Loadable{
 	  modSettings.checkPref("showlockedblocks", true, bool -> {
 		  CustomDatabase cdb = EndlessOctagonMod.cDatabase;
 		  if(cdb == null){
-			  if(Vars.ui.database instanceof CustomDatabase data){
+			  if(Vars.ui.database instanceof CostumDatabase data){
 				  cdb = data;
 			  }else return;
 		  }
