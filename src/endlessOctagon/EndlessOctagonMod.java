@@ -33,13 +33,13 @@ public final class EndlessOctagonMod extends Mod{
     
     public ObjectLog[] LOGS_V_1_0_1, LOGS_V_1_1_1;
 	
-    public static CustomDatabase cDatabase;
+    public static CostumDatabase cDatabase;
 
     public EndlessOctagonMod(){
       Log.info("Mod constructor loaded...");
         Events.on(ClientLoadEvent.class, event -> {
 		Overrides.overridePlanets();
-		Vars.ui.database = cDatabase = new CustomDatabase();
+		Vars.ui.database = cDatabase = new CostumDatabase();
 		/*Vars.content.blocks().each(e->{
 			EOBlocks.addAndCheck(e); // For testing purposes yet.
 			Log.info("End");
