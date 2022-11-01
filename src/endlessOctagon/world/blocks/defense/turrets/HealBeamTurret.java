@@ -21,6 +21,8 @@ import arc.Core;
 import arc.math.Mathf;
 
 public class HealBeamTurret extends  BaseTurret {
+	/**
+	//BIG TODO!
 	public TextureRegion base, laser, laserEnd;
 
 	public float healEffectReload = 12;
@@ -167,5 +169,5 @@ public class HealBeamTurret extends  BaseTurret {
         }
 		
 	}
-	
+	*/
 }
