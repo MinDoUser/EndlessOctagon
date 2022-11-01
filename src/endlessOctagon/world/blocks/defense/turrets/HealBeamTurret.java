@@ -129,6 +129,7 @@ public class HealBeamTurret extends  BaseTurret {
 						float baseAmount;
 						baseAmount = (repairSpeed * Time.delta + Time.delta * u.maxHealth() / 100f) * coolantMutiplier;
 						target.heal((target.wasRecentlyDamaged() ? recentDamageMultiplier : 1f) * baseAmount);
+						}
 					}
 				}
 			}
