@@ -1,5 +1,4 @@
 package endlessOctagon.world.blocks.defense.turrets;
-package endlessOctagon.world.blocks.defense.turrets;
 
 import mindustry.world.blocks.defense.turrets.BaseTurret;
 import mindustry.world.meta.*;
