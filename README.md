@@ -16,14 +16,8 @@ This planet is <del>(so far)</del> called Eravir and also nowhere near done.
 This mod also add some intresting features and override some ingame dialogs...
 
 ## The Features
-<ul>
-  <li> 
-    A Block Checker
-    <br>
-    The Block Checker is a option to check whether a block can build with the items in the core.
-  </li>
-  <li> <i>soon</i> </li>
-</ul>
+<b>TODO</b>
+<br> 
 
 ### TODO
 <ul>
@@ -51,5 +45,8 @@ This mod also add some intresting features and override some ingame dialogs...
    </li>
   <li>
   [ ] Understand <code>build.gradle</code> and fix some warnings and other stuff.
+  </li>
+  <li>
+  [X] Update <code> build.gradle<code>to v139</code>
   </li>
 </ul>
