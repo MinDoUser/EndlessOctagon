@@ -18,12 +18,13 @@ import arc.struct.EnumSet;
 import arc.graphics.Color;
 import arc.math.Angles;
 import arc.Core;
+import arc.math.Mathf;
 
 public class HealBeamTurret extends  BaseTurret {
 	public TextureRegion base, laser, laserEnd;
-	
-	public float heal = 80f;
+
 	public float healEffectReload = 12;
+	public float repairSpeed = 0.47f;
 	
 	public float shootLength = 5f;
 	public float recentDamageMultiplier = 0.75f;
@@ -42,7 +43,7 @@ public class HealBeamTurret extends  BaseTurret {
 	
 	@Override
     public TextureRegion[] icons(){
-        return new TextureRegion[]{baseRegion, region};
+        return new TextureRegion[]{base, region};
     }
 	
 	@Override
@@ -70,7 +71,7 @@ public class HealBeamTurret extends  BaseTurret {
 	
 	public class HealBeamTurretBuild extends BaseTurretBuild {
 		
-		public Bilding target;
+		public Building target;
 		
 		//public float lastX, lastY;
 		public float coolantMult = 1f;
@@ -80,6 +81,7 @@ public class HealBeamTurret extends  BaseTurret {
 		
 		@Override
 		public void update(){
+		float eff = efficiency * coolantMultiplier, edelta = eff * delta();
 			//Retarget
 			if((retargetTimer += Time.delta) > retargetTime){
 				//Only if required.
@@ -102,7 +104,7 @@ public class HealBeamTurret extends  BaseTurret {
                 liquids.remove(liquid, used);
 
                 if(Mathf.chance(0.06 * used)){
-                    coolEffect.at(x + Mathf.range(size * tilesize / 2f), y + Mathf.range(size * tilesize / 2f));
+                    coolEffect.at(x + Mathf.range(size * tilesize / 2f), y + Mathf.range(size * Vars.tilesize / 2f));
                 }
 
                 coolantMultiplier = 1f + (used * liquid.heatCapacity * coolantMultiplier);
@@ -127,7 +129,7 @@ public class HealBeamTurret extends  BaseTurret {
 					
 					if(!target.isHealSuppressed()){
 						float baseAmount;
-						baseAmount = (repairSpeed * Time.delta + Time.delta * u.maxHealth() / 100f) * coolantMutiplier;
+						baseAmount = (repairSpeed * Time.delta + Time.delta * target.maxHealth() / 100f) * coolantMutiplier;
 						target.heal((target.wasRecentlyDamaged() ? recentDamageMultiplier : 1f) * baseAmount);
 					}
 				}
@@ -137,7 +139,7 @@ public class HealBeamTurret extends  BaseTurret {
 		
 		@Override
 		public void draw(){
-			Draw.rect(baseRegion, x, y);
+			Draw.rect(base, x, y);
             Drawf.shadow(region, x - (size / 2f), y - (size / 2f), rotation - 90);
             Draw.rect(region, x, y, rotation - 90);
             if(target != null){
