@@ -137,19 +137,20 @@ public class HealBeamTurret extends  BaseTurret {
 		@Override
 		public void draw(){
 			Draw.rect(baseRegion, x, y);
-            Drawf.shadow(region, x - (size / 2f), y - (size / 2f), rotation - 90);
-            Draw.rect(region, x, y, rotation - 90);
-            if(target != null){
-            	Draw.z(Layer.bullet);
-                float ang = angleTo(target.x, target.y);
+            		Drawf.shadow(region, x - (size / 2f), y - (size / 2f), rotation - 90);
+            		Draw.rect(region, x, y, rotation - 90);
+            		if(target != null){
+            			Draw.z(Layer.bullet);
+                		float ang = angleTo(target.x, target.y);
             	
-            	Drawf.laser(laser, laserEnd, laserEnd,
-                x + Angles.trnsx(ang, shootLength), y + Angles.trnsy(ang, shootLength),
-                target.x, target.y, efficiency * laserWidth);
-            }
+            			Drawf.laser(laser, laserEnd, laserEnd,
+                		x + Angles.trnsx(ang, shootLength), y + Angles.trnsy(ang, shootLength),
+                		target.x, target.y, efficiency * laserWidth);
+            		}
 		}
+	}
 		
-		@Override
+	@Override
         public void write(Writes write){
             super.write(write);
 
@@ -163,6 +164,6 @@ public class HealBeamTurret extends  BaseTurret {
             rotation = read.f();
         }
 		
-	}
+}
 	
 }
