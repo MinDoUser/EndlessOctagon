@@ -68,7 +68,7 @@ public final class EOPlanets implements endlessOctagon.util.Loadable{
             lightDstFrom = 0.24f;
             clearSectorOnLose = true;
             defaultCore = EOBlocks.coreElement;
-            //iconColor = Color.valueOf("b2cfd2"); // Understand how to update dumb "build.gradle" to v139.
+            iconColor = Color.valueOf("b2cfd2");
             hiddenItems.addAll(Vars.content.items()).removeAll(EOItems.eravirItems);
       
             updateLighting = true;
