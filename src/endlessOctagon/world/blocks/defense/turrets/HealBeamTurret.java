@@ -21,6 +21,9 @@ import arc.Core;
 import arc.math.Mathf;
 
 public class HealBeamTurret extends  BaseTurret {
+	public HealBeamTurret(String name){
+		super(name);
+	}
 	/**
 	//BIG TODO!
 	public TextureRegion base, laser, laserEnd;
